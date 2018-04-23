@@ -1,7 +1,7 @@
 export default {
   id: 'pittsburgh-flood-zones',
   type: 'vector',
-  layerName: 'pittsburgh-flood-zones',
+  name: 'PGH Flood Zones',
   visible: true,
   source: {
     type: 'carto-vector',

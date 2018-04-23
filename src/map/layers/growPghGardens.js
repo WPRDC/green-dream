@@ -1,7 +1,7 @@
 export default {
   id: 'grow-pgh-gardens',
   type: 'vector',
-  layerName: 'grow-pgh-gardens',
+  name: 'Grow Pittsburgh Gardens',
   visible: true,
   source: {
     type: 'carto-vector',

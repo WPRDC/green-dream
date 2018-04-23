@@ -1,7 +1,7 @@
 export default {
   id: 'pittsburgh-slope-25',
   type: 'vector',
-  layerName: 'pittsburgh-slope-25',
+  name: 'PGH Slope > 25%',
   visible: false,
   source: {
     type: 'carto-vector',

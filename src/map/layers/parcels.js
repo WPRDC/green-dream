@@ -1,7 +1,7 @@
 export default {
   id: 'parcels',
   type: 'vector',
-  layerName: 'parcels',
+  name: 'Parcels',
   visible: true,
   source: {
     type: 'carto-vector',

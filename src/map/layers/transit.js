@@ -1,7 +1,7 @@
 export default {
   id: 'transit-routes',
   type: 'vector',
-  layerName: 'routes',
+  name: 'Port Authority Routes',
   source: {
     type: 'carto-vector',
     minzoom: 15,

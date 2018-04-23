@@ -1,7 +1,7 @@
 export default {
   id: 'city-steps',
   type: 'vector',
-  layerName: 'routes',
+  name: 'City Steps',
   visible: true,
   source: {
     type: 'carto-vector',

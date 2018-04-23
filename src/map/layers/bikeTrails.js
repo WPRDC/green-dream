@@ -1,7 +1,7 @@
 export default {
   id: 'bike-trails',
   type: 'vector',
-  layerName: 'routes',
+  name: 'Bike Trails',
   visible: 'true',
   source: {
     type: 'carto-vector',

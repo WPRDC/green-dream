@@ -1,7 +1,7 @@
 export default {
   id: 'pittsburgh-parks',
   type: 'vector',
-  layerName: 'pittsburgh-parks',
+  layerName: 'PGH Parks',
   visible: true,
   source: {
     type: 'carto-vector',

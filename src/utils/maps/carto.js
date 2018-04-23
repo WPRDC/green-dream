@@ -39,7 +39,7 @@ export const generateSourceWithTiles = layer => {
       .then(
         data => resolve(
           {
-            [layer.id]:{
+            [layer.id]: {
               type: layer.type,
               tiles: extractCartoTileUrls(data),
               minzoom: layer.minzoom | 0
@@ -65,11 +65,10 @@ export const generateCartoVectorSource = layer => {
       .then(
         data => resolve(
           {
-            [layer.id]:{
-              type: layer.type,
-              tiles: extractCartoTileUrls(data),
-              minzoom: layer.source.minzoom | 0
-            }
+            type: layer.type,
+            tiles: extractCartoTileUrls(data),
+            minzoom: layer.source.minzoom | 0
+
           }
         ),
         error => console.log(error)

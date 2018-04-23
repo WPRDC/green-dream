@@ -3,7 +3,7 @@ import Map from './components/Map'
 import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Header from "./components/Header";
-import LayerControl from "./components/LayerControl"
+import LayerControl from "./containers/LayerControl"
 
 class App extends Component {
   render() {

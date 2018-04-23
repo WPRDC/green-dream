@@ -1,7 +1,7 @@
 export default {
   id: 'neighborhoods',
   type: 'vector',
-  layerName: 'neighborhoods',
+  name: 'PGH Neighborhoods',
   visible: true,
   source: {
     type: 'carto-vector',

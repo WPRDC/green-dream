@@ -1,7 +1,7 @@
 export default {
   id: 'municipalities',
   type: 'vector',
-  layerName: 'municipalities',
+  layerName: 'Allegheny County Municipalities',
   visible: true,
   source: {
     type: 'carto-vector',

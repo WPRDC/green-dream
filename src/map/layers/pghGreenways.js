@@ -1,7 +1,7 @@
 export default {
   id: 'pittsburgh-greenways',
   type: 'vector',
-  layerName: 'pittsburgh-greenways',
+  name: 'PGH Greenways',
   visible: true,
   source: {
     type: 'carto-vector',

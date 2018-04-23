@@ -1,7 +1,7 @@
 export default {
   id: 'allegheny-county',
   type: 'vector',
-  layerName: 'allegheny-county',
+  name: 'Allegheny County Border',
   visible: false,
   source: {
     type: 'carto-vector',

@@ -1,7 +1,8 @@
 export default {
   id: 'allegheny-parks',
   type: 'vector',
-  layerName: 'allegheny-parks',
+  name: 'Allegheny County Parks',
+  geoType: 'polygon',
   visible: true,
   source: {
     type: 'carto-vector',
