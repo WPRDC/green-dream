@@ -2,6 +2,8 @@ export default {
   id: 'pittsburgh-slope-25',
   type: 'vector',
   name: 'PGH Slope > 25%',
+  geoType: 'polygon',
+  legendColor: '#708090',
   visible: false,
   source: {
     type: 'carto-vector',

@@ -3,6 +3,8 @@ export default {
   type: 'vector',
   name: 'Bike Trails',
   visible: 'true',
+  geoType: 'line',
+  legendColor: '#5C5248',
   source: {
     type: 'carto-vector',
     minzoom: 8,

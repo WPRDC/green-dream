@@ -3,6 +3,7 @@ export default {
   type: 'vector',
   name: 'Allegheny County Parks',
   geoType: 'polygon',
+  legendColor: 'green',
   visible: true,
   source: {
     type: 'carto-vector',

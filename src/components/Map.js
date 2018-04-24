@@ -23,6 +23,8 @@ class Map extends Component {
         zoom: 10,
         minZoom: 9,
       },
+      width: window.innerWidth,
+      height: window.innerHeight,
       mapStyle: BASE_STYLE,
       tooltip: null,
     }
@@ -31,19 +33,16 @@ class Map extends Component {
   componentDidMount = () => {
       const {mapLayers, initLayers } = this.props;
       initLayers(mapLayers);
+      window.addEventListener('resize', this.updateDimensions)
   };
 
+  updateDimensions = () => {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  };
 
-  _onHover = event => {
-    if (event.features.length) {
-      this.setState({
-        tooltip: event.features[0].properties.pin
-      }, console.log(this.state.tooltip))
-    } else if (this.state.tooltip) {
-      this.setState({tooltip: null})
-      this.setState({tooltip: null})
-    }
-  }
 
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -51,14 +50,16 @@ class Map extends Component {
     const {mapLayers: newLayers} = this.props;
 
     if (layerListChanged(oldLayers, newLayers)) {
-      this.setState({mapStyle: generateMapboxStyle(newLayers)})
+
+      this.setState({mapStyle: generateMapboxStyle(newLayers)}, () => console.log('changing that state'))
     }
 
   };
 
 
   render() {
-    const {containerWidth: width, containerHeight: height} = this.props;
+    const {width, height} = this.state;
+
     if (this.state.mapStyle !== null) {
       return (
         <ReactMapGL
@@ -67,7 +68,7 @@ class Map extends Component {
           onHover={this._onHover}
           transitionDuration={1000}
 
-          {...{...this.state.viewport, ...{width: width - 10, height}}}
+          {...{...this.state.viewport, ...{width: width - 10, height: height - 64}}}
 
         >
           <p style={{fontWeight: 800}}>{this.state.viewport.zoom}</p>

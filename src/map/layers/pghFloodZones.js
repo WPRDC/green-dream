@@ -2,6 +2,8 @@ export default {
   id: 'pittsburgh-flood-zones',
   type: 'vector',
   name: 'PGH Flood Zones',
+  geoType: 'polygon',
+  legendColor: '#007791',
   visible: true,
   source: {
     type: 'carto-vector',

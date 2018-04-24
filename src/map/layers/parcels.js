@@ -2,6 +2,8 @@ export default {
   id: 'parcels',
   type: 'vector',
   name: 'Parcels',
+  geoType: 'polygon',
+  legendColor: 'rgba(2, 2, 2, 1)',
   visible: true,
   source: {
     type: 'carto-vector',
@@ -17,6 +19,7 @@ export default {
         "source": "parcels",
         "source-layer": "parcels",
         "layout": {},
+
         "paint": {
           "line-width": {
             "stops": [
@@ -36,6 +39,7 @@ export default {
       {
         "id": "parcels-fill",
         "type": "fill",
+        "interactive": true,
         "source": "parcels",
         "source-layer": "parcels",
         "layout": {},

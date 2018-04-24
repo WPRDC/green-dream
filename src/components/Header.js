@@ -1,36 +1,56 @@
-import React from 'react'
-import {beige, brown, green, lightBrown} from "../utils/colorTheme";
+import React from 'react';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import {toggleLayerMenu} from "../actions/mapActions";
+
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  icon: {
+    height: '40px'
+  }
+});
 
 const Header = props => {
-  const style = {
-    padding: '10px 7px',
-    backgroundColor: green,
-    color: brown,
-    borderBottom: `3px solid black`,
-    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
-    img: {
-      height: '100%',
-      display: 'block',
-      float: 'left',
-    },
-    h1: {
-      display: 'block',
-      margin: '0',
-      position: 'relative',
-      top: '5px',
-      left: '15px',
-      fontSize: '45px',
-      fontFamily: 'Montserrat, sans-serif'
-    }
-  };
+  const { classes, toggleMenu } = props;
 
   return (
-    <div style={style} className={props.className}>
-      <img style={style.img}
-           src="http://www.wprdc.org/wp-content/themes/wprdc-redesign/assets/images/plain_logo_rbg_cropped.svg"/>
-      <h1 style={style.h1}>Green Stuff</h1>
-    </div>
+    <AppBar position="absolute" className={classes.root}>
+      <Toolbar>
+        <IconButton color="inherit" aria-label="Menu" className={classes.menuButton} onClick={toggleMenu}>
+          <MenuIcon/>
+        </IconButton>
+        <Typography variant="title" color="inherit" className={classes.flex}>
+          Green Dream
+        </Typography>
+        <img src={require('../assets/img/white_icon.svg')} className={classes.icon}/>
+      </Toolbar>
+    </AppBar>
   )
 };
 
-export default Header
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMenu: () => dispatch(toggleLayerMenu())
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Header));

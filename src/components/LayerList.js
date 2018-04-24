@@ -7,7 +7,7 @@ import LayerListItem from "./LayerListItem";
 
 const LayerList = props => {
   return (
-    <List
+    <List dense
           subheader={<ListSubheader>Map Layers</ListSubheader>}
     >
       {props.children}

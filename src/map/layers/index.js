@@ -15,8 +15,8 @@ import bikeTrails from "./bikeTrails";
 export const defaultLayers = [
   parcels,
   citySteps,
-  transit,
   bikeTrails,
+
   municipalities,
   neighborhoods,
   growPghGardens,
@@ -24,6 +24,7 @@ export const defaultLayers = [
   pittsburghParks,
   alleghenyParks,
   pghFloodZones,
+  pghSlope25,
   county,
-  pghSlope25
+
 ]

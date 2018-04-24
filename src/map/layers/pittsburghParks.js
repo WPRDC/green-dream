@@ -1,7 +1,9 @@
 export default {
   id: 'pittsburgh-parks',
   type: 'vector',
-  layerName: 'PGH Parks',
+  geoType: 'polygon',
+  legendColor: 'green',
+  name: 'PGH Parks',
   visible: true,
   source: {
     type: 'carto-vector',
@@ -47,7 +49,28 @@ export default {
             ]
           }
         }
-      }
+      },
+      // {
+      //
+      //   "id": "pittsburgh-parks-fill-extrusion",
+      //   "type": "fill-extrusion",
+      //   "source": "pittsburgh-parks",
+      //   "source-layer": "pittsburgh-parks",
+      //   "layout": {},
+      //   "paint": {
+      //     'fill-extrusion-color': 'green',
+      //
+      //     // Get fill-extrusion-height from the source 'height' property.
+      //     'fill-extrusion-height': 100,
+      //
+      //     // Get fill-extrusion-base from the source 'base_height' property.
+      //     'fill-extrusion-base': 0,
+      //
+      //     // Make extrusions slightly opaque for see through indoor walls.
+      //     'fill-extrusion-opacity': 1
+      //   }
+      // },
+
     ]
   }
 }

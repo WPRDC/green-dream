@@ -2,6 +2,8 @@ export default {
   id: 'pittsburgh-greenways',
   type: 'vector',
   name: 'PGH Greenways',
+  geoType: 'polygon',
+  legendColor: '#01796F',
   visible: true,
   source: {
     type: 'carto-vector',

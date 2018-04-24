@@ -3,6 +3,8 @@ export default {
   type: 'vector',
   name: 'City Steps',
   visible: true,
+  geoType: 'line',
+  legendColor: 'rgba(120, 2, 222, 1)',
   source: {
     type: 'carto-vector',
     minzoom: 10,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { withStyles } from 'material-ui/styles';
+import {withStyles} from 'material-ui/styles';
 
 
 import {connect} from 'react-redux'
@@ -38,26 +38,20 @@ const styles = theme => ({
 });
 
 
-
-
-
-
 const LayerControl = props => {
   const {mapLayers, handleChange} = props;
   return (
-      <LayerList>
-        {mapLayers.map(layer =>
-          <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
-        )}
-      </LayerList>
+    <LayerList>
+      {mapLayers.map(layer =>
+        <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+      )}
+    </LayerList>
   )
 }
 
 const mapStateToProps = state => {
   const {mapLayers} = state;
-  return {
-    mapLayers
-  }
+  return {mapLayers}
 }
 
 const mapDispatchToProps = dispatch => {

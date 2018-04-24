@@ -3,6 +3,8 @@ export default {
   type: 'vector',
   name: 'Allegheny County Border',
   visible: false,
+  geoType: 'polygon',
+  legendColor: 'navy',
   source: {
     type: 'carto-vector',
     minzoom: 0,

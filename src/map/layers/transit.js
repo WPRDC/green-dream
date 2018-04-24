@@ -1,6 +1,7 @@
 export default {
   id: 'transit-routes',
   type: 'vector',
+  geoType: 'line',
   name: 'Port Authority Routes',
   source: {
     type: 'carto-vector',

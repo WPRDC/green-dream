@@ -2,6 +2,8 @@ export default {
   id: 'neighborhoods',
   type: 'vector',
   name: 'PGH Neighborhoods',
+  geoType: 'polygon',
+  legendColor: 'black',
   visible: true,
   source: {
     type: 'carto-vector',
@@ -22,14 +24,14 @@ export default {
         "paint": {
           "line-width": {
             "stops": [
-              [0,1],
-              [9,1],
+              [0, 1],
+              [9, 1],
               [18, 3]
             ]
           },
           "line-opacity": {
             "stops": [
-              [10,0],
+              [10, 0],
               [13, 0.4]
             ]
           },

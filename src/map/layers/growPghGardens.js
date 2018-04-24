@@ -1,7 +1,9 @@
 export default {
   id: 'grow-pgh-gardens',
   type: 'vector',
+  geoType: 'point',
   name: 'Grow Pittsburgh Gardens',
+  legendColor: '#0F2',
   visible: true,
   source: {
     type: 'carto-vector',
