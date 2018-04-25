@@ -8,7 +8,7 @@ export default {
   source: {
     type: 'carto-vector',
     minzoom: 0,
-    sql: 'SELECT * FROM wprdc.pittsburgh_parks',
+    sql: 'SELECT *, objectid as map_identifier, updatepknm as map_name FROM wprdc.pittsburgh_parks',
   },
   layers: {
     labels: [],
@@ -36,6 +36,7 @@ export default {
       {
         "id": "pittsburgh-parks-fill",
         "type": "fill",
+        "interactive": true,
         "source": "pittsburgh-parks",
         "source-layer": "pittsburgh-parks",
         "layout": {},
@@ -44,8 +45,8 @@ export default {
           "fill-opacity": {
             "stops": [
               [8, 0],
-              [13, 0.5],
-              [18, 0.8]
+              [13, 0.2],
+              [18, 0.4]
             ]
           }
         }
@@ -61,10 +62,10 @@ export default {
       //     'fill-extrusion-color': 'green',
       //
       //     // Get fill-extrusion-height from the source 'height' property.
-      //     'fill-extrusion-height': 100,
+      //     'fill-extrusion-height': 250,
       //
       //     // Get fill-extrusion-base from the source 'base_height' property.
-      //     'fill-extrusion-base': 0,
+      //     'fill-extrusion-base': 100,
       //
       //     // Make extrusions slightly opaque for see through indoor walls.
       //     'fill-extrusion-opacity': 1

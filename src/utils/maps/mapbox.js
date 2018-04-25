@@ -1,5 +1,6 @@
 import {generateCartoVectorSource} from './carto'
 import basemap from "../../map/basemaps/basemap";
+import {fromJS} from 'immutable'
 
 export const BASE_STYLE = {
   "version": 8,
@@ -11,7 +12,7 @@ export const BASE_STYLE = {
 }
 
 export const generateMapboxStyle = (layerConfigs, baseStyle = BASE_STYLE) => {
-  return layerConfigs.reduce(
+  const mapStyle = layerConfigs.reduce(
     (style, currConfig) => {
       const s = Object.assign({}, style);
       s.sources[currConfig.id] = currConfig.mapboxSource;
@@ -19,7 +20,9 @@ export const generateMapboxStyle = (layerConfigs, baseStyle = BASE_STYLE) => {
       s.layers = s.layers.concat(nl);
       return s;
     },
-    baseStyle)
+    baseStyle);
+
+  return fromJS(mapStyle)
 }
 
 

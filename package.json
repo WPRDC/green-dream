@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dotenv": "^5.0.1",
+    "immutable": "^3.8.2",
     "mapbox-gl": "^0.44.2",
     "material-ui": "^1.0.0-beta.43",
     "material-ui-icons": "^1.0.0-beta.36",
@@ -12,6 +13,7 @@
     "react-dom": "^16.3.1",
     "react-map-gl": "^3.2.5",
     "react-redux": "^5.0.7",
+    "react-tooltip": "^3.5.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"

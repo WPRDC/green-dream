@@ -3591,7 +3591,7 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immutable@*:
+immutable@*, immutable@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
@@ -6217,6 +6217,13 @@ react-scrollbar-size@^2.0.2:
     prop-types "^15.6.0"
     react-event-listener "^0.5.1"
     stifle "^1.0.2"
+
+react-tooltip@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-3.5.0.tgz#f4bff54b3c70415b6bd25b8bcf7801c230d1b517"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
 
 react-transition-group@^2.2.1:
   version "2.3.1"
