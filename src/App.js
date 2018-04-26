@@ -12,51 +12,31 @@ import {withStyles} from 'material-ui/styles';
 import Header from "./components/Header";
 import LayerControl from "./containers/LayerControl"
 import Drawer from 'material-ui/Drawer';
+import InfoPanel from "./components/infoPanel/InfoPanel";
 
 const drawerWidth = 300;
 
 const styles = theme => ({
-    root: {
-      zIndex: 1,
-      overflow: 'hidden',
-      position: 'relative',
-      display: 'flex',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    drawerPaper: {
-      position: 'relative',
-      width: drawerWidth,
-    },
-    content: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.default,
-      padding: 0,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: '0 8px',
-      ...theme.mixins.toolbar,
-    },
-
-    toolbar: theme.mixins.toolbar,
-  })
-;
+  root: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'flex-start',
+    alignContent: 'stretch',
+    alignItems: 'flex-start',
+  },
+  header: {
+    flex: '0 1 64px',
+    alignSelf: 'stretch',
+  },
+  content: {
+    backgroundColor: theme.palette.background.default,
+    flex: '1 0 100px',
+    alignSelf: 'stretch',
+    position: 'relative'
+  },
+});
 
 
 class App extends Component {
@@ -65,41 +45,22 @@ class App extends Component {
 
     return (
       <div className={classes.root}>
-        <Header/>
+        <div className={classes.header}>
+          <Header/>
+        </div>
 
-        <Drawer variant="persistent"
-                open={layerMenu.open}
-                classes={{paper: classes.drawerPaper,}}
-        >
+        <main className={classes.content}>
+          <Map/>
+          <InfoPanel>w0000t</InfoPanel>
 
-          <div className={classes.drawerHeader}/>
-          <LayerControl/>
-          <div style={{position: 'absolute', bottom: 6, textAlign: 'center', width:'100%'}}>
-            <img src={require('./assets/img/black_logo.svg')}/>
-            <p>A Whopper Duck Production!</p>
-          </div>
-        </Drawer>
 
-        <main
-          className={classNames(classes.content, {
-            [classes.contentShift]: layerMenu.open,
-          })}
-        >
-          <div className={classes.drawerHeader}/>
-          <div style={{height: '100%', width: '100%'}}>
-            <Map/>
-          </div>
         </main>
+
       </div>
 
     );
   }
 }
 
-const mapStateToProps = state => {
-  const {layerMenu} = state;
-  return {layerMenu}
-}
 
-
-export default connect(mapStateToProps)(withStyles(styles)(App));
+export default withStyles(styles)(App);

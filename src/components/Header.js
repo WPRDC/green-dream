@@ -13,8 +13,11 @@ import {toggleLayerMenu} from "../actions/mapActions";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 0,
     zIndex: theme.zIndex.drawer + 1,
+    position: 'static',
+    height: 64,
+    overflow: 'hidden'
   },
   flex: {
     flex: 1,
@@ -32,7 +35,7 @@ const Header = props => {
   const { classes, toggleMenu } = props;
 
   return (
-    <AppBar position="absolute" className={classes.root}>
+    <AppBar className={classes.root}>
       <Toolbar>
         <IconButton color="inherit" aria-label="Menu" className={classes.menuButton} onClick={toggleMenu}>
           <MenuIcon/>

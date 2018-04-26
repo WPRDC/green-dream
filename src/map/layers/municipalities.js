@@ -24,8 +24,8 @@ export default {
         "paint": {
           "line-width": {
             "stops": [
-              [0,1],
-              [9,1],
+              [0, 1],
+              [9, 1],
               [18, 10]
             ]
           },
@@ -38,6 +38,26 @@ export default {
           },
           "line-color": "black",
         }
+      },
+      {
+        id: 'municipalities-labels',
+        type: 'symbol',
+        source: 'municipalities',
+        'source-layer': 'municipalities',
+        layout: {
+          'text-field': '{f0_name}',
+          'text-font': [
+            'Open Sans Regular',
+            'Arial Unicode MS Regular',
+          ],
+          'text-size': 11,
+        },
+        paint: {
+          'text-opacity': 1,
+          'icon-color': 'rgba(193, 193, 193, 1)',
+          'text-color': 'rgba(154, 154, 154, 1)',
+          'text-halo-color': 'rgba(152, 152, 152, 0)',
+        },
       },
     ]
   }

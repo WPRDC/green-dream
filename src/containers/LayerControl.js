@@ -9,7 +9,7 @@ import LayerList from "../components/LayerList";
 import Drawer from 'material-ui/Drawer'
 
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 
 const styles = theme => ({
@@ -20,9 +20,6 @@ const styles = theme => ({
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
   },
   drawerPaper: {
     position: 'relative',
@@ -39,19 +36,25 @@ const styles = theme => ({
 
 
 const LayerControl = props => {
-  const {mapLayers, handleChange} = props;
+  const {mapLayers, layerMenu, handleChange, classes} = props;
   return (
-    <LayerList>
-      {mapLayers.map(layer =>
-        <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
-      )}
-    </LayerList>
+    <Drawer variant="persistent"
+            anchor="left"
+            open={layerMenu.open}
+            classes={{paper: classes.drawerPaper,}}
+    >
+      <LayerList>
+        {mapLayers.map(layer =>
+          <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+        )}
+      </LayerList>
+    </Drawer>
   )
 }
 
 const mapStateToProps = state => {
-  const {mapLayers} = state;
-  return {mapLayers}
+  const {mapLayers, layerMenu} = state;
+  return {mapLayers, layerMenu}
 }
 
 const mapDispatchToProps = dispatch => {

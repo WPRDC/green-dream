@@ -38,6 +38,31 @@ export default {
           "line-color": "black",
         }
       },
+      {
+        id: 'neighborhoods-labels',
+        type: 'symbol',
+        source: 'neighborhoods',
+        'source-layer': 'neighborhoods',
+        layout: {
+          'text-field': '{hood}',
+          'text-font': [
+            'Open Sans Regular',
+            'Arial Unicode MS Regular',
+          ],
+          'text-size': 11,
+        },
+        paint: {
+          "text-opacity": {
+            "stops": [
+              [10, 0],
+              [13,1]
+            ]
+          },
+          'icon-color': 'rgba(193, 193, 193, 1)',
+          'text-color': '#222',
+          'text-halo-color': 'rgba(152, 152, 152, 0)',
+        },
+      },
     ]
   }
 }

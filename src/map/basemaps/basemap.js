@@ -1503,468 +1503,468 @@ export default {
         "line-opacity": 1
       }
     },
-    {
-      "id": "place_other",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 14,
-      "filter": [
-        "all",
-        [
-          "in",
-          "class",
-          "continent",
-          "hamlet",
-          "neighbourhood",
-          "isolated_dwelling"
-        ],
-        [
-          "==",
-          "$type",
-          "Point"
-        ]
-      ],
-      "layout": {
-        "text-size": 10,
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "center",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0
-        ],
-        "text-anchor": "center",
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1
-      }
-    },
-    {
-      "id": "place_suburb",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 15,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "==",
-          "class",
-          "suburb"
-        ]
-      ],
-      "layout": {
-        "text-size": 10,
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "center",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0
-        ],
-        "text-anchor": "center",
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1
-      }
-    },
-    {
-      "id": "place_village",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 14,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "==",
-          "class",
-          "village"
-        ]
-      ],
-      "layout": {
-        "text-size": 10,
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "left",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0.2
-        ],
-        "icon-size": 0.4,
-        "text-anchor": "left",
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1,
-        "icon-opacity": 0.7
-      }
-    },
-    {
-      "id": "place_town",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 15,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "==",
-          "class",
-          "town"
-        ]
-      ],
-      "layout": {
-        "text-size": 10,
-        "icon-image": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "circle-11"
-            ],
-            [
-              8,
-              ""
-            ]
-          ]
-        },
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "left",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0.2
-        ],
-        "icon-size": 0.4,
-        "text-anchor": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "left"
-            ],
-            [
-              8,
-              "center"
-            ]
-          ]
-        },
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1,
-        "icon-opacity": 0.7
-      }
-    },
-    {
-      "id": "place_city",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 14,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "all",
-          [
-            "!=",
-            "capital",
-            2
-          ],
-          [
-            "==",
-            "class",
-            "city"
-          ],
-          [
-            ">",
-            "rank",
-            3
-          ]
-        ]
-      ],
-      "layout": {
-        "text-size": 10,
-        "icon-image": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "circle-11"
-            ],
-            [
-              8,
-              ""
-            ]
-          ]
-        },
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "left",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0.2
-        ],
-        "icon-size": 0.4,
-        "text-anchor": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "left"
-            ],
-            [
-              8,
-              "center"
-            ]
-          ]
-        },
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1,
-        "icon-opacity": 0.7
-      }
-    },
-    {
-      "id": "place_capital",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 12,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "all",
-          [
-            "==",
-            "capital",
-            2
-          ],
-          [
-            "==",
-            "class",
-            "city"
-          ]
-        ]
-      ],
-      "layout": {
-        "text-size": 14,
-        "icon-image": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "star-11"
-            ],
-            [
-              8,
-              ""
-            ]
-          ]
-        },
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "left",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0.2
-        ],
-        "icon-size": 1,
-        "text-anchor": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "left"
-            ],
-            [
-              8,
-              "center"
-            ]
-          ]
-        },
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1,
-        "icon-opacity": 0.7
-      }
-    },
-    {
-      "id": "place_city_large",
-      "type": "symbol",
-      "metadata": {
-        "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
-      },
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "maxzoom": 12,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "all",
-          [
-            "!=",
-            "capital",
-            2
-          ],
-          [
-            "<=",
-            "rank",
-            3
-          ],
-          [
-            "==",
-            "class",
-            "city"
-          ]
-        ]
-      ],
-      "layout": {
-        "text-size": 14,
-        "icon-image": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "circle-11"
-            ],
-            [
-              8,
-              ""
-            ]
-          ]
-        },
-        "text-transform": "uppercase",
-        "text-font": [
-          "Metropolis Regular",
-          "Noto Sans Regular"
-        ],
-        "text-justify": "left",
-        "visibility": "visible",
-        "text-offset": [
-          0.5,
-          0.2
-        ],
-        "icon-size": 0.4,
-        "text-anchor": {
-          "base": 1,
-          "stops": [
-            [
-              0,
-              "left"
-            ],
-            [
-              8,
-              "center"
-            ]
-          ]
-        },
-        "text-field": "{name:latin}\n{name:nonlatin}"
-      },
-      "paint": {
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-halo-blur": 1,
-        "icon-opacity": 0.7
-      }
-    },
+    // {
+    //   "id": "place_other",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 14,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "in",
+    //       "class",
+    //       "continent",
+    //       "hamlet",
+    //       "neighbourhood",
+    //       "isolated_dwelling"
+    //     ],
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 10,
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "center",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0
+    //     ],
+    //     "text-anchor": "center",
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1
+    //   }
+    // },
+    // {
+    //   "id": "place_suburb",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 15,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "==",
+    //       "class",
+    //       "suburb"
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 10,
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "center",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0
+    //     ],
+    //     "text-anchor": "center",
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1
+    //   }
+    // },
+    // {
+    //   "id": "place_village",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 14,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "==",
+    //       "class",
+    //       "village"
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 10,
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "left",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0.2
+    //     ],
+    //     "icon-size": 0.4,
+    //     "text-anchor": "left",
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1,
+    //     "icon-opacity": 0.7
+    //   }
+    // },
+    // {
+    //   "id": "place_town",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 15,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "==",
+    //       "class",
+    //       "town"
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 10,
+    //     "icon-image": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "circle-11"
+    //         ],
+    //         [
+    //           8,
+    //           ""
+    //         ]
+    //       ]
+    //     },
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "left",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0.2
+    //     ],
+    //     "icon-size": 0.4,
+    //     "text-anchor": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "left"
+    //         ],
+    //         [
+    //           8,
+    //           "center"
+    //         ]
+    //       ]
+    //     },
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1,
+    //     "icon-opacity": 0.7
+    //   }
+    // },
+    // {
+    //   "id": "place_city",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 14,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "all",
+    //       [
+    //         "!=",
+    //         "capital",
+    //         2
+    //       ],
+    //       [
+    //         "==",
+    //         "class",
+    //         "city"
+    //       ],
+    //       [
+    //         ">",
+    //         "rank",
+    //         3
+    //       ]
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 10,
+    //     "icon-image": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "circle-11"
+    //         ],
+    //         [
+    //           8,
+    //           ""
+    //         ]
+    //       ]
+    //     },
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "left",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0.2
+    //     ],
+    //     "icon-size": 0.4,
+    //     "text-anchor": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "left"
+    //         ],
+    //         [
+    //           8,
+    //           "center"
+    //         ]
+    //       ]
+    //     },
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1,
+    //     "icon-opacity": 0.7
+    //   }
+    // },
+    // {
+    //   "id": "place_capital",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 12,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "all",
+    //       [
+    //         "==",
+    //         "capital",
+    //         2
+    //       ],
+    //       [
+    //         "==",
+    //         "class",
+    //         "city"
+    //       ]
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 14,
+    //     "icon-image": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "star-11"
+    //         ],
+    //         [
+    //           8,
+    //           ""
+    //         ]
+    //       ]
+    //     },
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "left",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0.2
+    //     ],
+    //     "icon-size": 1,
+    //     "text-anchor": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "left"
+    //         ],
+    //         [
+    //           8,
+    //           "center"
+    //         ]
+    //       ]
+    //     },
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1,
+    //     "icon-opacity": 0.7
+    //   }
+    // },
+    // {
+    //   "id": "place_city_large",
+    //   "type": "symbol",
+    //   "metadata": {
+    //     "mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"
+    //   },
+    //   "source": "openmaptiles",
+    //   "source-layer": "place",
+    //   "maxzoom": 12,
+    //   "filter": [
+    //     "all",
+    //     [
+    //       "==",
+    //       "$type",
+    //       "Point"
+    //     ],
+    //     [
+    //       "all",
+    //       [
+    //         "!=",
+    //         "capital",
+    //         2
+    //       ],
+    //       [
+    //         "<=",
+    //         "rank",
+    //         3
+    //       ],
+    //       [
+    //         "==",
+    //         "class",
+    //         "city"
+    //       ]
+    //     ]
+    //   ],
+    //   "layout": {
+    //     "text-size": 14,
+    //     "icon-image": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "circle-11"
+    //         ],
+    //         [
+    //           8,
+    //           ""
+    //         ]
+    //       ]
+    //     },
+    //     "text-transform": "uppercase",
+    //     "text-font": [
+    //       "Metropolis Regular",
+    //       "Noto Sans Regular"
+    //     ],
+    //     "text-justify": "left",
+    //     "visibility": "visible",
+    //     "text-offset": [
+    //       0.5,
+    //       0.2
+    //     ],
+    //     "icon-size": 0.4,
+    //     "text-anchor": {
+    //       "base": 1,
+    //       "stops": [
+    //         [
+    //           0,
+    //           "left"
+    //         ],
+    //         [
+    //           8,
+    //           "center"
+    //         ]
+    //       ]
+    //     },
+    //     "text-field": "{name:latin}\n{name:nonlatin}"
+    //   },
+    //   "paint": {
+    //     "text-color": "rgb(117, 129, 145)",
+    //     "text-halo-color": "rgb(242,243,240)",
+    //     "text-halo-width": 1,
+    //     "text-halo-blur": 1,
+    //     "icon-opacity": 0.7
+    //   }
+    // },
     {
       "id": "place_state",
       "type": "symbol",

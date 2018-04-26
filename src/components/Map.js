@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import ReactMapGL from 'react-map-gl'
 import {connect} from 'react-redux'
+import {withStyles} from 'material-ui/styles';
+
+import Drawer from 'material-ui/Drawer'
 
 import Dimensions from 'react-dimensions'
 
@@ -10,9 +13,24 @@ import {BASE_STYLE, generateMapboxStyle} from '../utils/maps/mapbox'
 import ReactTooltip from 'react-tooltip'
 
 import {layerListChanged} from "../utils/utils";
-
+import LayerControl from '../containers/LayerControl'
 
 import {fromJS, toJS} from 'immutable'
+import {fetchParcelDataIfNeeded, selectParcel} from "../actions/dataActions";
+
+
+const styles = theme => ({
+  root: {
+    zIndex: 1,
+    overflow: 'auto',
+    position: 'fixed',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%'
+  }
+});
+
 
 class Map extends Component {
   constructor(props) {
@@ -57,16 +75,17 @@ class Map extends Component {
 
   handleClick = (event) => {
     const {mapStyle} = this.state;
+    const {collectData} = this.props;
+
     const workingStyle = mapStyle.toJS();
     if (event && event.features.length) {
       const fillIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-fill');
       const lineIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-border');
-      console.log(fillIndex, lineIndex)
       this.setState({
         mapStyle: mapStyle
           .setIn(['layers', fillIndex, 'filter', 2], event.features[0].properties['map_identifier'])
           .setIn(['layers', lineIndex, 'filter', 2], event.features[0].properties['map_identifier']),
-      })
+      }, collectData(event.features[0].properties['map_identifier']))
     }
   };
 
@@ -87,24 +106,26 @@ class Map extends Component {
 
   render() {
     const {width, height, tooltip} = this.state;
+    const {layerMenu, classes} = this.props;
 
     if (this.state.mapStyle !== null) {
       return (
-        <div>
-          <a data-tip data-for="identifier">
+        <div className={classes.root}>
+          <LayerControl/>
+
+          <a data-tip data-for="identifier" style={{position: 'absolute', zIndex: 1}}>
             <ReactMapGL
               mapStyle={this.state.mapStyle}
               onViewportChange={(viewport) => this.setState({viewport})}
               onHover={this.handleHover}
               onClick={this.handleClick}
               transitionDuration={1000}
-
               {...{...this.state.viewport, ...{width: width - 10, height: height - 64}}}
-
             >
               <p style={{fontWeight: 800}}>{this.state.viewport.zoom}</p>
             </ReactMapGL>
           </a>
+
           {tooltip &&
           <ReactTooltip place="right" id="identifier"
                         style={{zIndex: 1000}}>
@@ -120,17 +141,27 @@ class Map extends Component {
 }
 
 const mapStateToProps = state => {
-  const {mapLayers} = state;
-  return {mapLayers}
-}
+  const {mapLayers, layerMenu} = state;
+  return {mapLayers, layerMenu}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     updateLayer: layerConfig =>
       dispatch(updateLayer(layerConfig)),
     initLayers: layerConfigs =>
-      dispatch(initLayers(layerConfigs))
+      dispatch(initLayers(layerConfigs)),
+    collectData: parcelId => {
+      dispatch(selectParcel(parcelId));
+      dispatch(fetchParcelDataIfNeeded(parcelId));
+    }
   }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dimensions()(Map));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Dimensions()(
+    withStyles(styles)(
+      Map
+    )
+  )
+);
