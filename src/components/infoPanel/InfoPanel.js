@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import {connect} from 'react-redux'
 import Close from 'material-ui-icons/Close'
 import IconButton from 'material-ui/IconButton'
+import { LinearProgress } from 'material-ui/Progress';
 
 import DataSection from '../dashboardOld/DataSection'
 import {
@@ -23,12 +24,13 @@ import {
 } from '../dashboardOld/customModules'
 import {parcelDataById} from "../../reducers/dataReducers";
 import {closeDisplay} from "../../actions/dataActions";
+import EmptyDataCard from "../dashboardOld/EmptyDataCard";
 
 
 const styles = theme => ({
   paper: {
     margin: '6px',
-    width: 400,
+    width: 480,
     height: '98%',
     position: 'absolute',
     right: 0,
@@ -39,8 +41,9 @@ const styles = theme => ({
   },
   content: {
     position: 'static',
-    padding: '12px',
-    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+
   },
   flex: {
     flex: 1,
@@ -78,10 +81,20 @@ const InfoPanel = props => {
           </Toolbar>
         </AppBar>
         <div className={classes.content}>
+
+          {isFetching &&
+          <DataSection>
+            <LinearProgress color="primary" variant="query"/>
+            <EmptyDataCard/>
+            <EmptyDataCard/>
+            <EmptyDataCard/>
+            <EmptyDataCard/>
+            <EmptyDataCard/>
+          </DataSection>
+          }
           {!isFetching && data &&
           <DataSection>
             <ParcelCharacteristics data={data}/>
-
             <OwnerAddress data={data} parcelId={parcelId}/>
 
             <DwellingCharacteristics data={data}/>
@@ -91,10 +104,13 @@ const InfoPanel = props => {
             <PropertyTaxReductions data={data}/>
 
             <SalesTable data={data}/>
+
             <BuildingCodeViolations data={data}/>
+
             <TaxLiens data={data}/>
 
             <TaxDelinquency data={data}/>
+
             <Foreclosure data={data}/>
           </DataSection>
           }

@@ -11,6 +11,7 @@ import pghGreenways from "./pghGreenways";
 import pghFloodZones from "./pghFloodZones";
 import pghSlope25 from "./pghSlope25";
 import bikeTrails from "./bikeTrails";
+import pittsburgh from "./pittsburgh";
 
 export const defaultLayers = [
   parcels,
@@ -25,6 +26,7 @@ export const defaultLayers = [
   alleghenyParks,
   pghFloodZones,
   pghSlope25,
+  pittsburgh,
   county,
 
 ]

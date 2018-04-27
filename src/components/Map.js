@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ReactMapGL from 'react-map-gl'
+import ReactMapGL, {FlyToInterpolator} from 'react-map-gl'
 import {connect} from 'react-redux'
 import {withStyles} from 'material-ui/styles';
 
@@ -41,6 +41,8 @@ class Map extends Component {
         longitude: -79.9647331,
         zoom: 10,
         minZoom: 9,
+        transitionDuration: 300,
+        transitionInterpolator: new FlyToInterpolator()
       },
       width: window.innerWidth,
       height: window.innerHeight,
@@ -76,17 +78,27 @@ class Map extends Component {
   handleClick = (event) => {
     const {mapStyle} = this.state;
     const {collectData} = this.props;
-
     const workingStyle = mapStyle.toJS();
     if (event && event.features.length) {
       const fillIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-fill');
       const lineIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-border');
       this.setState({
-        mapStyle: mapStyle
-          .setIn(['layers', fillIndex, 'filter', 2], event.features[0].properties['map_identifier'])
-          .setIn(['layers', lineIndex, 'filter', 2], event.features[0].properties['map_identifier']),
-      }, collectData(event.features[0].properties['map_identifier']))
+          mapStyle: mapStyle
+            .setIn(['layers', fillIndex, 'filter', 2], event.features[0].properties['map_identifier'])
+            .setIn(['layers', lineIndex, 'filter', 2], event.features[0].properties['map_identifier']),
+        },
+        () => this._onViewportChange(Object.assign(this.state.viewport, {
+          zoom: 17,
+          longitude: event.lngLat[0],
+          latitude: event.lngLat[1],
+          transitionDuration: 300,
+          pitch: 45,
+        }))
+      );
+      collectData(event.features[0].properties['map_identifier'])
+
     }
+
   };
 
 
@@ -104,6 +116,10 @@ class Map extends Component {
     }
   };
 
+  _onViewportChange = viewport => {
+    this.setState({viewport})
+  }
+
   render() {
     const {width, height, tooltip} = this.state;
     const {layerMenu, classes} = this.props;
@@ -112,26 +128,26 @@ class Map extends Component {
       return (
         <div className={classes.root}>
           <LayerControl/>
-
-          <a data-tip data-for="identifier" style={{position: 'absolute', zIndex: 1}}>
-            <ReactMapGL
-              mapStyle={this.state.mapStyle}
-              onViewportChange={(viewport) => this.setState({viewport})}
-              onHover={this.handleHover}
-              onClick={this.handleClick}
-              transitionDuration={1000}
-              {...{...this.state.viewport, ...{width: width - 10, height: height - 64}}}
-            >
-              <p style={{fontWeight: 800}}>{this.state.viewport.zoom}</p>
-            </ReactMapGL>
-          </a>
-
           {tooltip &&
           <ReactTooltip place="right" id="identifier"
                         style={{zIndex: 1000}}>
             <span>{tooltip}</span>
           </ReactTooltip>
           }
+          <a data-tip data-for="identifier" style={{position: 'absolute', zIndex: 1, width: '100%'}}>
+            <ReactMapGL
+              mapStyle={this.state.mapStyle}
+              onViewportChange={this._onViewportChange}
+              onHover={this.handleHover}
+              onClick={this.handleClick}
+
+              {...{...this.state.viewport, ...{width: width, height: height - 64}}}
+            >
+              <p style={{fontWeight: 800}}>{this.state.viewport.zoom}</p>
+            </ReactMapGL>
+          </a>
+
+
         </div>
       )
     } else {

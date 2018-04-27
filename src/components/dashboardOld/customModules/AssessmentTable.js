@@ -3,7 +3,9 @@ import React from 'react';
 
 import DataCard from '../DataCard'
 import TableDisplay from "../dataDisplays/DataTableDisplay";
-import {monify} from "../../../utils/dataUtils";
+import {monify, shortenNumber} from "../../../utils/dataUtils";
+
+const formatter = (n) => `$${shortenNumber(n)}`
 
 const tableMapping =
   {
@@ -13,29 +15,19 @@ const tableMapping =
     rows: [
       {
         '__label__': 'Building',
-        'County': {
-          resource: 'assessments', id: 'COUNTYBUILDING', formatter: monify
-        },
-        'Local': {
-          resource: 'assessments', id: 'LOCALBUILDING', formatter: monify
-        },
-        'Fair Market': {
-          resource: 'assessments', id: 'FAIRMARKETBUILDING', formatter: monify
-        }
+        'County': {resource: 'assessments', id: 'COUNTYBUILDING', formatter},
+        'Local': {resource: 'assessments', id: 'LOCALBUILDING', formatter},
+        'Fair Market': {resource: 'assessments', id: 'FAIRMARKETBUILDING', formatter}
       }, {
         '__label__': 'Land',
-        'County': {resource: 'assessments', id: 'COUNTYLAND', formatter: monify},
-        'Local': {resource: 'assessments', id: 'LOCALLAND', formatter: monify},
-        'Fair Market': {
-          resource: 'assessments', id: 'FAIRMARKETLAND', formatter: monify
-        }
+        'County': {resource: 'assessments', id: 'COUNTYLAND', formatter},
+        'Local': {resource: 'assessments', id: 'LOCALLAND', formatter},
+        'Fair Market': {resource: 'assessments', id: 'FAIRMARKETLAND', formatter}
       }, {
         '__label__': 'Total',
-        'County': {resource: 'assessments', id: 'COUNTYTOTAL', formatter: monify},
-        'Local': {resource: 'assessments', id: 'LOCALTOTAL', formatter: monify},
-        'Fair Market': {
-          resource: 'assessments', id: 'FAIRMARKETTOTAL', formatter: monify
-        }
+        'County': {resource: 'assessments', id: 'COUNTYTOTAL', formatter},
+        'Local': {resource: 'assessments', id: 'LOCALTOTAL', formatter},
+        'Fair Market': {resource: 'assessments', id: 'FAIRMARKETTOTAL', formatter}
       },
     ]
   };

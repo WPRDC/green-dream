@@ -8,7 +8,7 @@ export default {
   source: {
     type: 'carto-vector',
     minzoom: 0,
-    sql: `SELECT * FROM wprdc.allegheny_county_municipal_boundaries WHERE munidesc = 'Pittsburgh'`,
+    sql: `SELECT * FROM wprdc.allegheny_county_municipal_boundaries WHERE f0_name = 'PITTSBURGH'`,
   },
   layers: {
     labels: [],

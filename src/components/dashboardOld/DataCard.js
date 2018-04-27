@@ -38,7 +38,7 @@ class DataCard extends Component {
         </CardContent>
         <CardActions>
           {datasetUrl
-            ? <Button dense color="primary" onClick={() => {
+            ? <Button size="small" color="primary" onClick={() => {
               window.open(datasetUrl, '_blank')
             }}>
               Dataset

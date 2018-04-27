@@ -33,8 +33,9 @@ const ListOfKeyValueListsDisplay = props => {
               <ExpansionPanel key={i.toString()}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
                   <Typography
-                    type='subheading'>{titleField ? titleField + ': ' + displayDatum[titleField] : "Record " + i}</Typography>
-                  {keepTitleField ? {} : delete displayDatum[titleField]}
+                    type='subheading'>{titleField ? titleField + ': ' + displayDatum[titleField] : "Record " + i}
+                    {keepTitleField ? {} : delete displayDatum[titleField]}
+                  </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 

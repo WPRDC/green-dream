@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 /* Material UI Components */
-import Paper from 'material-ui/Paper';
-import Card from 'material-ui/Card'
+import Divider from 'material-ui/Divider';
 import {LinearProgress} from 'material-ui/Progress';
 
 /* Material UI extras */
@@ -62,26 +61,30 @@ const Dashboard = props => {
 
   if (data && !isFetching) {
     return (
-        <DataSection>
-          <ParcelSearch style={style.search}/>
 
-          <ParcelCharacteristics data={data}/>
-
-          <OwnerAddress data={data} parcelId={parcelId}/>
-
-          <DwellingCharacteristics data={data}/>
-
-          <AssessmentTable data={data}/>
-
-          <PropertyTaxReductions data={data}/>
-
-          <SalesTable data={data}/>
-          <BuildingCodeViolations data={data}/>
-          <TaxLiens data={data}/>
-
-          <TaxDelinquency data={data}/>
-          <Foreclosure data={data}/>
-        </DataSection>
+      <DataSection>
+        <ParcelSearch style={style.search}/>
+        <Divider/>
+        <ParcelCharacteristics data={data}/>
+        <Divider/>
+        <OwnerAddress data={data} parcelId={parcelId}/>
+        <Divider/>
+        <DwellingCharacteristics data={data}/>
+        <Divider/>
+        <AssessmentTable data={data}/>
+        <Divider/>
+        <PropertyTaxReductions data={data}/>
+        <Divider/>
+        <SalesTable data={data}/>
+        <Divider/>
+        {/*<BuildingCodeViolations data={data}/>*/}
+        <Divider/>
+        <TaxLiens data={data}/>
+        <Divider/>
+        <TaxDelinquency data={data}/>
+        <Divider/>
+        <Foreclosure data={data}/>
+      </DataSection>
     );
   }
   else {
