@@ -237,46 +237,46 @@ export default {
         "text-halo-blur": 1
       }
     },
-    {
-      "id": "building",
-      "type": "fill-extrusion",
-      "metadata": {},
-      "source": "openmaptiles",
-      "source-layer": "building",
-      "minzoom": 15,
-      "layout": {},
-      "paint": {
-        "fill-extrusion-height": {
-          "base": 1,
-          "type": "exponential",
-          "property": "render_height",
-          "stops": [
-            [
-              0,
-              0
-            ],
-            [
-              1000,
-              1000
-            ]
-          ],
-          "default": 10
-        },
-        "fill-extrusion-color": "hsla(186, 67%, 54%, 0.99)"
-      }
-    },
     // {
     //   "id": "building",
     //   "type": "fill-extrusion",
+    //   "metadata": {},
     //   "source": "openmaptiles",
     //   "source-layer": "building",
-    //   "minzoom": 12,
+    //   "minzoom": 15,
+    //   "layout": {},
     //   "paint": {
-    //     "fill-color": "rgb(234, 234, 229)",
-    //     "fill-outline-color": "rgb(219, 219, 218)",
-    //     "fill-antialias": true
+    //     "fill-extrusion-height": {
+    //       "base": 1,
+    //       "type": "exponential",
+    //       "property": "render_height",
+    //       "stops": [
+    //         [
+    //           0,
+    //           0
+    //         ],
+    //         [
+    //           1000,
+    //           1000
+    //         ]
+    //       ],
+    //       "default": 10
+    //     },
+    //     "fill-extrusion-color": "hsla(186, 67%, 54%, 0.99)"
     //   }
     // },
+    {
+      "id": "building",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "building",
+      "minzoom": 12,
+      "paint": {
+        "fill-color": "rgb(234, 234, 229)",
+        "fill-outline-color": "rgb(219, 219, 218)",
+        "fill-antialias": true
+      }
+    },
     {
       "id": "tunnel_motorway_casing",
       "type": "line",

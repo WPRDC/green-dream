@@ -14,6 +14,29 @@ export default {
     labels: [],
     style: [
       {
+        "id": "parcels-select-fill",
+        "type": "fill",
+        "source": "parcels",
+        "source-layer": "parcels",
+        filter: ['in', 'pin', ''],
+
+        "layout": {},
+        "paint": {
+          "fill-color": '#5F5',
+          "fill-opacity": 1,
+          // 'fill-extrusion-color': 'blue',
+          //
+          // // Get fill-extrusion-height from the source 'height' property.
+          // 'fill-extrusion-height': 5,
+          //
+          // // Get fill-extrusion-base from the source 'base_height' property.
+          // 'fill-extrusion-base': 0,
+          //
+          // // Make extrusions slightly opaque for see through indoor walls.
+          // 'fill-extrusion-opacity': 1
+        },
+      },
+      {
         "id": "parcels-borders",
         "type": "line",
         "source": "parcels",
@@ -73,27 +96,7 @@ export default {
           }
         }
       },
-      {
-        "id": "parcels-select-fill",
-        "type": "fill-extrusion",
-        "source": "parcels",
-        "source-layer": "parcels",
-        filter: ['in', 'pin', ''],
 
-        "layout": {},
-        "paint": {
-          'fill-extrusion-color': 'blue',
-
-          // Get fill-extrusion-height from the source 'height' property.
-          'fill-extrusion-height': 15,
-
-          // Get fill-extrusion-base from the source 'base_height' property.
-          'fill-extrusion-base': 0,
-
-          // Make extrusions slightly opaque for see through indoor walls.
-          'fill-extrusion-opacity': 1
-        },
-      },
       // {
       //   "id": "parcels-select-fill",
       //   "type": "fill",

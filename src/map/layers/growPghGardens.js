@@ -1,3 +1,5 @@
+import Place from 'material-ui-icons/Place'
+
 export default {
   id: 'grow-pgh-gardens',
   type: 'vector',
@@ -15,19 +17,14 @@ export default {
     style: [
       {
         "id": "grow-pgh-gardens",
-        "type": "circle",
+        "type": "symbol",
         "source": "grow-pgh-gardens",
         "source-layer": "grow-pgh-gardens",
-        "layout": {},
-        "paint": {
-          "circle-color": '#0F2',
-          "circle-radius": {
-            "stops": [
-              [15, 4],
-              [19, 8]
-            ]
-          }
-        }
+        "layout": {
+          'symbol-placement': 'point',
+          'icon-image': 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-256.png',
+        },
+        "paint": {}
       }
     ]
   }

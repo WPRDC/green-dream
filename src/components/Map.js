@@ -78,24 +78,31 @@ class Map extends Component {
   handleClick = (event) => {
     const {mapStyle} = this.state;
     const {collectData} = this.props;
-    const workingStyle = mapStyle.toJS();
     if (event && event.features.length) {
-      const fillIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-fill');
-      const lineIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-select-border');
+      const workingStyle = mapStyle.toJS();
+
+      // 1. Determine the feature of interest
+      const feature = event.features[0];
+      console.log(feature);
+      const layerId = feature.layer.id.split('-')[0];
+      const fillIndex = workingStyle.layers.findIndex(layer => layer.id === layerId + '-select-fill');
+      const lineIndex = workingStyle.layers.findIndex(layer => layer.id === layerId + '-select-border');
+      console.log()
       this.setState({
           mapStyle: mapStyle
             .setIn(['layers', fillIndex, 'filter', 2], event.features[0].properties['map_identifier'])
             .setIn(['layers', lineIndex, 'filter', 2], event.features[0].properties['map_identifier']),
         },
         () => this._onViewportChange(Object.assign(this.state.viewport, {
-          zoom: 17,
+          zoom: layerId === 'parcels' ? 17 : 14,
           longitude: event.lngLat[0],
           latitude: event.lngLat[1],
           transitionDuration: 300,
-          pitch: 45,
+         // pitch: 45,
         }))
       );
-      collectData(event.features[0].properties['map_identifier'])
+      if(layerId === 'parcels')
+        collectData(event.features[0].properties['map_identifier'])
 
     }
 
@@ -104,11 +111,17 @@ class Map extends Component {
 
   handleHover = event => {
     const {mapStyle} = this.state;
-    const workingStyle = mapStyle.toJS();
+
     if (event && event.features.length) {
-      const parcelHighlightLayerIndex = workingStyle.layers.findIndex(layer => layer.id === 'parcels-highlight-fill');
+      const workingStyle = mapStyle.toJS();
+      // 1. Determine the feature of interest
+      const feature = event.features[0];
+      const layerId = feature.layer.id.split('-')[0];
+      const layerIndex = workingStyle.layers.findIndex(layer => layer.id === layerId + '-highlight-fill');
+
+      // 2. Change the style of that layer  (todo: do this in layer store and not directly in style)
       this.setState({
-        mapStyle: mapStyle.setIn(['layers', parcelHighlightLayerIndex, 'filter', 2], event.features[0].properties['map_identifier']),
+        mapStyle: mapStyle.setIn(['layers', layerIndex, 'filter', 2], event.features[0].properties['map_identifier']),
         tooltip: event.features[0].properties['map_name']
       });
     } else {

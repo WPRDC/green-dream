@@ -3,12 +3,12 @@ export default {
   type: 'vector',
   name: 'PGH Neighborhoods',
   geoType: 'polygon',
-  legendColor: 'black',
+  legendColor: '#708090',
   visible: true,
   source: {
     type: 'carto-vector',
     minzoom: 0,
-    sql: 'SELECT * FROM pittsburgh_neighborhoods',
+    sql: 'SELECT *, hood as map_identifier, hood as map_name FROM pittsburgh_neighborhoods',
   },
   layers: {
     labels: [],
@@ -63,6 +63,81 @@ export default {
           'text-halo-color': 'rgba(152, 152, 152, 0)',
         },
       },
+      {
+        "id": "neighborhoods-fill",
+        "type": "fill",
+        "interactive": true,
+        "source": "neighborhoods",
+        "source-layer": "neighborhoods",
+        "layout": {},
+        "paint": {
+          "fill-color": '#708090',
+          "fill-opacity": {
+            "stops": [
+              [10, 0],
+            ]
+          }
+        }
+      },
+      {
+        "id": "neighborhoods-highlight-fill",
+        "type": "fill",
+        "interactive": true,
+        "source": "neighborhoods",
+        "source-layer": "neighborhoods",
+        "layout": {},
+        filter: ['in', 'hood', ''],
+        "paint": {
+          "fill-color": '#708090',
+          "fill-opacity": {
+            "stops": [
+              [11, 0],
+              [12, 0.6],
+              [15, 0.2],
+              [16, 0.0]
+            ]
+          }
+        }
+      },
+      {
+        "id": "neighborhoods-select-fill",
+        "type": "fill",
+        "interactive": true,
+        "source": "neighborhoods",
+        "source-layer": "neighborhoods",
+        "layout": {},
+        filter: ['in', 'hood', ''],
+        "paint": {
+          "fill-color": '#5F5',
+          "fill-opacity": {
+            "stops": [
+              [11, 0],
+              [12, 0.6],
+              [15, 0.2],
+              [16, 0.0]
+            ]
+          }
+        }
+      },
+      {
+        "id": "neighborhoods-select-border",
+        "type": "line",
+        "interactive": true,
+        "source": "neighborhoods",
+        "source-layer": "neighborhoods",
+        "layout": {
+          "line-cap": "round"
+        },
+        filter: ['in', 'pin', ''],
+        "paint": {
+          "line-width": {
+            stops: [
+              [14, 2],
+              [18,5]
+            ]
+          }
+        }
+      }
     ]
   }
 }
