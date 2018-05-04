@@ -50,12 +50,12 @@ const LayerControl = props => {
       </LayerList>
     </Drawer>
   )
-}
+};
 
 const mapStateToProps = state => {
   const {mapLayers, layerMenu} = state;
   return {mapLayers, layerMenu}
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {

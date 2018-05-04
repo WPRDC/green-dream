@@ -1,4 +1,5 @@
 export const SELECT_PARCEL = 'SELECT_PARCEL';
+export const SELECT_NEIGHBORHOOD= 'SELECT_NEIGHBORHOOD';
 export const INVALIDATE_PARCEL = 'INVALIDATE_PARCEL';
 export const REQUEST_PARCEL_DATA = 'REQUEST_PARCEL_DATA';
 export const RECEIVE_PARCEL_DATA = 'RECEIVE_PARCEL_DATA';
@@ -17,6 +18,13 @@ export const selectParcel = parcelId => {
   return {
     type: SELECT_PARCEL,
     parcelId
+  }
+};
+
+export const selectNeighborhood = hoodId => {
+  return {
+    type: SELECT_NEIGHBORHOOD,
+    hoodId
   }
 };
 

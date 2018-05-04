@@ -128,12 +128,12 @@ export default {
         "layout": {
           "line-cap": "round"
         },
-        filter: ['in', 'pin', ''],
+        filter: ['in', 'hood', ''],
         "paint": {
           "line-width": {
             stops: [
-              [14, 2],
-              [18,5]
+              [14, 4],
+              [18,8]
             ]
           }
         }

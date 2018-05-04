@@ -16,7 +16,7 @@ import {layerListChanged} from "../utils/utils";
 import LayerControl from '../containers/LayerControl'
 
 import {fromJS, toJS} from 'immutable'
-import {fetchParcelDataIfNeeded, selectParcel} from "../actions/dataActions";
+import {fetchParcelDataIfNeeded, selectNeighborhood, selectParcel} from "../actions/dataActions";
 
 
 const styles = theme => ({
@@ -87,7 +87,6 @@ class Map extends Component {
       const layerId = feature.layer.id.split('-')[0];
       const fillIndex = workingStyle.layers.findIndex(layer => layer.id === layerId + '-select-fill');
       const lineIndex = workingStyle.layers.findIndex(layer => layer.id === layerId + '-select-border');
-      console.log()
       this.setState({
           mapStyle: mapStyle
             .setIn(['layers', fillIndex, 'filter', 2], event.features[0].properties['map_identifier'])
@@ -97,15 +96,11 @@ class Map extends Component {
           zoom: layerId === 'parcels' ? 17 : 14,
           longitude: event.lngLat[0],
           latitude: event.lngLat[1],
-          transitionDuration: 300,
-         // pitch: 45,
+          transitionDuration: 300
         }))
       );
-      if(layerId === 'parcels')
-        collectData(event.features[0].properties['map_identifier'])
-
+      collectData(layerId, event.features[0].properties['map_identifier'])
     }
-
   };
 
 
@@ -180,9 +175,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(updateLayer(layerConfig)),
     initLayers: layerConfigs =>
       dispatch(initLayers(layerConfigs)),
-    collectData: parcelId => {
-      dispatch(selectParcel(parcelId));
-      dispatch(fetchParcelDataIfNeeded(parcelId));
+    collectData: (type, id) => {
+      if(type === 'parcels') {
+        dispatch(selectParcel(id));
+        dispatch(fetchParcelDataIfNeeded(id));
+      }
+      if (type === 'neighborhoods') {
+        dispatch(selectNeighborhood(id))
+      }
     }
   }
 };

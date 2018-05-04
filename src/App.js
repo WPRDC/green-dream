@@ -1,8 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
-
-import classNames from 'classnames';
-
 
 import Map from './components/Map'
 import './App.css';
@@ -10,11 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import {withStyles} from 'material-ui/styles';
 
 import Header from "./components/Header";
-import LayerControl from "./containers/LayerControl"
-import Drawer from 'material-ui/Drawer';
-import InfoPanel from "./components/infoPanel/InfoPanel";
-
-const drawerWidth = 300;
+import ParcelInfoPanel from "./containers/ParcelInfoPanel";
 
 const styles = theme => ({
   root: {
@@ -51,7 +43,7 @@ class App extends Component {
 
         <main className={classes.content}>
           <Map/>
-          <InfoPanel>w0000t</InfoPanel>
+          <ParcelInfoPanel>w0000t</ParcelInfoPanel>
 
 
         </main>

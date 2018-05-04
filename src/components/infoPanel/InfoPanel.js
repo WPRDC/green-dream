@@ -4,26 +4,11 @@ import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import {connect} from 'react-redux'
 import Close from 'material-ui-icons/Close'
 import IconButton from 'material-ui/IconButton'
-import { LinearProgress } from 'material-ui/Progress';
+import {LinearProgress} from 'material-ui/Progress';
 
 import DataSection from '../dashboardOld/DataSection'
-import {
-  ParcelCharacteristics,
-  DwellingCharacteristics,
-  AssessmentTable,
-  PropertyTaxReductions,
-  SalesTable,
-  TaxLiens,
-  OwnerAddress,
-  BuildingCodeViolations,
-  TaxDelinquency,
-  Foreclosure
-} from '../dashboardOld/customModules'
-import {parcelDataById} from "../../reducers/dataReducers";
-import {closeDisplay} from "../../actions/dataActions";
 import EmptyDataCard from "../dashboardOld/EmptyDataCard";
 
 
@@ -55,23 +40,22 @@ const InfoPanel = props => {
   const {
     children,
     classes,
-    parcelId,
+    isOpen,
     isFetching,
-    data,
-    dataDisplay,
-    handleClose
+    handleClose,
+    title,
   } = props;
 
-  if (dataDisplay.open) {
+  if (isOpen) {
     return (
       <Paper className={classes.paper}>
         <AppBar position="static" color={"secondary"}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              Property Information
+              {title}
             </Typography>
             <IconButton
-              aria-owns={dataDisplay.open ? 'menu-appbar' : null}
+              aria-owns={isOpen ? 'menu-appbar' : null}
               aria-haspopup="true"
               onClick={handleClose}
               color="inherit"
@@ -82,37 +66,16 @@ const InfoPanel = props => {
         </AppBar>
         <div className={classes.content}>
 
-          {isFetching &&
-          <DataSection>
-            <LinearProgress color="primary" variant="query"/>
-            <EmptyDataCard/>
-            <EmptyDataCard/>
-            <EmptyDataCard/>
-            <EmptyDataCard/>
-            <EmptyDataCard/>
-          </DataSection>
-          }
-          {!isFetching && data &&
-          <DataSection>
-            <ParcelCharacteristics data={data}/>
-            <OwnerAddress data={data} parcelId={parcelId}/>
-
-            <DwellingCharacteristics data={data}/>
-
-            <AssessmentTable data={data}/>
-
-            <PropertyTaxReductions data={data}/>
-
-            <SalesTable data={data}/>
-
-            <BuildingCodeViolations data={data}/>
-
-            <TaxLiens data={data}/>
-
-            <TaxDelinquency data={data}/>
-
-            <Foreclosure data={data}/>
-          </DataSection>
+          {isFetching
+            ? <DataSection>
+              <LinearProgress color="primary" variant="query"/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+            </DataSection>
+            : children
           }
         </div>
       </Paper>
@@ -121,18 +84,5 @@ const InfoPanel = props => {
     return null
 };
 
-const mapStateToProps = state => {
-  const {currentParcelId, parcelDataById, dataDisplay} = state;
-  const {isFetching, data} = parcelDataById[currentParcelId] || {isFetching: false, data: null};
-  return {currentParcelId, isFetching, data, dataDisplay}
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    handleClose: () => {
-      dispatch(closeDisplay())
-    }
-  }
-}
-
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(InfoPanel));
+export default withStyles(styles)(InfoPanel);
