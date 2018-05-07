@@ -1,11 +1,10 @@
-import Place from 'material-ui-icons/Place'
-
 export default {
   id: 'grow-pgh-gardens',
   type: 'vector',
   geoType: 'point',
   name: 'Grow Pittsburgh Gardens',
   legendColor: '#0F2',
+  category: 'green-infrastructure',
   visible: true,
   source: {
     type: 'carto-vector',

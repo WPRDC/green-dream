@@ -4,6 +4,7 @@ export default {
   name: 'PGH Slope > 25%',
   geoType: 'polygon',
   legendColor: '#708090',
+  category: 'base-layers',
   visible: false,
   source: {
     type: 'carto-vector',

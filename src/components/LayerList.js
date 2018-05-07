@@ -1,15 +1,13 @@
 import React from 'react'
-
+import {withStyles} from 'material-ui/styles';
 import List, {
   ListSubheader
 } from 'material-ui/List';
-import LayerListItem from "./LayerListItem";
+
 
 const LayerList = props => {
   return (
-    <List dense
-          subheader={<ListSubheader>Map Layers</ListSubheader>}
-    >
+    <List dense style={{width: "100%"}}>
       {props.children}
     </List>
   )

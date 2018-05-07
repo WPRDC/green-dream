@@ -26,16 +26,16 @@ const ParcelInfoPanel = props => {
     parcelId,
     isFetching,
     data,
-    dataDisplay,
+    isOpen,
     handleClose
   } = props;
 
   if(data) {
     return (
-      <InfoPanel title="Property Information" isOpen={dataDisplay.open} isFetching={isFetching}>
+      <InfoPanel title="Property Information" isOpen={isOpen} isFetching={isFetching} handleClose={handleClose}>
         <DataSection>
           <ParcelCharacteristics data={data}/>
-          <OwnerAddress data={data} parcelId={parcelId}/>
+          <OwnerAddress data={data}/>
 
           <DwellingCharacteristics data={data}/>
 
@@ -67,7 +67,8 @@ const mapStateToProps = state => {
     dataDisplay
   } = state;
   const {isFetching, data} = parcelDataById[currentParcelId] || {isFetching: false, data: null};
-  return {currentParcelId, isFetching, data, dataDisplay}
+  const isOpen = dataDisplay === 'parcels';
+  return {currentParcelId, isFetching, data, isOpen}
 }
 
 const mapDispatchToProps = dispatch => {

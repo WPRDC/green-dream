@@ -4,6 +4,7 @@ export default {
   name: 'Municipalities',
   geoType: 'polygon',
   legendColor: 'black',
+  category: 'base-layers',
   visible: true,
   source: {
     type: 'carto-vector',

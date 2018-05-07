@@ -7,6 +7,7 @@ import {displayLayer, hideLayer} from "../actions/mapActions";
 import LayerListItem from "../components/LayerListItem";
 import LayerList from "../components/LayerList";
 import Drawer from 'material-ui/Drawer'
+import LayerGroup from "../components/LayerGroup";
 
 
 const drawerWidth = 280;
@@ -43,11 +44,50 @@ const LayerControl = props => {
             open={layerMenu.open}
             classes={{paper: classes.drawerPaper,}}
     >
-      <LayerList>
-        {mapLayers.map(layer =>
-          <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
-        )}
-      </LayerList>
+      {/*<LayerList>*/}
+        {/*{mapLayers.map(layer =>*/}
+          {/*<LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>*/}
+        {/*)}*/}
+      {/*</LayerList>*/}
+      <LayerGroup title="Base Layers">
+        <LayerList>
+          {mapLayers.filter(layer => layer.category === 'base-layers')
+            .map(layer =>
+              <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+            )
+          }
+        </LayerList>
+      </LayerGroup>
+      <LayerGroup title="Green Infrastructure">
+        <LayerList>
+          {mapLayers.filter(layer => layer.category === 'green-infrastructure')
+            .map(layer =>
+              <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+            )
+          }
+        </LayerList>
+      </LayerGroup>
+      <LayerGroup title="Natural Hazards">
+        <LayerList>
+
+          {mapLayers.filter(layer => layer.category === 'natural-hazards')
+            .map(layer =>
+              <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+            )
+          }
+        </LayerList>
+      </LayerGroup>
+      <LayerGroup title="Transportation">
+        <LayerList>
+
+          {mapLayers.filter(layer => layer.category === 'transportation')
+            .map(layer =>
+              <LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>
+            )
+          }
+        </LayerList>
+      </LayerGroup>
+      <div style={{height: '25px'}}><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>{/*this nonsense hackily fixes overflow not noticing expansion content*/}
     </Drawer>
   )
 };

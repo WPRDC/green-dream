@@ -26,12 +26,12 @@ const LayerListItem = props => {
   const {layer, onChange} = props;
 
   return (
-    <ListItem>
+    <ListItem style={{width: '100%', paddingLeft: '12px'}}>
       <ListItemIcon>
         {icon(layer.geoType, layer.legendColor)}
       </ListItemIcon>
-      <ListItemText primary={layer.name}/>
-      <ListItemSecondaryAction>
+      <ListItemText style={{paddingLeft: 0} } primary={layer.name}/>
+      <ListItemSecondaryAction style={{marginLeft: '12px'}}>
         <Switch
           onChange={onChange}
           checked={layer.visible}

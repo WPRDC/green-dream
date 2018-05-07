@@ -4,6 +4,7 @@ export default {
   name: 'Pittsburgh Border',
   geoType: 'polygon',
   legendColor: 'black',
+  category: 'base-layers',
   visible: true,
   source: {
     type: 'carto-vector',

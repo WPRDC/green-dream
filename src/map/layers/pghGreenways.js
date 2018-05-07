@@ -4,6 +4,7 @@ export default {
   name: 'PGH Greenways',
   geoType: 'polygon',
   legendColor: '#01796F',
+  category: 'green-infrastructure',
   visible: true,
   source: {
     type: 'carto-vector',

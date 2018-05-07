@@ -5,7 +5,7 @@ import {
   RECEIVE_PARCEL_DATA,
   REQUEST_PARCEL_IMAGE,
   RECEIVE_PARCEL_IMAGE,
-  CLOSE_DISPLAY
+  CLOSE_DISPLAY, SELECT_NEIGHBORHOOD
 } from "../actions/dataActions";
 import {CLOSE_ALERT_MESSAGE, OPEN_ALERT_MESSAGE} from "../actions/dataActions";
 
@@ -58,12 +58,14 @@ export const parcelDataById = (state = {}, action) => {
   }
 };
 
-export const dataDisplay = (state = {open: false}, action) => {
+export const dataDisplay = (state = null, action) => {
   switch (action.type) {
     case SELECT_PARCEL:
-      return Object.assign({}, state, {open: true});
+      return 'parcels';
+    case SELECT_NEIGHBORHOOD:
+      return 'neighborhoods';
     case CLOSE_DISPLAY:
-      return Object.assign({}, state, {open: false});
+      return null;
     default:
       return state;
   }

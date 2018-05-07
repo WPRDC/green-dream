@@ -2,6 +2,7 @@ export default {
   id: 'city-steps',
   type: 'vector',
   name: 'City Steps',
+  category: 'transportation',
   visible: true,
   geoType: 'line',
   legendColor: 'rgba(120, 2, 222, 1)',

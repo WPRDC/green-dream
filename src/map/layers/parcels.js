@@ -4,6 +4,7 @@ export default {
   name: 'Parcels',
   geoType: 'polygon',
   legendColor: 'rgba(2, 2, 2, 1)',
+  category: 'base-layers',
   visible: true,
   source: {
     type: 'carto-vector',

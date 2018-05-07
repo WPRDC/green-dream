@@ -4,6 +4,7 @@ export default {
   name: 'PGH Flood Zones',
   geoType: 'polygon',
   legendColor: '#007791',
+  category: 'natural-hazards',
   visible: true,
   source: {
     type: 'carto-vector',

@@ -7,6 +7,8 @@ import {withStyles} from 'material-ui/styles';
 
 import Header from "./components/Header";
 import ParcelInfoPanel from "./containers/ParcelInfoPanel";
+import NeighborhoodInfoPanel from "./containers/NeighborhoodInfoPanel";
+
 
 const styles = theme => ({
   root: {
@@ -43,7 +45,8 @@ class App extends Component {
 
         <main className={classes.content}>
           <Map/>
-          <ParcelInfoPanel>w0000t</ParcelInfoPanel>
+          <ParcelInfoPanel/>
+          <NeighborhoodInfoPanel/>
 
 
         </main>

@@ -4,6 +4,7 @@ export default {
   name: 'PGH Neighborhoods',
   geoType: 'polygon',
   legendColor: '#708090',
+  category: 'base-layers',
   visible: true,
   source: {
     type: 'carto-vector',

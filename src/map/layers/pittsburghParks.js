@@ -4,6 +4,7 @@ export default {
   geoType: 'polygon',
   legendColor: 'green',
   name: 'PGH Parks',
+  category: 'base-layers',
   visible: true,
   source: {
     type: 'carto-vector',

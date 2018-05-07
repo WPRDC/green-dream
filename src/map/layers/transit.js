@@ -3,6 +3,7 @@ export default {
   type: 'vector',
   geoType: 'line',
   name: 'Port Authority Routes',
+  category: 'transportation',
   source: {
     type: 'carto-vector',
     minzoom: 15,
