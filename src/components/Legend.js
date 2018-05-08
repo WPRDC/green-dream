@@ -10,11 +10,11 @@ const Legend = props => {
     <div>
       {legendItems.map(legendItem => {
         <div>
-          <div/>
+          
         </div>
       })}
     </div>
   )
 }
 
-export default withStyles(styles)(legned)
+export default withStyles(styles)(Legend)
