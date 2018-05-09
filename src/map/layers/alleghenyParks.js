@@ -4,6 +4,7 @@ export default {
   name: 'Allegheny County Parks',
   geoType: 'polygon',
   legendColor: 'green',
+  legendDisplay: true,
   category: 'base-layers',
   visible: true,
   source: {

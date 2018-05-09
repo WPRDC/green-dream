@@ -1,51 +1,54 @@
-import React from 'react';
+import React from "react";
 
-import DataCard from '../DataCard'
+import DataCard from "../DataCard";
 import TableDisplay from "../dataDisplays/DataTableDisplay";
-import {monify} from "../../../utils/dataUtils";
+import { monify } from "../../../utils/dataUtils";
 
 const SalesTable = props => {
   return (
-    <DataCard title="Previous Sales"
-              datasetId="sales"
-    >
+    <DataCard title="Previous Sales" datasetId="sales">
       <TableDisplay
         data={props.data}
-        tableInfo={
-          {
-            showHeading: true,
-            showLabel: false,
-            heading: ['Sale Date', 'Price'],
-            rows: [
-              {
-                'Sale Date': {resource: 'assessments', id: 'PREVSALEDATE2'},
-                'Price': {
-                  resource: 'assessments', id: 'PREVSALEPRICE2', formatter: (number) => {
-                    return monify(number, 0)
-                  }
-                },
-              }, {
-                'Sale Date': {resource: 'assessments', id: 'PREVSALEDATE'},
-                'Price': {
-                  resource: 'assessments', id: 'PREVSALEPRICE', formatter: (number) => {
-                    return monify(number, 0)
-                  }
-                },
-              }, {
-                'Sale Date': {resource: 'assessments', id: 'SALEDATE'},
-                'Price': {
-                  resource: 'assessments', id: 'SALEPRICE', formatter: (number) => {
-                    return monify(number, 0)
-                  }
-                },
-              },
-            ]
-          }
-        }
-
+        tableInfo={{
+          showHeading: true,
+          showLabel: false,
+          heading: ["Sale Date", "Price"],
+          rows: [
+            {
+              "Sale Date": { resource: "assessments", id: "PREVSALEDATE2" },
+              Price: {
+                resource: "assessments",
+                id: "PREVSALEPRICE2",
+                formatter: number => {
+                  return monify(number, 0);
+                }
+              }
+            },
+            {
+              "Sale Date": { resource: "assessments", id: "PREVSALEDATE" },
+              Price: {
+                resource: "assessments",
+                id: "PREVSALEPRICE",
+                formatter: number => {
+                  return monify(number, 0);
+                }
+              }
+            },
+            {
+              "Sale Date": { resource: "assessments", id: "SALEDATE" },
+              Price: {
+                resource: "assessments",
+                id: "SALEPRICE",
+                formatter: number => {
+                  return monify(number, 0);
+                }
+              }
+            }
+          ]
+        }}
       />
     </DataCard>
   );
-}
+};
 
-export default SalesTable
+export default SalesTable;

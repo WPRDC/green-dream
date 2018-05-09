@@ -5,6 +5,7 @@ export default {
   visible: false,
   geoType: 'polygon',
   legendColor: 'navy',
+  legendDisplay: false,
   category: 'base-layers',
   source: {
     type: 'carto-vector',

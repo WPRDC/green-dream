@@ -1,14 +1,19 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withStyles} from 'material-ui/styles';
-import Card, {CardHeader, CardContent, CardActions, CardMedia} from 'material-ui/Card'
-import Button from 'material-ui/Button'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withStyles } from "material-ui/styles";
+import Card, {
+  CardHeader,
+  CardContent,
+  CardActions,
+  CardMedia
+} from "material-ui/Card";
+import Button from "material-ui/Button";
 
-import {dataSource, StyleMenuEditModes} from "../../utils/mapDefaults";
+import { dataSource, StyleMenuEditModes } from "../../utils/mapDefaults";
 
 const style = {
   card: {
-    margin: '6px',
+    margin: "6px"
   }
 };
 
@@ -25,33 +30,31 @@ class DataCard extends Component {
       datasetId,
       map,
       nextStyleLayerIndex,
-      openHighlightMenu,
+      openHighlightMenu
     } = this.props;
     const dataset = dataSource.getDataset(datasetId);
-    const {datasetUrl} = dataset || {datasetUrl: ''};
+    const { datasetUrl } = dataset || { datasetUrl: "" };
 
     return (
       <Card raised style={style.card}>
-        <CardHeader title={title} subheader={subtitle}/>
-        <CardContent>
-          {children}
-        </CardContent>
+        <CardHeader title={title} subheader={subtitle} />
+        <CardContent>{children}</CardContent>
         <CardActions>
-          {datasetUrl
-            ? <Button size="small" color="primary" onClick={() => {
-              window.open(datasetUrl, '_blank')
-            }}>
+          {datasetUrl ? (
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => {
+                window.open(datasetUrl, "_blank");
+              }}
+            >
               Dataset
             </Button>
-            : null
-          }
-
+          ) : null}
         </CardActions>
       </Card>
-    )
+    );
   }
 }
 
-
-
-export default (DataCard)
+export default DataCard;

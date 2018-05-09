@@ -1,7 +1,7 @@
-import {createStore, applyMiddleware, compose} from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import {createLogger} from 'redux-logger'
-import rootReducer from './reducers'
+import { createStore, applyMiddleware, compose } from "redux";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
+import rootReducer from "./reducers";
 
 const loggerMiddleware = createLogger({
   collapsed: true
@@ -9,7 +9,7 @@ const loggerMiddleware = createLogger({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const configureStore = (preloadedState) => {
+const configureStore = preloadedState => {
   return createStore(
     rootReducer,
     preloadedState,
@@ -17,10 +17,9 @@ const configureStore = (preloadedState) => {
       applyMiddleware(
         thunkMiddleware, // lets us dispatch() functions
         loggerMiddleware // neat middleware that logs actions
-      ),
+      )
     )
-  )
+  );
 };
 
-
-export default configureStore
+export default configureStore;

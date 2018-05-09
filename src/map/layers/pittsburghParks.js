@@ -3,6 +3,7 @@ export default {
   type: 'vector',
   geoType: 'polygon',
   legendColor: 'green',
+  legendDisplay: true,
   name: 'PGH Parks',
   category: 'base-layers',
   visible: true,

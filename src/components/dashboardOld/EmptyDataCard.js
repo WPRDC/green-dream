@@ -1,13 +1,12 @@
-import React from 'react'
-import DataCard from './DataCard'
-
+import React from "react";
+import DataCard from "./DataCard";
 
 const style = {
   blocked: {
-    background: '#DDDDDD',
-    color: '#DDDDDD'
+    background: "#DDDDDD",
+    color: "#DDDDDD"
   }
-}
+};
 
 const EmptyDataCard = props => {
   return (
@@ -15,13 +14,12 @@ const EmptyDataCard = props => {
       title={<span style={style.blocked}>Property Characteristics</span>}
     >
       <span style={style.blocked}>dfjaksldfjakl; fjkla;</span>
-      <br/>
+      <br />
       <span style={style.blocked}>adsfjkaskldfl;sd</span>
-      <br/>
+      <br />
       <span style={style.blocked}>asdfjkkasdl;fjal;dfja;ajsd;lf</span>
-
     </DataCard>
-  )
-}
+  );
+};
 
-export default EmptyDataCard
+export default EmptyDataCard;

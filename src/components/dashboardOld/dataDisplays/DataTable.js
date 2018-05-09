@@ -1,18 +1,21 @@
-import React from 'react';
-import {withStyles} from 'material-ui/styles';
-import {hasValues} from '../../../utils/dataUtils'
+import React from "react";
+import { withStyles } from "material-ui/styles";
+import { hasValues } from "../../../utils/dataUtils";
 
-import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
-
+import Table, {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from "material-ui/Table";
 
 const styles = theme => ({
   table: {
-    width: '100%',
+    width: "100%",
     marginTop: 0,
-    overflowX: 'scroll',
+    overflowX: "scroll"
   }
 });
-
 
 const DataTable = props => {
   const rows = props.data;
@@ -26,27 +29,42 @@ const DataTable = props => {
 
   return (
     <Table className={props.classes.table}>
-      {header &&
-      <TableHead>
-        <TableRow>
-          {header.map((h, i) => <TableCell padding="dense" numeric={Boolean(i)} key={i.toString()}
-                                           className={props.classes.cell}>{h}</TableCell>)}
-        </TableRow>
-      </TableHead>}
+      {header && (
+        <TableHead>
+          <TableRow>
+            {header.map((h, i) => (
+              <TableCell
+                padding="dense"
+                numeric={Boolean(i)}
+                key={i.toString()}
+                className={props.classes.cell}
+              >
+                {h}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+      )}
       <TableBody>
         {dataRows.map((row, i) => {
-
           if (hasValues(row)) {
             return (
               <TableRow key={i.toString()}>
-                {row.map((cell, j) => <TableCell padding="dense" numeric={Boolean(j)} key={j.toString()}
-                                                 className={props.classes.cell}>{cell}</TableCell>)}
+                {row.map((cell, j) => (
+                  <TableCell
+                    padding="dense"
+                    numeric={Boolean(j)}
+                    key={j.toString()}
+                    className={props.classes.cell}
+                  >
+                    {cell}
+                  </TableCell>
+                ))}
               </TableRow>
             );
           } else {
             return null;
           }
-
         })}
       </TableBody>
     </Table>

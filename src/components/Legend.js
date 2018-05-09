@@ -1,20 +1,22 @@
-import React from 'react'
-import {withStyles} from 'material-ui'
+import React from "react";
+import { withStyles } from "material-ui";
+import Paper from "material-ui/Paper";
+import LegendItem from "./LegendItem";
 
-
+const styles = {
+  root: {
+    padding: "12px"
+  }
+};
 
 const Legend = props => {
-  const {children, legendItems} = props;
+  const { classes, children, entries = [] } = props;
 
   return (
-    <div>
-      {legendItems.map(legendItem => {
-        <div>
-          
-        </div>
-      })}
-    </div>
-  )
-}
+    <Paper className={classes.root}>
+      {entries.map((entry, i) => <LegendItem key={i.toString()} {...entry} />)}
+    </Paper>
+  );
+};
 
-export default withStyles(styles)(Legend)
+export default withStyles(styles)(Legend);

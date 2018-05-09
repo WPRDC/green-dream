@@ -1,5 +1,5 @@
-import React from 'react';
-import Typography from 'material-ui/Typography';
+import React from "react";
+import Typography from "material-ui/Typography";
 
 const SingleItemDisplay = props => {
   const {
@@ -7,20 +7,17 @@ const SingleItemDisplay = props => {
     note,
     data,
     formatter = data => {
-      return "Seriously, you need to use a formatter"
+      return "Seriously, you need to use a formatter";
     }
   } = props;
-
 
   return (
     <div>
       <Typography type="title">{title}</Typography>
       <Typography type="subheading">{note}</Typography>
-      <div>
-        {formatter(data)}
-      </div>
+      <div>{formatter(data)}</div>
     </div>
   );
 };
 
-export default SingleItemDisplay
+export default SingleItemDisplay;

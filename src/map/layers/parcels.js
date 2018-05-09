@@ -4,6 +4,7 @@ export default {
   name: 'Parcels',
   geoType: 'polygon',
   legendColor: 'rgba(2, 2, 2, 1)',
+  legendDisplay: false,
   category: 'base-layers',
   visible: true,
   source: {
@@ -133,4 +134,3 @@ export default {
     ]
   }
 }
-

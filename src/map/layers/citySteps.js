@@ -6,6 +6,7 @@ export default {
   visible: true,
   geoType: 'line',
   legendColor: 'rgba(120, 2, 222, 1)',
+  legendDisplay: true,
   source: {
     type: 'carto-vector',
     minzoom: 10,
