@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL, { FlyToInterpolator } from "react-map-gl";
+import ReactMapGL, { FlyToInterpolator, Popup } from "react-map-gl";
 import { connect } from "react-redux";
 import { withStyles } from "material-ui/styles";
 
@@ -14,7 +14,7 @@ import ReactTooltip from "react-tooltip";
 
 import { layerListChanged } from "../utils/utils";
 import LayerControl from "../containers/LayerControl";
-
+import PopupBody from "./PopupBody"
 import { fromJS, toJS } from "immutable";
 import {
   fetchParcelDataIfNeeded,
@@ -23,6 +23,22 @@ import {
   select
 } from "../actions/dataActions";
 import Legend from "./Legend";
+
+const makePopupFields = (layer, feature) => {
+  return layer.popupProperties.map(property => [
+    property.name,
+    feature.properties[property.id]
+  ]);
+};
+
+const extractLayerTypeFromId = layerId => {
+  const h = layerId.indexOf("highlight");
+  const s = layerId.indexOf("select");
+  const end = Math.max(h, s) - 1;
+
+  if (end >= 0) return layerId.substr(0, end);
+  else return layerId.substr(0, layerId.lastIndexOf("-"));
+};
 
 const styles = theme => ({
   root: {
@@ -56,7 +72,8 @@ class Map extends Component {
       width: window.innerWidth,
       height: window.innerHeight,
       mapStyle: fromJS(BASE_STYLE),
-      tooltip: null
+      tooltip: null,
+      popup: { latitude: null }
     };
   }
 
@@ -86,13 +103,13 @@ class Map extends Component {
 
   handleClick = event => {
     const { mapStyle } = this.state;
-    const { collectData } = this.props;
+    const { displayInfo, mapLayers } = this.props;
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
       // 1. Determine the feature of interest
       const feature = event.features[0];
-      const layerType = feature.layer.id.split("-")[0];
+      const layerType = extractLayerTypeFromId(feature.layer.id);
       const { map_identifier: id, map_name: name } = feature.properties;
 
       const fillIndex = workingStyle.layers.findIndex(
@@ -105,24 +122,41 @@ class Map extends Component {
       //TODO: get new viwe port using this
       //https://github.com/uber/react-map-gl/blob/3e52aa397a57081fa2c44bb79f8fa48c41ff510f/docs/upgrade-guide.md
 
-
-      this.setState(
-        {
+      // if layer supports style change, do it
+      if (lineIndex >= 0 && fillIndex >= 0) {
+        this.setState({
           mapStyle: mapStyle
             .setIn(["layers", fillIndex, "filter", 2], id)
             .setIn(["layers", lineIndex, "filter", 2], id)
-        },
-        () =>
-          this._onViewportChange(
-            Object.assign(this.state.viewport, {
-              zoom: layerType === "parcels" ? 17 : 14,
-              longitude: event.lngLat[0],
-              latitude: event.lngLat[1],
-              transitionDuration: 300
-            })
-          )
-      );
-      collectData(layerType, id, name);
+        });
+      }
+
+      // 1st class info displays - the righthand panel1
+      if (["parcels", "neighborhoods"].includes(layerType)){
+        displayInfo(layerType, id, name);
+        this._onViewportChange(
+          Object.assign(this.state.viewport, {
+            zoom: layerType === "parcels" ? 17 : 14,
+            longitude: event.lngLat[0],
+            latitude: event.lngLat[1],
+            transitionDuration: 300
+          })
+        );
+      }
+
+
+      // 2nd class info displays - popups
+      if (["grow-pgh-gardens", "brownfields"].includes(layerType))
+        this.setState({
+          popup: {
+            latitude: event.lngLat[1],
+            longitude: event.lngLat[0],
+            data: makePopupFields(
+              mapLayers.find(layer => layer.id === layerType),
+              feature
+            )
+          }
+        });
     }
   };
 
@@ -131,21 +165,21 @@ class Map extends Component {
 
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
-      // 1. Determine the feature of interest
+      // 1. Determine the feature of interest and find its map layer
       const feature = event.features[0];
-      const layerType = feature.layer.id.split("-")[0];
+      const layerType = extractLayerTypeFromId(feature.layer.id);
       const layerIndex = workingStyle.layers.findIndex(
         layer => layer.id === layerType + "-highlight-fill"
       );
-
-      // 2. Change the style of that layer  (todo: do this in layer store and not directly in style)
-      this.setState({
-        mapStyle: mapStyle.setIn(
+      // 2. Change the style of that layer  and display name in tooltip
+      const newState = { tooltip: feature.properties["map_name"] };
+      if (layerIndex >= 0) {
+        newState["mapStyle"] = mapStyle.setIn(
           ["layers", layerIndex, "filter", 2],
-          event.features[0].properties["map_identifier"]
-        ),
-        tooltip: event.features[0].properties["map_name"]
-      });
+          feature.properties["map_identifier"]
+        );
+      }
+      this.setState(newState);
     } else {
       this.setState({ tooltip: null });
     }
@@ -178,7 +212,7 @@ class Map extends Component {
             <ReactTooltip
               place="right"
               id="identifier"
-              style={{ zIndex: 1000 }}
+              style={{ zIndex: 2 }}
             >
               <span>{tooltip}</span>
             </ReactTooltip>
@@ -199,6 +233,18 @@ class Map extends Component {
               }}
             >
               <p style={{ fontWeight: 800 }}>{this.state.viewport.zoom}</p>
+              {this.state.popup.latitude ? (
+                <Popup
+                  latitude={this.state.popup.latitude}
+                  longitude={this.state.popup.longitude}
+                  closeButton={true}
+                  onClose={() => this.setState({popup: {latitude: null}})}
+                  closeOnClick={true}
+                  anchor={"bottom"}
+                >
+                  <PopupBody data={this.state.popup.data}/>
+                </Popup>
+              ) : null}
             </ReactMapGL>
           </a>
           <div
@@ -224,7 +270,7 @@ const mapDispatchToProps = dispatch => {
   return {
     updateLayer: layerConfig => dispatch(updateLayer(layerConfig)),
     initLayers: layerConfigs => dispatch(initLayers(layerConfigs)),
-    collectData: (type, id, name) => {
+    displayInfo: (type, id, name) => {
       if (type === "parcels") {
         dispatch(select(type, id, name));
         dispatch(fetchParcelDataIfNeeded(id));

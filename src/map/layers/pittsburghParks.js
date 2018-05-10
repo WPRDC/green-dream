@@ -5,8 +5,8 @@ export default {
   legendColor: 'green',
   legendDisplay: true,
   name: 'PGH Parks',
-  category: 'base-layers',
-  visible: true,
+  category: 'urban-green-features',
+  visible: false,
   source: {
     type: 'carto-vector',
     minzoom: 0,

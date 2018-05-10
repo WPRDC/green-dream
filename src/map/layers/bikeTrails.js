@@ -3,7 +3,7 @@ export default {
   type: "vector",
   name: "Bike Trails",
   category: "transportation",
-  visible: "true",
+  visible: false,
   geoType: "line",
   legendColor: "#5C5248",
   legendDisplay: true,

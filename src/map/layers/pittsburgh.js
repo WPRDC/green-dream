@@ -6,7 +6,7 @@ export default {
   legendColor: 'black',
   category: 'base-layers',
   legendDisplay: false,
-  visible: true,
+  visible: false,
   source: {
     type: 'carto-vector',
     minzoom: 0,

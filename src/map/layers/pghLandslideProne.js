@@ -1,25 +1,25 @@
 export default {
-  id: "pittsburgh-flood-zones",
+  id: "pittsburgh-landslide-prone",
   type: "vector",
-  name: "PGH Flood Zones",
+  name: "PGH Landslide Prone Areas",
   geoType: "polygon",
-  legendColor: "#007791",
+  legendColor: "#9F8170",
   legendDisplay: true,
   category: "natural-features",
   visible: false,
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pittsburgh_fema_flood_zones"
+    sql: "SELECT * FROM wprdc.pittsburgh_landslide_prone"
   },
   layers: {
     labels: [],
     style: [
       {
-        id: "pittsburgh-flood-zones-border",
+        id: "pittsburgh-landslide-prone-border",
         type: "line",
-        source: "pittsburgh-flood-zones",
-        "source-layer": "pittsburgh-flood-zones",
+        source: "pittsburgh-landslide-prone",
+        "source-layer": "pittsburgh-landslide-prone",
         layout: {
           "line-join": "round"
         },
@@ -28,17 +28,17 @@ export default {
           "line-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           },
-          "line-color": "#082567"
+          "line-color": "#5C5248"
         }
       },
       {
-        id: "pittsburgh-flood-zones-fill",
+        id: "pittsburgh-landslide-prone-fill",
         type: "fill",
-        source: "pittsburgh-flood-zones",
-        "source-layer": "pittsburgh-flood-zones",
+        source: "pittsburgh-landslide-prone",
+        "source-layer": "pittsburgh-landslide-prone",
         layout: {},
         paint: {
-          "fill-color": "#007791",
+          "fill-color": "#9F8170",
           "fill-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           }

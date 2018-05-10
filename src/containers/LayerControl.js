@@ -59,10 +59,10 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Green Infrastructure">
+      <LayerGroup title="Urban Green Features">
         <LayerList>
           {mapLayers
-            .filter(layer => layer.category === "green-infrastructure")
+            .filter(layer => layer.category === "urban-green-features")
             .map(layer => (
               <LayerListItem
                 key={layer.id}
@@ -72,10 +72,10 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Natural Hazards">
+      <LayerGroup title="Natural Features">
         <LayerList>
           {mapLayers
-            .filter(layer => layer.category === "natural-hazards")
+            .filter(layer => layer.category === "natural-features")
             .map(layer => (
               <LayerListItem
                 key={layer.id}
@@ -89,6 +89,19 @@ const LayerControl = props => {
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "transportation")
+            .map(layer => (
+              <LayerListItem
+                key={layer.id}
+                layer={layer}
+                onChange={handleChange(layer)}
+              />
+            ))}
+        </LayerList>
+      </LayerGroup>
+      <LayerGroup title="Other Key Features">
+        <LayerList>
+          {mapLayers
+            .filter(layer => layer.category === "other")
             .map(layer => (
               <LayerListItem
                 key={layer.id}

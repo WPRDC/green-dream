@@ -5,8 +5,8 @@ export default {
   geoType: 'polygon',
   legendColor: 'green',
   legendDisplay: true,
-  category: 'base-layers',
-  visible: true,
+  category: 'urban-green-features',
+  visible: false,
   source: {
     type: 'carto-vector',
     minzoom: 0,

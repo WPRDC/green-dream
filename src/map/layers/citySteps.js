@@ -3,7 +3,7 @@ export default {
   type: 'vector',
   name: 'City Steps',
   category: 'transportation',
-  visible: true,
+  visible: false,
   geoType: 'line',
   legendColor: 'rgba(120, 2, 222, 1)',
   legendDisplay: true,

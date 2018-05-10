@@ -32,7 +32,6 @@ const ParcelInfoPanel = props => {
   } = props;
 
   if (data) {
-    console.log(data);
     let title = "Property Information";
     if (isFetching) {
       title = "Retrieving parcel data...";

@@ -10,7 +10,6 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    maxzoom: 10,
     sql:
       "SELECT *, hood as map_identifier, hood as map_name FROM pittsburgh_neighborhoods"
   },
