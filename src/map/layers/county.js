@@ -1,40 +1,36 @@
 export default {
-  id: 'allegheny-county',
-  type: 'vector',
-  name: 'Allegheny County Border',
+  id: "allegheny-county",
+  type: "vector",
+  name: "Allegheny County Border",
   visible: false,
-  geoType: 'polygon',
-  legendColor: 'navy',
+  geoType: "polygon",
+  legendColor: "navy",
   legendDisplay: false,
-  category: 'base-layers',
+  category: "base-layers",
   source: {
-    type: 'carto-vector',
+    type: "carto-vector",
     minzoom: 0,
-    sql: 'SELECT * FROM allegheny_county_boundary',
+    sql: "SELECT * FROM allegheny_county_boundary"
   },
   layers: {
     labels: [],
     style: [
       {
-        "id": "allegheny-county-borders",
-        "type": "line",
-        "source": "allegheny-county",
+        id: "allegheny-county-borders",
+        type: "line",
+        source: "allegheny-county",
         "source-layer": "allegheny-county",
-        "layout": {
-          "line-join": "round",
+        layout: {
+          "line-join": "round"
         },
-        "paint": {
+        paint: {
           "line-width": {
-            "stops": [
-              [0,1],
-              [9,4],
-              [18, 10]
-            ]
+            stops: [[0, 1], [9, 4], [18, 10]]
           },
           "line-opacity": 0.8,
-          "line-color": "navy",
+          "line-color": "navy"
         }
-      },
+      }
     ]
   }
-}
+};

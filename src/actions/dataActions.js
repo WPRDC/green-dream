@@ -87,14 +87,10 @@ export const fetchParcelDataIfNeeded = parcelId => {
 
   return (dispatch, getState) => {
     if (shouldFetchParcelData(getState(), parcelId)) {
-      returnedThunk = dispatch(fetchParcelData(parcelId));
+      return(dispatch(fetchParcelData(parcelId)));
     } else {
-      // no need to wait
-      returnedThunk = Promise.resolve();
+      return Promise.resolve();
     }
-    return returnedThunk.then(() => {
-      return dispatch(fetchParcelImageIfNeeded(parcelId));
-    });
   };
 };
 
@@ -113,14 +109,10 @@ export const receiveParcelImage = (parcelId, imageUrl) => {
   };
 };
 
-export const fetchParcelImage = (state, parcelId) => {
-  const addressParts = extractAddressFromData(
-    state.parcelDataById[parcelId].data
-  );
-
+export const fetchParcelImage = (parcelId, address) => {
   return function(dispatch) {
     dispatch(requestParcelImage(parcelId));
-    return getStreetViewImage(addressParts).then(
+    return getStreetViewImage(address).then(
       imgUrl => dispatch(receiveParcelImage(parcelId, imgUrl)),
       error => console.log("ERROR", error)
     );
@@ -138,10 +130,10 @@ export const shouldFetchParcelImage = (state, parcelId) => {
   }
 };
 
-export const fetchParcelImageIfNeeded = parcelId => {
+export const fetchParcelImageIfNeeded = (parcelId, address) => {
   return (dispatch, getState) => {
     if (shouldFetchParcelImage(getState(), parcelId)) {
-      return dispatch(fetchParcelImage(getState(), parcelId));
+      return dispatch(fetchParcelImage(parcelId, address));
     } else {
       return Promise.resolve();
     }

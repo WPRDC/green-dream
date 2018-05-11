@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "Municipalities",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    color: "black"
+  },
   legendColor: "black",
   legendDisplay: false,
   category: "base-layers",

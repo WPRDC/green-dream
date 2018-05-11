@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "PGH Greenways",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    items: [{ category: "Greenway", color: "#01796F" }]
+  },
   legendColor: "#01796F",
   legendDisplay: true,
   category: "urban-green-features",

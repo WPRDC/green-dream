@@ -3,6 +3,11 @@ export default {
   type: 'vector',
   name: 'Parcels',
   geoType: 'polygon',
+  legend: {
+    display: true,
+    type: "single",
+    color: "rgba(2, 2, 2, 1)"
+  },
   legendColor: 'rgba(2, 2, 2, 1)',
   legendDisplay: false,
   category: 'base-layers',

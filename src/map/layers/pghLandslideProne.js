@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "PGH Landslide Prone Areas",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    items: [{ category: "Landslide Prone", color: "#9F8170" }]
+  },
   legendColor: "#9F8170",
   legendDisplay: true,
   category: "natural-features",

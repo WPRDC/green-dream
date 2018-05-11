@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "PGH Slope > 25%",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    items: [{ category: "Slope > 25%", color: "#708090" }]
+  },
   legendColor: "#708090",
   legendDisplay: true,
   category: "natural-features",

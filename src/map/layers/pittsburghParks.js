@@ -2,6 +2,11 @@ export default {
   id: 'pittsburgh-parks',
   type: 'vector',
   geoType: 'polygon',
+  legend: {
+    display: true,
+    type: "single",
+    items: [{category: "Park", color: "green"}],
+  },
   legendColor: 'green',
   legendDisplay: true,
   name: 'PGH Parks',

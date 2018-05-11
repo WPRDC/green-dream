@@ -2,6 +2,11 @@ export default {
   id: 'transit-routes',
   type: 'vector',
   geoType: 'line',
+  legend: {
+    display: true,
+    type: "single",
+    color: "black"
+  },
   name: 'Port Authority Routes',
   category: 'transportation',
   source: {

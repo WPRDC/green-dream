@@ -3,6 +3,11 @@ export default {
   type: 'vector',
   name: 'Pittsburgh Border',
   geoType: 'polygon',
+  legend: {
+    display: true,
+    type: "single",
+    color: "black"
+  },
   legendColor: 'black',
   category: 'base-layers',
   legendDisplay: false,

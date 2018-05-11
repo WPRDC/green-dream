@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "PGH Neighborhoods",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    color: "#708090"
+  },
   legendColor: "#708090",
   legendDisplay: false,
   category: "base-layers",

@@ -5,6 +5,11 @@ export default {
   category: "transportation",
   visible: false,
   geoType: "line",
+  legend: {
+    display: true,
+    type: "single",
+    items: [{category: "Bike Trail", color: "#5C5248"}],
+  },
   legendColor: "#5C5248",
   legendDisplay: true,
   source: {

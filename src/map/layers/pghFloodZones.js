@@ -3,6 +3,11 @@ export default {
   type: "vector",
   name: "PGH Flood Zones",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "single",
+    items: [{ category: "Flood Zones", color: "#007791" }]
+  },
   legendColor: "#007791",
   legendDisplay: true,
   category: "natural-features",

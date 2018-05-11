@@ -9,9 +9,10 @@ const streetViewParams = {
   size: "600x300"
 };
 
-export const makeStreetViewUrl = addressParts => {
+export const makeStreetViewUrl = address => {
   let params = JSON.parse(JSON.stringify(streetViewParams)); // hack way to copy object
-  params["location"] = makeAddressLine(addressParts);
+  // params["location"] = makeAddressLine(addressParts);
+  params['location'] = address;
 
   return STREET_VIEW_BASE_URL + "?" + paramaterize(params);
 };

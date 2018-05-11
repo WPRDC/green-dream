@@ -3,6 +3,17 @@ export default {
   type: "vector",
   name: "Allegheny County Land Use Areas",
   geoType: "polygon",
+  legend: {
+    display: true,
+    type: "category",
+    items: [
+      {category: "Uncoded Land Area", color: 'blue'},
+      {category: "Woodland", color: 'green'},
+      {category: "Nursery or Orchard", color: 'red'},
+      {category: "Cultivated Field", color: 'purple'},
+      {category: "Athletic Field", color: 'yellow'},
+    ]
+  },
   legendColor: "green",
   legendDisplay: true,
   category: "natural-features",
@@ -48,14 +59,14 @@ FROM wprdc.allegheny_county_land_use_areas`
         layout: {},
         paint: {
           "fill-color": {
-            property: 'featurecod',
-            type: 'categorical',
+            property: "featurecod",
+            type: "categorical",
             stops: [
-              [300, 'blue'],
-              [310, 'green'],
-              [340, 'red'],
-              [350, 'purple'],
-              [620, 'yellow'],
+              [300, "blue"],
+              [310, "green"],
+              [340, "red"],
+              [350, "purple"],
+              [620, "yellow"]
             ]
           },
           "fill-opacity": {

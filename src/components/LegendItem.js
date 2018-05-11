@@ -10,8 +10,8 @@ const styles = {
   },
   color: {
     display: "inline-block",
-    width: ".6rem",
-    height: ".6rem",
+    width: ".4rem",
+    height: ".4rem",
     borderRadius: "80%",
     border: "1px solid dimgray"
   },
@@ -22,14 +22,17 @@ const styles = {
 };
 
 const LegendItem = props => {
-  const { label, color, classes } = props;
+  const { label, legend, color, classes } = props;
 
   return (
     <div className={classes.root}>
-      <div className={classes.color} style={{ background: color }} />
-      <div className={classes.label}>
-        <Typography variant="body2">{label}</Typography>
-      </div>
+      <Typography variant="body2">{label}</Typography>
+      {legend.items.map((item, i) => <div>
+        <div className={classes.color} style={{ background: item.color }} />
+        <div className={classes.label}>
+          <Typography variant="caption">{item.category}</Typography>
+        </div>
+      </div>)}
     </div>
   );
 };

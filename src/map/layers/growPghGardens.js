@@ -3,6 +3,11 @@ export default {
   type: "vector",
   geoType: "point",
   name: "Grow Pittsburgh Gardens",
+  legend: {
+    display: true,
+    type: 'single',
+    items: [{category: "Garden", color: '#0F2'}],
+  },
   legendColor: "#0F2",
   legendDisplay: true,
   category: "urban-green-features",
@@ -28,7 +33,7 @@ export default {
         layout: {},
         paint: {
           "circle-radius": {
-            stops: [[10, 2], [15, 5]]
+            stops: [[10, 4], [15, 8]]
           },
           "circle-color": "#0F2",
           "circle-stroke-width": { stops: [[10, 1], [15, 2]] },

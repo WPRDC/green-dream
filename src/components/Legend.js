@@ -11,10 +11,10 @@ const styles = {
 
 const Legend = props => {
   const { classes, children, entries = [] } = props;
-
+  console.log(entries);
   return (
     <Paper className={classes.root}>
-      {entries.map((entry, i) => <LegendItem key={i.toString()} {...entry} />)}
+      {entries.reverse().map((entry, i) => <LegendItem key={i.toString()} {...entry} />)}
     </Paper>
   );
 };

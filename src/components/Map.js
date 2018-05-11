@@ -14,10 +14,11 @@ import ReactTooltip from "react-tooltip";
 
 import { layerListChanged } from "../utils/utils";
 import LayerControl from "../containers/LayerControl";
-import PopupBody from "./PopupBody"
+import PopupBody from "./PopupBody";
 import { fromJS, toJS } from "immutable";
 import {
   fetchParcelDataIfNeeded,
+  fetchParcelImageIfNeeded,
   selectNeighborhood,
   selectParcel,
   select
@@ -132,7 +133,7 @@ class Map extends Component {
       }
 
       // 1st class info displays - the righthand panel1
-      if (["parcels", "neighborhoods"].includes(layerType)){
+      if (["parcels", "neighborhoods"].includes(layerType)) {
         displayInfo(layerType, id, name);
         this._onViewportChange(
           Object.assign(this.state.viewport, {
@@ -143,7 +144,6 @@ class Map extends Component {
           })
         );
       }
-
 
       // 2nd class info displays - popups
       if (["grow-pgh-gardens", "brownfields"].includes(layerType))
@@ -196,7 +196,7 @@ class Map extends Component {
     const legendEntries = mapLayers.reduce((acc, curr) => {
       if (curr.visible && curr.legendDisplay) {
         acc.push({
-          color: curr.legendColor,
+          legend: curr.legend,
           label: curr.name,
           type: curr.geoType
         });
@@ -209,11 +209,7 @@ class Map extends Component {
         <div className={classes.root}>
           <LayerControl />
           {tooltip && (
-            <ReactTooltip
-              place="right"
-              id="identifier"
-              style={{ zIndex: 2 }}
-            >
+            <ReactTooltip place="right" id="identifier" style={{ zIndex: 2 }}>
               <span>{tooltip}</span>
             </ReactTooltip>
           )}
@@ -238,21 +234,23 @@ class Map extends Component {
                   latitude={this.state.popup.latitude}
                   longitude={this.state.popup.longitude}
                   closeButton={true}
-                  onClose={() => this.setState({popup: {latitude: null}})}
+                  onClose={() => this.setState({ popup: { latitude: null } })}
                   closeOnClick={true}
                   anchor={"bottom"}
                 >
-                  <PopupBody data={this.state.popup.data}/>
+                  <PopupBody data={this.state.popup.data} />
                 </Popup>
               ) : null}
             </ReactMapGL>
           </a>
-          <div
-            className={classes.legendWrapper}
-            style={{ left: layerMenu.open ? "292px" : "12px" }}
-          >
-            <Legend entries={legendEntries} />
-          </div>
+          {legendEntries && legendEntries.length ? (
+            <div
+              className={classes.legendWrapper}
+              style={{ left: layerMenu.open ? "292px" : "12px" }}
+            >
+              <Legend entries={legendEntries} />
+            </div>
+          ) : null}
         </div>
       );
     } else {
@@ -274,6 +272,7 @@ const mapDispatchToProps = dispatch => {
       if (type === "parcels") {
         dispatch(select(type, id, name));
         dispatch(fetchParcelDataIfNeeded(id));
+        dispatch(fetchParcelImageIfNeeded(id, name));
       }
       if (type === "neighborhoods") {
         dispatch(select(type, id, name));
