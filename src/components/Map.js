@@ -19,8 +19,7 @@ import { fromJS, toJS } from "immutable";
 import {
   fetchParcelDataIfNeeded,
   fetchParcelImageIfNeeded,
-  selectNeighborhood,
-  selectParcel,
+  fetchNeighborhoodDataIfNeeded,
   select
 } from "../actions/dataActions";
 import Legend from "./Legend";
@@ -135,6 +134,7 @@ class Map extends Component {
       // 1st class info displays - the righthand panel1
       if (["parcels", "neighborhoods"].includes(layerType)) {
         displayInfo(layerType, id, name);
+
         this._onViewportChange(
           Object.assign(this.state.viewport, {
             zoom: layerType === "parcels" ? 17 : 14,
@@ -275,7 +275,9 @@ const mapDispatchToProps = dispatch => {
         dispatch(fetchParcelImageIfNeeded(id, name));
       }
       if (type === "neighborhoods") {
+        const hoodId = id.toLowerCase().replace(/(\-|\s)/g, "_")
         dispatch(select(type, id, name));
+        dispatch(fetchNeighborhoodDataIfNeeded(hoodId))
       }
     }
   };

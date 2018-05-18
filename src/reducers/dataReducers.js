@@ -6,6 +6,8 @@ import {
   RECEIVE_PARCEL_DATA,
   REQUEST_PARCEL_IMAGE,
   RECEIVE_PARCEL_IMAGE,
+  REQUEST_NEIGHBORHOOD_DATA,
+  RECEIVE_NEIGHBORHOOD_DATA,
   CLOSE_DISPLAY,
   SELECT_NEIGHBORHOOD
 } from "../actions/dataActions";
@@ -67,6 +69,43 @@ export const parcelDataById = (state = {}, action) => {
       return state;
   }
 };
+
+const neighborhoodData = (
+  state = { isFetching: false, didInvalidate: false, data: {} },
+  action
+) => {
+  switch (action.type) {
+    case REQUEST_NEIGHBORHOOD_DATA:
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
+    case RECEIVE_NEIGHBORHOOD_DATA:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        data: action.data,
+        lastUpdated: action.receivedAt
+      });
+    default:
+      return state;
+  }
+};
+
+export const neighborhoodDataById = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_NEIGHBORHOOD_DATA:
+    case REQUEST_NEIGHBORHOOD_DATA:
+      return Object.assign({}, state, {
+        [action.hoodId]: neighborhoodData(state[action.hoodId], action)
+      });
+    default:
+      return state;
+  }
+};
+
+
+
 
 export const dataDisplay = (state = null, action) => {
   switch (action.type) {

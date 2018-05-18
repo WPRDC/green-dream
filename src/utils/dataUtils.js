@@ -142,6 +142,8 @@ export const extractKeyValueSubset = (data, fieldMapping, index = 0) => {
       // items pulled from data
       if (exists(field.title)) title = field.title;
       else title = field.field;
+      console.log(data);
+      console.log(field)
       if (
         data[field.resource].length &&
         data[field.resource][index].hasOwnProperty(field.field)

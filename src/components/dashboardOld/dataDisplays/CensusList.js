@@ -4,7 +4,7 @@ import KeyValueList from "./KeyValueList";
 import MissingDataNote from "./MissingDataNote";
 import { extractKeyValueSubset, hasValues } from "../../../utils/dataUtils";
 
-const KeyValueListDisplay = props => {
+const CensusList = props => {
   const {
     title,
     note,
@@ -14,8 +14,12 @@ const KeyValueListDisplay = props => {
     missingDataMsg,
     allowNulls
   } = props;
-  const displayData = extractKeyValueSubset(data, fields);
-  console.log('DISPLAY1', displayData)
+  const displayData = {}
+  for (let item in data){
+    displayData[item] = data[item].estimate
+  }
+  console.log('DISPLAY2', displayData)
+
   return (
     <div>
       {allowNulls || hasValues(displayData) ? (
@@ -27,4 +31,4 @@ const KeyValueListDisplay = props => {
   );
 };
 
-export default KeyValueListDisplay;
+export default CensusList;
