@@ -1,5 +1,5 @@
 import { generateCartoVectorSource } from "./carto";
-import basemap from "../../map/basemaps/basemap";
+import basemap from "../../map/basemaps/terrain";
 import { fromJS } from "immutable";
 
 export const BASE_STYLE = {
@@ -19,7 +19,6 @@ export const generateMapboxStyle = (layerConfigs, baseStyle = BASE_STYLE) => {
     s.layers = s.layers.concat(nl);
     return s;
   }, baseStyle);
-
   return fromJS(mapStyle);
 };
 
@@ -28,11 +27,16 @@ export const generateMapboxStyle = (layerConfigs, baseStyle = BASE_STYLE) => {
  * https://www.mapbox.com/mapbox-gl-js/style-spec#sources
  */
 export const generateMapSource = layerConfig => {
+  if (layerConfig.mapboxSource)
+    return Promise.resolve(layerConfig.mapboxSource);
+
   switch (layerConfig.source.type) {
     case "carto-vector":
-      if (layerConfig.mapboxSource)
-        return Promise.resolve(layerConfig.mapboxSource);
-      else return generateCartoVectorSource(layerConfig);
+      return generateCartoVectorSource(layerConfig);
+    case "raster":
+      console.log('here')
+      const { tiles, tileSize } = layerConfig.source;
+      return Promise.resolve({ tiles, tileSize, type: "raster" });
   }
 };
 
@@ -42,7 +46,7 @@ export const generateLabelLayers = layerConfig => {
 
 export const generateStyleLayers = layerConfig => {
   const { layers, visible } = layerConfig;
-
+  if (Object.keys(layers).length === 0) return {}
   return layers.style.map(layer => {
     layer.layout.visibility = visible ? "visible" : "none";
     return layer;

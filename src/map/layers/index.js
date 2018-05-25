@@ -15,13 +15,14 @@ import pittsburgh from "./pittsburgh";
 import pghLandslideProne from "./pghLandslideProne"
 import alleghenyLandUseAreas from "./alleghenyLandUseAreas"
 import brownfields from "./brownfields"
+import aerial from "./aerial"
 import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
 
 export const defaultLayers = [
   //trwwGreenInfrastructure,
   growPghGardens,
   brownfields,
-
+  //aerial,
   parcels,
   neighborhoods,
   citySteps,

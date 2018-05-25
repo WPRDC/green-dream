@@ -15,7 +15,7 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pittsburgh_landslide_prone"
+    sql: "SELECT * FROM wprdc.landslide_prone_areas"
   },
   layers: {
     labels: [],

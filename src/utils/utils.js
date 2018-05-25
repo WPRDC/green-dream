@@ -28,12 +28,17 @@ export const objectsAreTheSame = (obj1, obj2) => {
 
 
 export const layerListChanged = (oldList, newList) => {
-  if (oldList.length !== newList.length)
+
+  if (oldList.length !== newList.length){
+    console.log('length changed')
     return true;
+      }
 
   for (let i in oldList) {
-    if (!objectsAreTheSame(oldList[i], newList[i]))
+    if (!objectsAreTheSame(oldList[i], newList[i])){
+      console.log(oldList[i], newList[i])
       return true;
+    }
   }
 
   return false;

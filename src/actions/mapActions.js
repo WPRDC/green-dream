@@ -62,6 +62,7 @@ export const initLayers = layerConfigs => {
         )
       )
     ).then(layers => {
+      console.log(layers);
       dispatch(updateLayers(layers));
     });
   };

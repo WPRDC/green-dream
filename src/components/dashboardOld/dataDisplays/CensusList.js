@@ -14,11 +14,10 @@ const CensusList = props => {
     missingDataMsg,
     allowNulls
   } = props;
-  const displayData = {}
-  for (let item in data){
-    displayData[item] = data[item].estimate
+  const displayData = {};
+  for (let item in data) {
+    displayData[item] = data[item].estimate;
   }
-  console.log('DISPLAY2', displayData)
 
   return (
     <div>

@@ -5,6 +5,7 @@ import InfoPanel from "../components/infoPanel/InfoPanel";
 import DataSection from "../components/dashboardOld/DataSection";
 import CensusIncome from "../components/neighborhoodCards/CensusIncome";
 import CensusRace from "../components/neighborhoodCards/CensusRace";
+import CensusAge from "../components/neighborhoodCards/CensusAge";
 import { closeDisplay } from "../actions/dataActions";
 
 const NeighborhoodInfoPanel = props => {
@@ -30,6 +31,7 @@ const NeighborhoodInfoPanel = props => {
         <DataSection>
           <CensusRace data={data} />
           <CensusIncome data={data} />
+          <CensusAge data={data}/>
         </DataSection>
       </InfoPanel>
     );

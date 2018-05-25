@@ -34,7 +34,7 @@ const DataTable = props => {
           <TableRow>
             {header.map((h, i) => (
               <TableCell
-                padding="dense"
+                padding="none"
                 numeric={Boolean(i)}
                 key={i.toString()}
                 className={props.classes.cell}
@@ -52,7 +52,7 @@ const DataTable = props => {
               <TableRow key={i.toString()}>
                 {row.map((cell, j) => (
                   <TableCell
-                    padding="dense"
+                    padding="none"
                     numeric={Boolean(j)}
                     key={j.toString()}
                     className={props.classes.cell}

@@ -16,7 +16,8 @@ import {
   OwnerAddress,
   BuildingCodeViolations,
   TaxDelinquency,
-  Foreclosure
+  Foreclosure,
+  PoliticalDistricts,
 } from "../components/dashboardOld/customModules";
 import { closeDisplay } from "../actions/dataActions";
 
@@ -60,7 +61,7 @@ const ParcelInfoPanel = props => {
         <DataSection>
           <ParcelCharacteristics data={data} />
           <OwnerAddress data={data} />
-
+          <PoliticalDistricts data={data}/>
           <DwellingCharacteristics data={data} />
 
           <AssessmentTable data={data} />

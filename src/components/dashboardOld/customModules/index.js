@@ -8,3 +8,4 @@ export { default as OwnerAddress } from "./PropertyOwner";
 export { default as BuildingCodeViolations } from "./BuildingCodeViolations";
 export { default as TaxDelinquency } from "./TaxDelinquency";
 export { default as Foreclosure } from "./Foreclosure";
+export { default as PoliticalDistricts } from "./PoliticalDistricts";
