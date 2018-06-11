@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.header}>
-          <Header />
+          <Header title="Urban Greenprint" />
         </div>
 
         <main className={classes.content}>

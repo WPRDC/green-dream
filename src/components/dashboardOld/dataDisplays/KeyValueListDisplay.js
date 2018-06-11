@@ -15,7 +15,6 @@ const KeyValueListDisplay = props => {
     allowNulls
   } = props;
   const displayData = extractKeyValueSubset(data, fields);
-  console.log('DISPLAY1', displayData)
   return (
     <div>
       {allowNulls || hasValues(displayData) ? (

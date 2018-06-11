@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import KeyValueListDisplay from "../dataDisplays/KeyValueListDisplay";
-import { monify } from "../../../utils/dataUtils";
-import DataCard from "../DataCard";
+import KeyValueListDisplay from "../dashboardOld/dataDisplays/KeyValueListDisplay";
+import { monify } from "../../utils/dataUtils";
+import DataCard from "../dashboardOld/DataCard";
 
 const Foreclosure = props => {
   return (

@@ -22,7 +22,6 @@ export const mapLayers = (state = defaultLayers.reverse(), action) => {
 
     case UPDATE_LAYER:
       return state.map(layer => {
-        console.log(layer.id)
         if (layer.id === action.layer.id)
           return Object.assign({}, layer, action.layer);
         else return layer;

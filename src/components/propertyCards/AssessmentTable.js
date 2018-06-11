@@ -1,8 +1,8 @@
 import React from "react";
 
-import DataCard from "../DataCard";
-import TableDisplay from "../dataDisplays/DataTableDisplay";
-import { monify, shortenNumber } from "../../../utils/dataUtils";
+import DataCard from "../dashboardOld/DataCard";
+import TableDisplay from "../dashboardOld/dataDisplays/DataTableDisplay";
+import { monify, shortenNumber } from "../../utils/dataUtils";
 
 const formatter = n => `$${shortenNumber(n)}`;
 

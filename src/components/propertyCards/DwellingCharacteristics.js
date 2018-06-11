@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import KeyValueListDisplay from "../dataDisplays/KeyValueListDisplay";
-import DataCard from "../DataCard";
+import KeyValueListDisplay from "../dashboardOld/dataDisplays/KeyValueListDisplay";
+import DataCard from "../dashboardOld/DataCard";
 
 const DwellingCharacteristics = props => {
   return (

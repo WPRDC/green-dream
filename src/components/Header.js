@@ -1,14 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
+import {withStyles} from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import Button from "material-ui/Button";
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
-import { toggleLayerMenu } from "../actions/mapActions";
+import ToolTip from "material-ui/Tooltip"
+import {toggleLayerMenu} from "../actions/mapActions";
 
 const styles = theme => ({
   root: {
@@ -19,7 +20,8 @@ const styles = theme => ({
     overflow: "hidden"
   },
   flex: {
-    flex: 1
+    flex: 1,
+    fontFamily: 'Roboto Condensed, sans-serif'
   },
   menuButton: {
     marginLeft: -12,
@@ -27,11 +29,15 @@ const styles = theme => ({
   },
   icon: {
     height: "40px"
+  },
+  plus: {
+    margin: '0 6px',
+    fontSize: '24px',
   }
 });
 
 const Header = props => {
-  const { classes, toggleMenu } = props;
+  const {classes, toggleMenu, title} = props;
 
   return (
     <AppBar className={classes.root}>
@@ -42,15 +48,26 @@ const Header = props => {
           className={classes.menuButton}
           onClick={toggleMenu}
         >
-          <MenuIcon />
+          <ToolTip title={"Toggle Layer Menu"} placement="bottom-start">
+            <MenuIcon/>
+          </ToolTip>
         </IconButton>
         <Typography variant="title" color="inherit" className={classes.flex}>
-          Green Dream
+          {title}
         </Typography>
+
         <img
-          src={require("../assets/img/white_icon.svg")}
+          src={require("../assets/img/alt-logo-wide.svg")}
           className={classes.icon}
         />
+        <span className={classes.plus}>  </span>
+
+        <img
+          src={require("../assets/img/white_logo.svg")}
+          className={classes.icon}
+        />
+
+
       </Toolbar>
     </AppBar>
   );

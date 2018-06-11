@@ -101,7 +101,7 @@ export const extractAddressFromData = data => {
 };
 
 export const makeAddressLine = addressParts => {
-  const { number, street, city, state, zip } = addressParts;
+  const {number, street, city, state, zip} = addressParts;
   return `${number} ${street} ${city} ${state} ${zip}`;
 };
 
@@ -142,8 +142,6 @@ export const extractKeyValueSubset = (data, fieldMapping, index = 0) => {
       // items pulled from data
       if (exists(field.title)) title = field.title;
       else title = field.field;
-      console.log(data);
-      console.log(field)
       if (
         data[field.resource].length &&
         data[field.resource][index].hasOwnProperty(field.field)
@@ -198,7 +196,7 @@ export const nl2br = multilineString => {
       {multilineString.split("\n").map((item, key) => (
         <span key={key}>
           {item}
-          <br />
+          <br/>
         </span>
       ))}
     </div>
@@ -210,18 +208,7 @@ export const guid = () => {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
   return (
-    S4() +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    S4() +
-    S4()
+    S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4()
   );
 };
 
@@ -244,6 +231,7 @@ export function shortenNumber(number) {
     return number;
   }
 }
+
 const geocodeUrl = "http://tools.wprdc.org/geo/api/v0/geocode/";
 
 export const getParcelIdFromAddress = address => {

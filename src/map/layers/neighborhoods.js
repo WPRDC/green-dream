@@ -14,9 +14,9 @@ export default {
   visible: true,
   source: {
     type: "carto-vector",
-    minzoom: 0,
+    minzoom: 11,
     sql:
-      "SELECT *, hood as map_identifier, hood as map_name FROM pittsburgh_neighborhoods"
+      "SELECT *, hood as map_identifier, hood as map_name FROM pittsburgh_neighborhoods WHERE hood NOT LIKE 'Mount Oliver Borough'"
   },
   layers: {
     labels: [],
@@ -51,7 +51,7 @@ export default {
         },
         paint: {
           "text-opacity": {
-            stops: [[10, 0], [13, 1]]
+            stops: [[11, .1], [13, 1]]
           },
           "icon-color": "rgba(193, 193, 193, 1)",
           "text-color": "#222",

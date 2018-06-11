@@ -1,11 +1,11 @@
 import React from "react";
 import Typography from "material-ui/Typography";
-import SingleItemDisplay from "../dataDisplays/SingleItemDisplay";
+import SingleItemDisplay from "../dashboardOld/dataDisplays/SingleItemDisplay";
 
-import DataCard from "../DataCard";
+import DataCard from "../dashboardOld/DataCard";
 
-import { dataSource } from "../../../utils/mapDefaults";
-import { nl2br } from "../../../utils/dataUtils";
+import { dataSource } from "../../utils/mapDefaults";
+import { nl2br } from "../../utils/dataUtils";
 
 const style = {
   div: {

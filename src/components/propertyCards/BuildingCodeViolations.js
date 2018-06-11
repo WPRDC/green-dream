@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Tabs, { Tab } from "material-ui/Tabs";
-import DataCard from "../DataCard";
-import ListOfKeyValueListsDisplay from "../dataDisplays/ListOfKeyValueListsDisplay";
+import DataCard from "../dashboardOld/DataCard";
+import ListOfKeyValueListsDisplay from "../dashboardOld/dataDisplays/ListOfKeyValueListsDisplay";
 
 const BuildingCodeViolations = props => {
   return (

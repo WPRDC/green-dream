@@ -11,7 +11,6 @@ const styles = {
 
 const Legend = props => {
   const { classes, children, entries = [] } = props;
-  console.log(entries);
   return (
     <Paper className={classes.root}>
       {entries.reverse().map((entry, i) => <LegendItem key={i.toString()} {...entry} />)}

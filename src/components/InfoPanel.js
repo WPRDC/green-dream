@@ -8,8 +8,8 @@ import Close from "material-ui-icons/Close";
 import IconButton from "material-ui/IconButton";
 import { LinearProgress } from "material-ui/Progress";
 
-import DataSection from "../dashboardOld/DataSection";
-import EmptyDataCard from "../dashboardOld/EmptyDataCard";
+import DataSection from "./dashboardOld/DataSection";
+import EmptyDataCard from "./dashboardOld/EmptyDataCard";
 
 const styles = theme => ({
   paper: {
@@ -29,7 +29,9 @@ const styles = theme => ({
     overflowX: "hidden"
   },
   flex: {
-    flex: 1
+    flex: 1,
+    fontFamily: 'Roboto Condensed, sans-serif'
+
   }
 });
 

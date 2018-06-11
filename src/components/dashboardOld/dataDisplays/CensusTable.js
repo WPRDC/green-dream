@@ -23,16 +23,11 @@ const styles = theme => ({
 const CensusTable = props => {
   const { data, classes } = props;
   const { fields, records, denominator } = data;
-  console.log(fields);
-  console.log(records);
-  console.log(denominator);
   return (
     <Table className={classes.table}>
       <TableBody>
         {fields.map((field, i) => {
-          const { title, value, moe, proportion, proportion_moe } = records[
-            field
-          ];
+          const { title, value, moe, proportion, proportion_moe } = records[field];
           return (
             <TableRow key={i.toString()}>
               <TableCell padding="none">

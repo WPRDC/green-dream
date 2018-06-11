@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import InfoPanel from "../components/infoPanel/InfoPanel";
+import InfoPanel from "../components/InfoPanel";
 import DataSection from "../components/dashboardOld/DataSection";
 import DashboardHeaderImage from "../components/dashboardOld/DashboardHeaderImage";
 import { extractAddressFromData } from "../utils/dataUtils";
@@ -18,7 +18,7 @@ import {
   TaxDelinquency,
   Foreclosure,
   PoliticalDistricts,
-} from "../components/dashboardOld/customModules";
+} from "../components/propertyCards";
 import { closeDisplay } from "../actions/dataActions";
 
 const ParcelInfoPanel = props => {

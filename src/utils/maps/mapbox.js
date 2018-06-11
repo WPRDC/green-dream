@@ -34,7 +34,6 @@ export const generateMapSource = layerConfig => {
     case "carto-vector":
       return generateCartoVectorSource(layerConfig);
     case "raster":
-      console.log('here')
       const { tiles, tileSize } = layerConfig.source;
       return Promise.resolve({ tiles, tileSize, type: "raster" });
   }

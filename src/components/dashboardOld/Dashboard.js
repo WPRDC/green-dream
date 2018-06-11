@@ -23,13 +23,13 @@ import {
   SalesTable,
   TaxLiens,
   OwnerAddress
-} from "./customModules/index";
+} from "../propertyCards/index";
 
 /* Project Components */
 import ParcelSearch from "../../containers/ParcelSearch";
-import TaxDelinquency from "./customModules/TaxDelinquency";
-import Foreclosure from "./customModules/Foreclosure";
-import BuildingCodeViolations from "./customModules/BuildingCodeViolations";
+import TaxDelinquency from "../propertyCards/TaxDelinquency";
+import Foreclosure from "../propertyCards/Foreclosure";
+import BuildingCodeViolations from "../propertyCards/BuildingCodeViolations";
 
 const blue500 = blue[500];
 

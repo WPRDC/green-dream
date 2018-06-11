@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import ReactMapGL, { FlyToInterpolator, Popup } from "react-map-gl";
-import { connect } from "react-redux";
-import { withStyles } from "material-ui/styles";
+import React, {Component} from "react";
+import ReactMapGL, {FlyToInterpolator, Popup} from "react-map-gl";
+import {connect} from "react-redux";
+import {withStyles} from "material-ui/styles";
 
 import Drawer from "material-ui/Drawer";
 
 import Dimensions from "react-dimensions";
 
-import { updateLayer, initLayers } from "../actions/mapActions";
+import {updateLayer, initLayers} from "../actions/mapActions";
 
-import { BASE_STYLE, generateMapboxStyle } from "../utils/maps/mapbox";
+import {BASE_STYLE, generateMapboxStyle} from "../utils/maps/mapbox";
 import ReactTooltip from "react-tooltip";
 
-import { layerListChanged } from "../utils/utils";
+import {layerListChanged} from "../utils/utils";
 import LayerControl from "../containers/LayerControl";
 import PopupBody from "./PopupBody";
-import { fromJS, toJS } from "immutable";
+import {fromJS, toJS} from "immutable";
 import {
   fetchParcelDataIfNeeded,
   fetchParcelImageIfNeeded,
@@ -73,12 +73,12 @@ class Map extends Component {
       height: window.innerHeight,
       mapStyle: fromJS(BASE_STYLE),
       tooltip: null,
-      popup: { latitude: null }
+      popup: {latitude: null}
     };
   }
 
   componentDidMount = () => {
-    const { mapLayers, initLayers } = this.props;
+    const {mapLayers, initLayers} = this.props;
     initLayers(mapLayers);
     window.addEventListener("resize", this.updateDimensions);
   };
@@ -91,27 +91,31 @@ class Map extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { mapLayers: oldLayers } = prevProps;
-    const { mapLayers: newLayers } = this.props;
+    const {mapLayers: oldLayers} = prevProps;
+    const {mapLayers: newLayers} = this.props;
 
     if (layerListChanged(oldLayers, newLayers)) {
-      this.setState({ mapStyle: generateMapboxStyle(newLayers) }, () =>
-        console.log("changing that state")
-      );
+      this.setState({mapStyle: generateMapboxStyle(newLayers)});
     }
   };
 
   handleClick = event => {
-    const { mapStyle } = this.state;
-    const { displayInfo, mapLayers } = this.props;
+    const {mapStyle} = this.state;
+    const {displayInfo, mapLayers, currentSelection} = this.props;
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
       // 1. Determine the feature of interest
       const feature = event.features[0];
       const layerType = extractLayerTypeFromId(feature.layer.id);
-      const { map_identifier: id, map_name: name } = feature.properties;
+      const {map_identifier: id, map_name: name} = feature.properties;
 
+      const oldFillIndex = workingStyle.layers.findIndex(
+        layer => layer.id === currentSelection.objectType + "-select-fill"
+      );
+      const oldLineIndex = workingStyle.layers.findIndex(
+        layer => layer.id === currentSelection.objectType + "-select-border"
+      );
       const fillIndex = workingStyle.layers.findIndex(
         layer => layer.id === layerType + "-select-fill"
       );
@@ -121,9 +125,17 @@ class Map extends Component {
 
       //TODO: get new viwe port using this
       //https://github.com/uber/react-map-gl/blob/3e52aa397a57081fa2c44bb79f8fa48c41ff510f/docs/upgrade-guide.md
-
+      if (oldFillIndex >= 0 && oldLineIndex >= 0) {
+        this.setState({
+          mapStyle: mapStyle
+            .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
+            .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
+            .setIn(["layers", fillIndex, "filter", 2], id)
+            .setIn(["layers", lineIndex, "filter", 2], id)
+        });
+      }
       // if layer supports style change, do it
-      if (lineIndex >= 0 && fillIndex >= 0) {
+      else if (lineIndex >= 0 && fillIndex >= 0) {
         this.setState({
           mapStyle: mapStyle
             .setIn(["layers", fillIndex, "filter", 2], id)
@@ -133,7 +145,7 @@ class Map extends Component {
 
       // 1st class info displays - the righthand panel1
       if (["parcels", "neighborhoods"].includes(layerType)) {
-        displayInfo(layerType, id, name);
+        displayInfo(layerType, id.replace('.', ''), name);
 
         this._onViewportChange(
           Object.assign(this.state.viewport, {
@@ -161,7 +173,7 @@ class Map extends Component {
   };
 
   handleHover = event => {
-    const { mapStyle } = this.state;
+    const {mapStyle} = this.state;
 
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
@@ -172,7 +184,7 @@ class Map extends Component {
         layer => layer.id === layerType + "-highlight-fill"
       );
       // 2. Change the style of that layer  and display name in tooltip
-      const newState = { tooltip: feature.properties["map_name"] };
+      const newState = {tooltip: feature.properties["map_name"]};
       if (layerIndex >= 0) {
         newState["mapStyle"] = mapStyle.setIn(
           ["layers", layerIndex, "filter", 2],
@@ -181,17 +193,17 @@ class Map extends Component {
       }
       this.setState(newState);
     } else {
-      this.setState({ tooltip: null });
+      this.setState({tooltip: null});
     }
   };
 
   _onViewportChange = viewport => {
-    this.setState({ viewport });
+    this.setState({viewport});
   };
 
   render() {
-    const { width, height, tooltip } = this.state;
-    const { layerMenu, classes, mapLayers } = this.props;
+    const {width, height, tooltip} = this.state;
+    const {layerMenu, classes, mapLayers} = this.props;
 
     const legendEntries = mapLayers.reduce((acc, curr) => {
       if (curr.visible && curr.legendDisplay) {
@@ -207,16 +219,16 @@ class Map extends Component {
     if (this.state.mapStyle !== null) {
       return (
         <div className={classes.root}>
-          <LayerControl />
+          <LayerControl/>
           {tooltip && (
-            <ReactTooltip place="right" id="identifier" style={{ zIndex: 2 }}>
+            <ReactTooltip place="right" id="identifier" style={{zIndex: 2}}>
               <span>{tooltip}</span>
             </ReactTooltip>
           )}
           <a
             data-tip
             data-for="identifier"
-            style={{ position: "absolute", zIndex: 1, width: "100%" }}
+            style={{position: "absolute", zIndex: 1, width: "100%"}}
           >
             <ReactMapGL
               mapStyle={this.state.mapStyle}
@@ -225,20 +237,19 @@ class Map extends Component {
               onClick={this.handleClick}
               {...{
                 ...this.state.viewport,
-                ...{ width: width, height: height - 64 }
+                ...{width: width, height: height - 64}
               }}
             >
-              <p style={{ fontWeight: 800 }}>{this.state.viewport.zoom}</p>
               {this.state.popup.latitude ? (
                 <Popup
                   latitude={this.state.popup.latitude}
                   longitude={this.state.popup.longitude}
                   closeButton={true}
-                  onClose={() => this.setState({ popup: { latitude: null } })}
+                  onClose={() => this.setState({popup: {latitude: null}})}
                   closeOnClick={true}
                   anchor={"bottom"}
                 >
-                  <PopupBody data={this.state.popup.data} />
+                  <PopupBody data={this.state.popup.data}/>
                 </Popup>
               ) : null}
             </ReactMapGL>
@@ -246,22 +257,22 @@ class Map extends Component {
           {legendEntries && legendEntries.length ? (
             <div
               className={classes.legendWrapper}
-              style={{ left: layerMenu.open ? "292px" : "12px" }}
+              style={{left: layerMenu.open ? "292px" : "12px"}}
             >
-              <Legend entries={legendEntries} />
+              <Legend entries={legendEntries}/>
             </div>
           ) : null}
         </div>
       );
     } else {
-      return <div />;
+      return <div/>;
     }
   }
 }
 
 const mapStateToProps = state => {
-  const { mapLayers, layerMenu } = state;
-  return { mapLayers, layerMenu };
+  const {mapLayers, layerMenu, currentSelection} = state;
+  return {mapLayers, layerMenu, currentSelection};
 };
 
 const mapDispatchToProps = dispatch => {
