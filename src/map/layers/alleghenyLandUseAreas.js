@@ -1,7 +1,7 @@
 export default {
   id: "allegheny-land-use-areas",
   type: "vector",
-  name: "Allegheny County Land Use Areas",
+  name: "Land Cover",
   geoType: "polygon",
   legend: {
     display: true,

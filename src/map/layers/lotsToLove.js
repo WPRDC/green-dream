@@ -2,7 +2,7 @@ export default {
   id: "lots-to-love",
   type: "vector",
   geoType: "point",
-  name: "Lots To Love",
+  name: "grounded Lots To Love",
   legend: {
     display: true,
     type: "single",
@@ -12,7 +12,7 @@ export default {
   },
   legendColor: "#39ff01",
   legendDisplay: true,
-  category: "other",
+  category: "urban-green-features",
   visible: false,
   popupProperties: [
     { id: "map_name", name: "Name" },

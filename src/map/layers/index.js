@@ -18,19 +18,23 @@ import brownfields from "./brownfields"
 import aerial from "./aerial"
 import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
 import lotsToLove from './lotsToLove'
+import greenprint from './greenprint'
+import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
+
 
 export const defaultLayers = [
-  //trwwGreenInfrastructure,
   growPghGardens,
   brownfields,
+  trwwGreenInfrastructure,
   lotsToLove,
   //aerial,
   parcels,
   neighborhoods,
   citySteps,
   bikeTrails,
-
   municipalities,
+  greenprint,
+  alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
   pghGreenways,
   pittsburghParks,

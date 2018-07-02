@@ -37,7 +37,7 @@ export default {
     type: "carto-vector",
     minzoom: 10,
     sql:
-      "SELECT *, projectname as map_name, objectid as map_identifier  FROM table_3rwwgiinventory"
+      "SELECT *, projectname as map_name, objectid as map_identifier  FROM table_3rww_gi_inventory"
   },
   layers: {
     labels: [],

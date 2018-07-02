@@ -14,7 +14,7 @@ export default {
   visible: true,
   source: {
     type: 'carto-vector',
-    minzoom: 15,
+    minzoom: 17,
     sql: `SELECT pb.*, (asmt.propertyhousenum || ' ' || asmt.propertyaddress || ' ' || asmt.propertycity || ' ' || asmt.propertystate || ' ' || asmt.propertyzip) as map_name, pb.pin as map_identifier FROM wprdc.allegheny_county_parcel_boundaries as pb JOIN wprdc.assessments as asmt ON pb.pin = asmt.parid`
   },
   layers: {

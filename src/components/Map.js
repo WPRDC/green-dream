@@ -3,13 +3,14 @@ import ReactMapGL, {FlyToInterpolator, Popup} from "react-map-gl";
 import {connect} from "react-redux";
 import {withStyles} from "material-ui/styles";
 
-import Drawer from "material-ui/Drawer";
+import WebMercatorViewport from "viewport-mercator-project"
 
 import Dimensions from "react-dimensions";
 
 import {updateLayer, initLayers} from "../actions/mapActions";
 
 import {BASE_STYLE, generateMapboxStyle} from "../utils/maps/mapbox";
+import {getBounds} from "../utils/utils";
 import ReactTooltip from "react-tooltip";
 
 import {layerListChanged} from "../utils/utils";
@@ -100,13 +101,19 @@ class Map extends Component {
   };
 
   handleClick = event => {
-    const {mapStyle} = this.state;
+    const {mapStyle, width, height} = this.state;
     const {displayInfo, mapLayers, currentSelection} = this.props;
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
       // 1. Determine the feature of interest
       const feature = event.features[0];
+      console.log(feature)
+      const bounds = getBounds(feature.geometry);
+      console.log(bounds)
+      const vp = new WebMercatorViewport({width, height});
+      const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding: 80, offset: [-320, 80]});
+
       const layerType = extractLayerTypeFromId(feature.layer.id);
       const {map_identifier: id, map_name: name} = feature.properties;
 
@@ -149,9 +156,8 @@ class Map extends Component {
 
         this._onViewportChange(
           Object.assign(this.state.viewport, {
-            zoom: layerType === "parcels" ? 17 : 14,
-            longitude: event.lngLat[0],
-            latitude: event.lngLat[1],
+            zoom: layerType === 'parcels' ? 17 : zoom,
+            latitude, longitude,
             transitionDuration: 300
           })
         );
