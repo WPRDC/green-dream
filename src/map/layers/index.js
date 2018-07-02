@@ -17,11 +17,13 @@ import alleghenyLandUseAreas from "./alleghenyLandUseAreas"
 import brownfields from "./brownfields"
 import aerial from "./aerial"
 import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
+import lotsToLove from './lotsToLove'
 
 export const defaultLayers = [
   //trwwGreenInfrastructure,
   growPghGardens,
   brownfields,
+  lotsToLove,
   //aerial,
   parcels,
   neighborhoods,

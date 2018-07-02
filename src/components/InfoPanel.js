@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { withStyles } from "material-ui/styles";
+import React, {Component} from "react";
+import {withStyles} from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import Close from "material-ui-icons/Close";
 import IconButton from "material-ui/IconButton";
-import { LinearProgress } from "material-ui/Progress";
+import {LinearProgress} from "material-ui/Progress";
 
 import DataSection from "./dashboardOld/DataSection";
 import EmptyDataCard from "./dashboardOld/EmptyDataCard";
@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 const InfoPanel = props => {
-  const { children, classes, isOpen, isFetching, handleClose, title } = props;
+  const {children, classes, isOpen, isFetching, handleClose, title} = props;
 
   if (isOpen) {
     return (
@@ -56,19 +56,19 @@ const InfoPanel = props => {
               onClick={handleClose}
               color="inherit"
             >
-              <Close />
+              <Close/>
             </IconButton>
           </Toolbar>
         </AppBar>
         <div className={classes.content}>
           {isFetching ? (
             <DataSection>
-              <LinearProgress color="primary" variant="query" />
-              <EmptyDataCard />
-              <EmptyDataCard />
-              <EmptyDataCard />
-              <EmptyDataCard />
-              <EmptyDataCard />
+              <LinearProgress color="primary" variant="query"/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
+              <EmptyDataCard/>
             </DataSection>
           ) : (
             children
