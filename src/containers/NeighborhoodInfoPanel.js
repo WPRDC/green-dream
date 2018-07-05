@@ -55,7 +55,6 @@ const mapStateToProps = state => {
         isFetching: false,
         data: null
       };
-  console.log(isFetching);
   const isOpen = objectType === "neighborhoods";
   return { isOpen, id, name, isFetching, data };
 };

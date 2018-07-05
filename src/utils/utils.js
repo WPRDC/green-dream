@@ -52,13 +52,11 @@ export const guid  = () => {
 }
 
 export const getBounds = geom => {
-  console.log(geom)
   const coords = [].concat(...geom.coordinates)
   let maxX = Number.MIN_SAFE_INTEGER;
   let maxY = Number.MIN_SAFE_INTEGER;
   let minX = Number.MAX_SAFE_INTEGER;
   let minY = Number.MAX_SAFE_INTEGER;
-  console.log(coords.length)
   for (let i in coords) {
     maxX = Math.max(coords[i][0], maxX);
     maxY = Math.max(coords[i][1], maxY);

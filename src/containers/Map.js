@@ -14,8 +14,8 @@ import {getBounds} from "../utils/utils";
 import ReactTooltip from "react-tooltip";
 
 import {layerListChanged} from "../utils/utils";
-import LayerControl from "../containers/LayerControl";
-import PopupBody from "./PopupBody";
+import LayerControl from "./LayerControl";
+import PopupBody from "../components/PopupBody";
 import {fromJS, toJS} from "immutable";
 import {
   fetchParcelDataIfNeeded,
@@ -23,7 +23,7 @@ import {
   fetchNeighborhoodDataIfNeeded,
   select
 } from "../actions/dataActions";
-import Legend from "./Legend";
+import Legend from "../components/Legend";
 
 const makePopupFields = (layer, feature) => {
   return layer.popupProperties.map(property => [
@@ -101,21 +101,19 @@ class Map extends Component {
   };
 
   handleClick = event => {
+    console.log('CLICK CLICK MOTHAFUCKA!')
     const {mapStyle, width, height} = this.state;
     const {displayInfo, mapLayers, currentSelection} = this.props;
+    console.log(event);
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
       // 1. Determine the feature of interest
       const feature = event.features[0];
-      console.log(feature)
       const bounds = getBounds(feature.geometry);
-      console.log(bounds)
-      const vp = new WebMercatorViewport({width, height});
-      const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding: 80, offset: [-320, 80]});
-
       const layerType = extractLayerTypeFromId(feature.layer.id);
       const {map_identifier: id, map_name: name} = feature.properties;
+
 
       const oldFillIndex = workingStyle.layers.findIndex(
         layer => layer.id === currentSelection.objectType + "-select-fill"
@@ -153,7 +151,8 @@ class Map extends Component {
       // 1st class info displays - the righthand panel1
       if (["parcels", "neighborhoods"].includes(layerType)) {
         displayInfo(layerType, id.replace('.', ''), name);
-
+        const vp = new WebMercatorViewport({width, height});
+        const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding: 80, offset: [-320, 80]});
         this._onViewportChange(
           Object.assign(this.state.viewport, {
             zoom: layerType === 'parcels' ? 17 : zoom,
@@ -164,7 +163,7 @@ class Map extends Component {
       }
 
       // 2nd class info displays - popups
-      if (["grow-pgh-gardens", "brownfields"].includes(layerType))
+      if (["grow-pgh-gardens", "brownfields", "landslides", "3rww-gi-inventory", "lots-to-love"].includes(layerType))
         this.setState({
           popup: {
             latitude: event.lngLat[1],

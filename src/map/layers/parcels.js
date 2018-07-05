@@ -14,7 +14,7 @@ export default {
   visible: true,
   source: {
     type: 'carto-vector',
-    minzoom: 17,
+    minzoom: 15,
     sql: `SELECT pb.*, (asmt.propertyhousenum || ' ' || asmt.propertyaddress || ' ' || asmt.propertycity || ' ' || asmt.propertystate || ' ' || asmt.propertyzip) as map_name, pb.pin as map_identifier FROM wprdc.allegheny_county_parcel_boundaries as pb JOIN wprdc.assessments as asmt ON pb.pin = asmt.parid`
   },
   layers: {
@@ -31,16 +31,6 @@ export default {
         "paint": {
           "fill-color": '#5F5',
           "fill-opacity": 1,
-          // 'fill-extrusion-color': 'blue',
-          //
-          // // Get fill-extrusion-height from the source 'height' property.
-          // 'fill-extrusion-height': 5,
-          //
-          // // Get fill-extrusion-base from the source 'base_height' property.
-          // 'fill-extrusion-base': 0,
-          //
-          // // Make extrusions slightly opaque for see through indoor walls.
-          // 'fill-extrusion-opacity': 1
         },
       },
       {

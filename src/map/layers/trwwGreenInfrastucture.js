@@ -20,7 +20,6 @@ export default {
       { category: "Constructed Wetland", color: "#ccebc5" },
       { category: "Infiltration / Storage Trench", color: "#ffed6f" },
       { category: "Stormwater Planter", color: "#72edfb" },
-      { category: "rain gaRain Garden / Bioretentionrden", color: "#ffffb3" },
       { category: "TBD", color: "black" },
       { category: "Other", color: "gray" }
     ]
@@ -30,14 +29,14 @@ export default {
   category: "urban-green-features",
   visible: false,
   popupProperties: [
-    { id: "urban_grower", name: "Urban Grower" },
-    { id: "category", name: "Category" }
+    { id: "project_name", name: "Project" },
+    { id: "project_description", name: "Description" }
   ],
   source: {
     type: "carto-vector",
     minzoom: 10,
     sql:
-      "SELECT *, projectname as map_name, objectid as map_identifier  FROM table_3rww_gi_inventory"
+      "SELECT *, project_name as map_name, objectid as map_identifier  FROM table_3rww_gi_inventory"
   },
   layers: {
     labels: [],
@@ -54,7 +53,7 @@ export default {
             stops: [[10, 4], [15, 8]]
           },
           "circle-color": {
-            property: "projectdescription",
+            property: "project_description",
             type: "categorical",
             stops: [
               ["Green Wall", "#8dd3c7"],

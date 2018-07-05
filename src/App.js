@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Map from "./components/Map";
+import Map from "./containers/Map";
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { withStyles } from "material-ui/styles";

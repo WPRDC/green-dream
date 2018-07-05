@@ -20,11 +20,13 @@ import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
 import lotsToLove from './lotsToLove'
 import greenprint from './greenprint'
 import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
+import landslides from "./landslides";
 
 
 export const defaultLayers = [
   growPghGardens,
   brownfields,
+  landslides,
   trwwGreenInfrastructure,
   lotsToLove,
   //aerial,
