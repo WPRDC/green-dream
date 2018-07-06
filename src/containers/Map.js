@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ReactMapGL, {FlyToInterpolator, Popup} from "react-map-gl";
 import {connect} from "react-redux";
-import {withStyles} from "material-ui/styles";
+import {withStyles} from "@material-ui/core/styles";
 
 import WebMercatorViewport from "viewport-mercator-project"
 
@@ -101,7 +101,6 @@ class Map extends Component {
   };
 
   handleClick = event => {
-    console.log('CLICK CLICK MOTHAFUCKA!')
     const {mapStyle, width, height} = this.state;
     const {displayInfo, mapLayers, currentSelection} = this.props;
     console.log(event);
@@ -152,10 +151,11 @@ class Map extends Component {
       if (["parcels", "neighborhoods"].includes(layerType)) {
         displayInfo(layerType, id.replace('.', ''), name);
         const vp = new WebMercatorViewport({width, height});
-        const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding: 80, offset: [-320, 80]});
+        const padding = height / 3.5;
+        const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding});
         this._onViewportChange(
           Object.assign(this.state.viewport, {
-            zoom: layerType === 'parcels' ? 17 : zoom,
+            zoom: Math.min(zoom, 17),
             latitude, longitude,
             transitionDuration: 300
           })

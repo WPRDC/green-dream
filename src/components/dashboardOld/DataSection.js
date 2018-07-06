@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card, { CardHeader, CardContent } from "material-ui/Card";
+import Card, { CardHeader, CardContent } from "@material-ui/core/Card";
 
 const style = {
   backgroundColor: "#eaeaea"

@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import {withStyles} from "material-ui/styles";
-import Paper from "material-ui/Paper";
-import AppBar from "material-ui/AppBar";
-import Toolbar from "material-ui/Toolbar";
-import Typography from "material-ui/Typography";
-import Close from "material-ui-icons/Close";
-import IconButton from "material-ui/IconButton";
-import {LinearProgress} from "material-ui/Progress";
+import { withStyles } from '@material-ui/core/styles';
+import Paper from "@material-ui/core/Paper";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Close from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 import DataSection from "./dashboardOld/DataSection";
 import EmptyDataCard from "./dashboardOld/EmptyDataCard";

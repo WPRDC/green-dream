@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Tabs, { Tab } from "material-ui/Tabs";
 import DataCard from "../dashboardOld/DataCard";
 import ListOfKeyValueListsDisplay from "../dashboardOld/dataDisplays/ListOfKeyValueListsDisplay";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { withStyles } from "material-ui";
-import Paper from "material-ui/Paper";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 import LegendItem from "./LegendItem";
 
 const styles = {

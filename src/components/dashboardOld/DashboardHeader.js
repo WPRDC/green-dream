@@ -1,12 +1,12 @@
 import React from "react";
 
 /* Material UI Components */
-import Button from "material-ui/Button";
-import Tooltip from "material-ui/Tooltip";
+import Button from "@material-ui/core/Button";
+import Tooltip from "@material-ui/core/Tooltip";
 
 /* Material UI extras */
-import MyLocation from "material-ui-icons/MyLocation";
-import { blue } from "material-ui/colors";
+import MyLocation from "@material-ui/icons/MyLocation";
+import { blue } from "@material-ui/core/colors";
 
 /* Project Components */
 import DashboardHeaderImage from "./DashboardHeaderImage";

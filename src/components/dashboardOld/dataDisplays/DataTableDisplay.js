@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import DataTable from "./DataTable";
 import { extractTable } from "../../../utils/dataUtils";
 

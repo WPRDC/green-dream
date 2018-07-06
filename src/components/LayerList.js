@@ -1,6 +1,6 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
-import List, { ListSubheader } from "material-ui/List";
+import { withStyles } from "@material-ui/core/styles";
+import List, { ListSubheader } from "@material-ui/core/List";
 
 const LayerList = props => {
   return (

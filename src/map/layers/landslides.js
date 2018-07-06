@@ -1,8 +1,10 @@
+import {nasa} from '../publishers'
+
 export default {
   id: "landslides",
   type: "vector",
   geoType: "point",
-  name: "NASA Landslides",
+  name: "Landslides",
   legend: {
     display: true,
     type: "single",
@@ -12,7 +14,17 @@ export default {
   },
   legendColor: "black",
   legendDisplay: true,
-  category: "other",
+  information: {
+    description: "Previously reported landslides.",
+    extent: "Allegheny County",
+    publisher: nasa,
+    source: {
+      title: "WPRDC - Landslides",
+      link: "https://data.wprdc.org/dataset/landslides"
+    },
+    notes: 'This data is reported to NASA by "Citizen Scientists" (primarily news organizations). Therefore, accuracy can not be guaranteed.'
+  },
+  category: "natural-features",
   visible: false,
   popupProperties: [
     { id: "ev_title", name: "Title" },

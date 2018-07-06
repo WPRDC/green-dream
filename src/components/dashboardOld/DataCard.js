@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withStyles } from "material-ui/styles";
-import Card, {
-  CardHeader,
-  CardContent,
-  CardActions,
-  CardMedia
-} from "material-ui/Card";
-import Button from "material-ui/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography'
 
 import { dataSource, StyleMenuEditModes } from "../../utils/mapDefaults";
 
-const style = {
+const styles = {
   card: {
     margin: "6px"
+  },
+  header: {
+    padding: "16px 24px 0px"
   }
 };
 
@@ -28,16 +29,18 @@ class DataCard extends Component {
       subtitle,
       children,
       datasetId,
-      map,
-      nextStyleLayerIndex,
-      openHighlightMenu
+      classes
     } = this.props;
+
     const dataset = dataSource.getDataset(datasetId);
     const { datasetUrl } = dataset || { datasetUrl: "" };
 
     return (
-      <Card raised style={style.card}>
-        <CardHeader title={title} subheader={subtitle} />
+      <Card className={classes.card}>
+        <div className={classes.header}>
+        <Typography  variant="headline">{title}</Typography>
+        <Typography gutterBottom variant="subheading" color="textSecondary">{subtitle}</Typography>
+      </div>
         <CardContent>{children}</CardContent>
         <CardActions>
           {datasetUrl ? (
@@ -57,4 +60,4 @@ class DataCard extends Component {
   }
 }
 
-export default DataCard;
+export default withStyles(styles)(DataCard);

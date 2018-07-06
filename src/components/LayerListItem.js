@@ -1,39 +1,86 @@
-import React from "react";
+import React, {Component} from "react";
 
-import Switch from "material-ui/Switch";
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText
-} from "material-ui/List";
-import Layers from "material-ui-icons/Layers";
-import Timeline from "material-ui-icons/Timeline";
-import Place from "material-ui-icons/Place";
+import Switch from "@material-ui/core/Switch";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+
+import Layers from "@material-ui/icons/Layers";
+import Timeline from "@material-ui/icons/Timeline";
+import Place from "@material-ui/icons/Place";
+import Info from "@material-ui/icons/Info"
+import IconButton from '@material-ui/core/IconButton';
+import Popover from '@material-ui/core/Popover';
+import LayerInfoPopup from "./LayerInfoPopup";
+
 
 const icon = (geoType, legendColor) => {
   switch (geoType) {
     case "line":
-      return <Timeline style={{ color: legendColor }} />;
+      return <Timeline style={{color: legendColor}}/>;
     case "point":
-      return <Place style={{ color: legendColor }} />;
+      return <Place style={{color: legendColor}}/>;
     default:
-      return <Layers style={{ color: legendColor }} />;
+      return <Layers style={{color: legendColor}}/>;
   }
 };
 
-const LayerListItem = props => {
-  const { layer, onChange } = props;
+class LayerListItem extends Component {
+  state = {
+    anchorEl: null,
+  };
 
-  return (
-    <ListItem style={{ width: "100%", paddingLeft: "12px" }}>
-      <ListItemIcon>{icon(layer.geoType, layer.legendColor)}</ListItemIcon>
-      <ListItemText style={{ paddingLeft: 0 }} primary={layer.name} />
-      <ListItemSecondaryAction style={{ marginLeft: "12px" }}>
-        <Switch onChange={onChange} checked={layer.visible} />
-      </ListItemSecondaryAction>
-    </ListItem>
-  );
+  handleInfoClick = event => {
+    this.setState({
+      anchorEl: event.currentTarget,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null,
+    });
+  };
+
+  render() {
+    const {layer, onChange} = this.props;
+    const {anchorEl} = this.state;
+
+    return (
+      <ListItem style={{width: "100%", paddingLeft: "12px"}}>
+        <ListItemIcon>{icon(layer.geoType, layer.legendColor)}</ListItemIcon>
+        <ListItemText style={{paddingLeft: 0}} primary={layer.name}/>
+        <ListItemSecondaryAction style={{marginLeft: "12px"}}>
+          {layer.information
+            ? <IconButton onClick={this.handleInfoClick}><Info/></IconButton>
+            : null
+          }
+          <Popover
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            onClose={this.handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            PaperProps={{style: {minWidth: 'content-max'}}}
+          >
+            {layer.information
+
+              ? <LayerInfoPopup name={layer.name} {...layer.information}/>
+              : null
+            }
+          </Popover>
+          <Switch onChange={onChange} checked={layer.visible}/>
+        </ListItemSecondaryAction>
+      </ListItem>
+    );
+  };
 };
 
 export default LayerListItem;

@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /* Material UI Components */
-import Divider from "material-ui/Divider";
-import { LinearProgress } from "material-ui/Progress";
+import Divider from "@material-ui/core/Divider";
+import { LinearProgress } from "@material-ui/core/Progress";
 
 /* Material UI extras */
-import { blue } from "material-ui/colors";
+import { blue } from "@material-ui/core/colors";
 
 /* Helper functions */
 import { monify, extractAddressFromData } from "../../utils/dataUtils";

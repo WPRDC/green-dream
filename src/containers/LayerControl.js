@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { withStyles } from "material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 import { connect } from "react-redux";
 import { displayLayer, hideLayer } from "../actions/mapActions";
 import LayerListItem from "../components/LayerListItem";
 import LayerList from "../components/LayerList";
-import Drawer from "material-ui/Drawer";
+import Drawer from "@material-ui/core/Drawer";
 import LayerGroup from "../components/LayerGroup";
 
 const drawerWidth = 280;

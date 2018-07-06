@@ -29,12 +29,12 @@ export const objectsAreTheSame = (obj1, obj2) => {
 
 export const layerListChanged = (oldList, newList) => {
 
-  if (oldList.length !== newList.length){
+  if (oldList.length !== newList.length) {
     return true;
-      }
+  }
 
   for (let i in oldList) {
-    if (!objectsAreTheSame(oldList[i], newList[i])){
+    if (!objectsAreTheSame(oldList[i], newList[i])) {
       return true;
     }
   }
@@ -42,7 +42,7 @@ export const layerListChanged = (oldList, newList) => {
   return false;
 }
 
-export const guid  = () => {
+export const guid = () => {
   const s4 = () => {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
@@ -52,7 +52,7 @@ export const guid  = () => {
 }
 
 export const getBounds = geom => {
-  const coords = [].concat(...geom.coordinates)
+  const coords = flatten(geom.coordinates);
   let maxX = Number.MIN_SAFE_INTEGER;
   let maxY = Number.MIN_SAFE_INTEGER;
   let minX = Number.MAX_SAFE_INTEGER;
@@ -67,3 +67,12 @@ export const getBounds = geom => {
   return [[minX, minY], [maxX, maxY]]
 
 };
+
+export const flatten = coordArray => {
+  let newArray = [].concat(...coordArray);
+  if (Array.isArray(newArray[0][0])) {
+    return flatten(newArray)
+  } else {
+    return newArray
+  }
+}

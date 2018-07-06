@@ -1,8 +1,10 @@
+import {grounded} from "../publishers";
+
 export default {
   id: "lots-to-love",
   type: "vector",
   geoType: "point",
-  name: "grounded Lots To Love",
+  name: "Lots To Love",
   legend: {
     display: true,
     type: "single",
@@ -14,6 +16,16 @@ export default {
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
+  information: {
+    description: "Vacant lot projects that are implemented, in progress, or just an idea.",
+    extent: "Allegheny County",
+    publisher: grounded,
+    source: {
+      title: "WPRDC - Lots to Love",
+      link: "https://data.wprdc.org/dataset/lots-to-love"
+    },
+    notes: ''
+  },
   popupProperties: [
     { id: "map_name", name: "Name" },
     { id: "description", name: "Description" }

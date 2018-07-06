@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Map from "./containers/Map";
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { withStyles } from "material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 import Header from "./components/Header";
 import ParcelInfoPanel from "./containers/ParcelInfoPanel";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 /* Material UI Components */
-import { LinearProgress } from "material-ui/Progress";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const defaultStyle = {
   maxWidth: "100%",
