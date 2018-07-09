@@ -15,7 +15,7 @@ import ReactTooltip from "react-tooltip";
 
 import {layerListChanged} from "../utils/utils";
 import LayerControl from "./LayerControl";
-import PopupBody from "../components/PopupBody";
+import InfoPopup from '../components/InfoPopup'
 import {fromJS, toJS} from "immutable";
 import {
   fetchParcelDataIfNeeded,
@@ -26,10 +26,10 @@ import {
 import Legend from "../components/Legend";
 
 const makePopupFields = (layer, feature) => {
-  return layer.popupProperties.map(property => [
-    property.name,
-    feature.properties[property.id]
-  ]);
+  return layer.popupProperties.reduce( (acc, curr) => {
+      acc[curr.name] = feature.properties[curr.id]
+      return acc;
+    },{});
 };
 
 const extractLayerTypeFromId = layerId => {
@@ -103,7 +103,6 @@ class Map extends Component {
   handleClick = event => {
     const {mapStyle, width, height} = this.state;
     const {displayInfo, mapLayers, currentSelection} = this.props;
-    console.log(event);
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
@@ -166,6 +165,7 @@ class Map extends Component {
       if (["grow-pgh-gardens", "brownfields", "landslides", "3rww-gi-inventory", "lots-to-love"].includes(layerType))
         this.setState({
           popup: {
+            name: name,
             latitude: event.lngLat[1],
             longitude: event.lngLat[0],
             data: makePopupFields(
@@ -249,12 +249,15 @@ class Map extends Component {
                 <Popup
                   latitude={this.state.popup.latitude}
                   longitude={this.state.popup.longitude}
-                  closeButton={true}
+                  closeButton={false}
                   onClose={() => this.setState({popup: {latitude: null}})}
                   closeOnClick={true}
                   anchor={"bottom"}
+                  captureDrag={false}
+                  tipSize={0}
+                  style={{background: "none"}}
                 >
-                  <PopupBody data={this.state.popup.data}/>
+                  <InfoPopup name={this.state.popup.name} displayData={this.state.popup.data}/>
                 </Popup>
               ) : null}
             </ReactMapGL>

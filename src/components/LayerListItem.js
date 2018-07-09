@@ -12,7 +12,7 @@ import Place from "@material-ui/icons/Place";
 import Info from "@material-ui/icons/Info"
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
-import LayerInfoPopup from "./LayerInfoPopup";
+import LayerInfoPopup from "./InfoPopup";
 
 
 const icon = (geoType, legendColor) => {
@@ -25,6 +25,7 @@ const icon = (geoType, legendColor) => {
       return <Layers style={{color: legendColor}}/>;
   }
 };
+
 
 class LayerListItem extends Component {
   state = {
@@ -46,6 +47,21 @@ class LayerListItem extends Component {
   render() {
     const {layer, onChange} = this.props;
     const {anchorEl} = this.state;
+    let displayData = {};
+    if(layer.information){
+      const {publisher, source, extent, notes} = layer.information;
+      displayData = {
+        "Extent": extent,
+        "Publisher": publisher.homepage ?
+          <a href={publisher.homepage} target="_blank">{publisher.name}</a> : publisher.name,
+        "Source": <a href={source.link} target="_blank">{source.title}</a>,
+        "Notes": notes
+      };
+
+      if (!notes) {
+        delete displayData.Notes;
+      }
+    }
 
     return (
       <ListItem style={{width: "100%", paddingLeft: "12px"}}>
@@ -72,7 +88,7 @@ class LayerListItem extends Component {
           >
             {layer.information
 
-              ? <LayerInfoPopup name={layer.name} {...layer.information}/>
+              ? <LayerInfoPopup name={layer.name} description={layer.description} displayData={displayData}/>
               : null
             }
           </Popover>

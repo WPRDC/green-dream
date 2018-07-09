@@ -29,28 +29,19 @@ const Heading = props => {
 }
 
 
-const LayerInfoPopup = props => {
-  const {name, description, publisher, source, extent, notes, classes} = props;
-
-  const displayData = {
-    "Extent": extent,
-    "Publisher": publisher.homepage ?
-      <a href={publisher.homepage} target="_blank" className={classes.link}>{publisher.name}</a> : publisher.name,
-    "Source": <a href={source.link} target="_blank" className={classes.link}>{source.title}</a>,
-    "Notes": notes
-  };
-
-  if (!notes) {
-    delete displayData.Notes;
-  }
-
+const InfoPopup = props => {
+  const {name, description, displayData, classes} = props;
 
   return (
     <Card className={classes.base}>
       <CardContent>
         <div className={classes.header}>
           <Heading>{name}</Heading>
-          <Heading gutterBottom={true} variant={"subheading"}>{description}</Heading>
+          {description
+            ? <Heading gutterBottom={true} variant={"subheading"}>{description}</Heading>
+            : null
+          }
+
         </div>
         <KeyValueList data={displayData}/>
 
@@ -59,4 +50,4 @@ const LayerInfoPopup = props => {
   )
 };
 
-export default withStyles(styles)(LayerInfoPopup)
+export default withStyles(styles)(InfoPopup)
