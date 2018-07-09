@@ -5,9 +5,9 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Park", color: "green"}],
+    items: [{category: "Park", color: "#7bc24e"}],
   },
-  legendColor: 'green',
+  legendColor: '#7bc24e',
   legendDisplay: true,
   name: 'PGH Parks',
   category: 'urban-green-features',
@@ -37,7 +37,7 @@ export default {
               [18, 0.8]
             ]
           },
-          "line-color": "green",
+          "line-color": "#7bc24e",
         }
       },
       {
@@ -48,7 +48,7 @@ export default {
         "source-layer": "pittsburgh-parks",
         "layout": {},
         "paint": {
-          "fill-color": 'green',
+          "fill-color": '#7bc24e',
           "fill-opacity": {
             "stops": [
               [8, 0],
@@ -58,27 +58,6 @@ export default {
           }
         }
       },
-      // {
-      //
-      //   "id": "pittsburgh-parks-fill-extrusion",
-      //   "type": "fill-extrusion",
-      //   "source": "pittsburgh-parks",
-      //   "source-layer": "pittsburgh-parks",
-      //   "layout": {},
-      //   "paint": {
-      //     'fill-extrusion-color': 'green',
-      //
-      //     // Get fill-extrusion-height from the source 'height' property.
-      //     'fill-extrusion-height': 250,
-      //
-      //     // Get fill-extrusion-base from the source 'base_height' property.
-      //     'fill-extrusion-base': 100,
-      //
-      //     // Make extrusions slightly opaque for see through indoor walls.
-      //     'fill-extrusion-opacity': 1
-      //   }
-      // },
-
     ]
   }
 }

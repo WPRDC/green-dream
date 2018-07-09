@@ -9,10 +9,10 @@ export default {
     display: true,
     type: "single",
     items: [
-      {category: "Lot to Love", color: "#39ff01"}
+      {category: "Lot to Love", color: "#c53b33"}
     ],
   },
-  legendColor: "#39ff01",
+  legendColor: "#c53b33",
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
@@ -50,9 +50,9 @@ export default {
           "circle-radius": {
             stops: [[10, 4], [15, 8]]
           },
-          "circle-color": "#39ff01",
+          "circle-color": "#c53b33",
           "circle-stroke-width": {stops: [[10, 1], [15, 2]]},
-          "circle-stroke-color": "#013220"
+          "circle-stroke-color": "black"
         }
       }
     ]

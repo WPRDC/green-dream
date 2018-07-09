@@ -7,10 +7,10 @@ export default {
     display: true,
     type: "single",
     items: [
-      {category: "Brownfield", color: "brown"}
+      {category: "Brownfield", color: "#80632d"}
     ],
   },
-  legendColor: "brown",
+  legendColor: "#80632d",
   legendDisplay: true,
   category: "other",
   visible: false,
@@ -39,9 +39,9 @@ export default {
           "circle-radius": {
             stops: [[10, 4], [15, 8]]
           },
-          "circle-color": "brown",
+          "circle-color": "#80632d",
           "circle-stroke-width": { stops: [[10, 1], [15, 2]] },
-          "circle-stroke-color": "#013220"
+          "circle-stroke-color": "black"
         }
       }
     ]

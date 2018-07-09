@@ -47,19 +47,11 @@ const LayerInfoPopup = props => {
 
   return (
     <Card className={classes.base}>
-      {/*<CardMedia*/}
-      {/*image={wprdcImg ? imgPrefix + wprdcImg : img}*/}
-      {/*title="Contemplative Reptile"*/}
-      {/*style={{height: 0,  paddingTop: '56.25%'}}*/}
-      {/*/>*/}
       <CardContent>
         <div className={classes.header}>
           <Heading>{name}</Heading>
           <Heading gutterBottom={true} variant={"subheading"}>{description}</Heading>
         </div>
-        {/*<InfoItem title="Extent" value={extent}/>*/}
-        {/*<InfoItem title="Publisher" value={publisher.name} link={publisher.homepage}/>*/}
-        {/*<InfoItem title="Source" value={source.title} link={source.link}/>*/}
         <KeyValueList data={displayData}/>
 
       </CardContent>

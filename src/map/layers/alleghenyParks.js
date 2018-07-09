@@ -6,9 +6,9 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Park", color: "green"}],
+    items: [{category: "Park", color: "#4c7737"}],
   },
-  legendColor: "green",
+  legendColor: "#4c7737",
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
@@ -33,7 +33,7 @@ export default {
           "line-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           },
-          "line-color": "green"
+          "line-color": "#4c7737"
         }
       },
       {
@@ -43,7 +43,7 @@ export default {
         "source-layer": "allegheny-parks",
         layout: {},
         paint: {
-          "fill-color": "green",
+          "fill-color": "#4c7737",
           "fill-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           }

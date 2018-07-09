@@ -6,9 +6,9 @@ export default {
   legend: {
     display: true,
     type: 'single',
-    items: [{category: "Garden", color: '#0F2'}],
+    items: [{category: "Garden", color: '#e38633'}],
   },
-  legendColor: "#0F2",
+  legendColor: "#e38633",
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
@@ -35,9 +35,9 @@ export default {
           "circle-radius": {
             stops: [[10, 4], [15, 8]]
           },
-          "circle-color": "#0F2",
+          "circle-color": "#e38633",
           "circle-stroke-width": { stops: [[10, 1], [15, 2]] },
-          "circle-stroke-color": "#013220"
+          "circle-stroke-color": "black"
         }
       }
     ]

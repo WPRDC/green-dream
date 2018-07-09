@@ -6,9 +6,9 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{ category: "Environmental Justice Area", color: "orange" }]
+    items: [{ category: "Environmental Justice Area", color: "#e38633" }]
   },
-  legendColor: "orange",
+  legendColor: "#e38633",
   legendDisplay: true,
   category: "other",
   visible: false,
@@ -33,7 +33,7 @@ export default {
           "line-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           },
-          "line-color": "red"
+          "line-color": "black"
         }
       },
       {
@@ -43,7 +43,7 @@ export default {
         "source-layer": "allegheny-county-environmental-justice-areas",
         layout: {},
         paint: {
-          "fill-color": "orange",
+          "fill-color": "#e38633",
           "fill-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           }
