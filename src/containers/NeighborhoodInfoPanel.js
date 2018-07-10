@@ -7,16 +7,14 @@ import CensusIncome from "../components/neighborhoodCards/CensusIncome";
 import CensusRace from "../components/neighborhoodCards/CensusRace";
 import CensusAge from "../components/neighborhoodCards/CensusAge";
 import { closeDisplay } from "../actions/dataActions";
-import PropertyValue from "../components/neighborhoodCards/PropertyValue";
+import SaleValue from "../components/neighborhoodCards/SaleValue";
+import AssessmentValue from "../components/neighborhoodCards/AssessmentValue";
 
 const NeighborhoodInfoPanel = props => {
   const {
-    children,
-    classes,
     isFetching,
     data,
     isOpen,
-    id,
     name,
     handleClose
   } = props;
@@ -30,7 +28,8 @@ const NeighborhoodInfoPanel = props => {
         handleClose={handleClose}
       >
         <DataSection>
-          <PropertyValue data={data}/>
+          <AssessmentValue data={data}/>
+          <SaleValue data={data}/>
           <CensusRace data={data} />
           <CensusIncome data={data} />
           <CensusAge data={data}/>

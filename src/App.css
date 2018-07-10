@@ -7,4 +7,21 @@
     background-color: rgba(255, 255, 255, 0) !important;
     border: none !important;
     box-shadow: none !important;
+    padding: 0 !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: #4c7737;
+}
+
+a:active {
+    color: #c6a700;
+}
+
+a:hover {
+    color: #00251a;
 }

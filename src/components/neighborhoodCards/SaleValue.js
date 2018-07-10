@@ -4,7 +4,7 @@ import KeyValueListDisplay from "../dashboardOld/dataDisplays/KeyValueListDispla
 import DataCard from "../dashboardOld/DataCard";
 import {monify} from "../../utils/dataUtils";
 
-const PropertyValue = props => {
+const SaleValue = props => {
   const {data} = props;
   const value = monify(data.wprdcData.averageSalePrice.value);
   return (
@@ -20,4 +20,4 @@ const PropertyValue = props => {
   );
 };
 
-export default PropertyValue;
+export default SaleValue;

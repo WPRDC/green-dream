@@ -254,8 +254,7 @@ class Map extends Component {
                   closeOnClick={true}
                   anchor={"bottom"}
                   captureDrag={false}
-                  tipSize={0}
-                  style={{background: "none"}}
+                  tipSize={10}
                 >
                   <InfoPopup name={this.state.popup.name} displayData={this.state.popup.data}/>
                 </Popup>

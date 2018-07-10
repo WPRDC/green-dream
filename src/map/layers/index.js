@@ -21,7 +21,7 @@ import lotsToLove from './lotsToLove'
 import greenprint from './greenprint'
 import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
 import landslides from "./landslides";
-
+import pghOpenSpaces from './pghOpenSpaces'
 
 export const defaultLayers = [
   growPghGardens,
@@ -36,6 +36,7 @@ export const defaultLayers = [
   bikeTrails,
   municipalities,
   //greenprint,
+  pghOpenSpaces,
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
   pghGreenways,
