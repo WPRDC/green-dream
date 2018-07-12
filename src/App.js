@@ -5,7 +5,7 @@ import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { withStyles } from "@material-ui/core/styles";
 
-import Header from "./components/Header";
+import Header from "./containers/Header";
 import ParcelInfoPanel from "./containers/ParcelInfoPanel";
 import NeighborhoodInfoPanel from "./containers/NeighborhoodInfoPanel";
 

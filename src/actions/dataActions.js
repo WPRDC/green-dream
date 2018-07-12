@@ -1,5 +1,5 @@
-import { getStreetViewImage } from "../utils/apiUtils";
-import { extractAddressFromData, checkSearchQuery } from "../utils/dataUtils";
+import {getStreetViewImage} from "../utils/apiUtils";
+import {extractAddressFromData, checkSearchQuery} from "../utils/dataUtils";
 
 export const SELECT_PARCEL = "SELECT_PARCEL";
 export const SELECT_NEIGHBORHOOD = "SELECT_NEIGHBORHOOD";
@@ -11,24 +11,20 @@ export const RECEIVE_PARCEL_IMAGE = "RECEIVE_PARCEL_IMAGE";
 export const CLOSE_DISPLAY = "CLOSE_DISPLAY";
 
 export const requestPropertyData = parcelId => {
-  return { type: REQUEST_PARCEL_DATA, parcelId };
+  return {type: REQUEST_PARCEL_DATA, parcelId};
 };
 
 export const selectParcel = parcelId => {
-  return { type: SELECT_PARCEL, parcelId };
+  return {type: SELECT_PARCEL, parcelId};
 };
 
 export const SELECT = "SELECT";
-export const select = (objectType, id, name) => {
-  return { type: SELECT, objectType, id, name };
+export const select = (objectType, id, properties, previousSelection) => {
+  return {type: SELECT, objectType, id, properties, previousSelection};
 };
 
-export const selectNeighborhood = hoodId => {
-  return { type: SELECT_NEIGHBORHOOD, hoodId };
-};
-
-export const closeDisplay = () => {
-  return { type: CLOSE_DISPLAY };
+export const closeDisplay = (currentSelection) => {
+  return {type: CLOSE_DISPLAY, currentSelection};
 };
 
 export const receivePropertyData = (parcelId, data) => {
@@ -44,7 +40,7 @@ export const receivePropertyData = (parcelId, data) => {
 };
 
 export const fetchParcelData = parcelId => {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(requestPropertyData(parcelId));
 
     return fetch(`http://tools.wprdc.org/property-api/v1/parcels/${parcelId}`)
@@ -78,20 +74,43 @@ export const fetchParcelDataIfNeeded = parcelId => {
   };
 };
 
+export const searchForParcel = query => {
+  // Search query
+  return function (dispatch, getState) {
+    console.log('searching');
+    return (checkSearchQuery(query))
+      .then(
+        parcelId => {
+
+          dispatch(fetchParcelDataIfNeeded(parcelId))
+            .then(data => {
+              dispatch(select(parcelId));
+              const coords = getState().parcelDataById[parcelId].geo.centroid.coordinates;
+              const center = coords.reverse().map(coord => parseFloat(coord))
+            })
+        },
+        // on a unsuccessful search, pop up an error
+        error => {
+          console.log('ERROR', error);
+        }
+      )
+  }
+};
+
 //===============//
 // PARCEL IMAGE
 //==============//
 
 export const requestParcelImage = parcelId => {
-  return { type: REQUEST_PARCEL_IMAGE, parcelId };
+  return {type: REQUEST_PARCEL_IMAGE, parcelId};
 };
 
 export const receiveParcelImage = (parcelId, imageUrl) => {
-  return { type: RECEIVE_PARCEL_IMAGE, parcelId, imageUrl };
+  return {type: RECEIVE_PARCEL_IMAGE, parcelId, imageUrl};
 };
 
 export const fetchParcelImage = (parcelId, address) => {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(requestParcelImage(parcelId));
     return getStreetViewImage(address).then(
       imgUrl => dispatch(receiveParcelImage(parcelId, imgUrl)),
@@ -125,7 +144,7 @@ export const REQUEST_NEIGHBORHOOD_DATA = "REQUEST_NEIGHBORHOOD_DATA";
 export const RECEIVE_NEIGHBORHOOD_DATA = "RECEIVE_NEIGHBORHOOD_DATA";
 
 export const requestNeighborhoodData = hoodId => {
-  return { type: REQUEST_NEIGHBORHOOD_DATA, hoodId };
+  return {type: REQUEST_NEIGHBORHOOD_DATA, hoodId};
 };
 
 export const receiveNeighborhoodData = (hoodId, data) => {
@@ -138,7 +157,7 @@ export const receiveNeighborhoodData = (hoodId, data) => {
 };
 
 export const fetchNeighborhoodData = hoodId => {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(requestNeighborhoodData(hoodId));
 
     return fetch(`https://tools.wprdc.org/neighborhood-api/v0/hood/${hoodId}`)

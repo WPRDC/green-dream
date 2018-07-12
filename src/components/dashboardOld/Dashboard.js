@@ -26,7 +26,7 @@ import {
 } from "../propertyCards/index";
 
 /* Project Components */
-import ParcelSearch from "../../containers/ParcelSearch";
+import Search from "../../containers/Search";
 import TaxDelinquency from "../propertyCards/TaxDelinquency";
 import Foreclosure from "../propertyCards/Foreclosure";
 import BuildingCodeViolations from "../propertyCards/BuildingCodeViolations";
@@ -67,7 +67,7 @@ const Dashboard = props => {
   if (data && !isFetching) {
     return (
       <DataSection>
-        <ParcelSearch style={style.search} />
+        <Search style={style.search} />
         <Divider />
         <ParcelCharacteristics data={data} />
         <Divider />

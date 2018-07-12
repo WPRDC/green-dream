@@ -1,5 +1,5 @@
-import { generateMapSource } from "../utils/maps/mapbox";
-import { guid } from "../utils/utils";
+import {generateMapSource} from "../utils/maps/mapbox";
+import {guid} from "../utils/utils";
 
 export const DISPLAY_LAYER = "DISPLAY_LAYER";
 export const HIDE_LAYER = "HIDE_LAYER";
@@ -81,7 +81,7 @@ export const openLayerMenu = () => {
 
 export const toggleLayerMenu = () => {
   return (dispatch, getState) => {
-    const { open } = getState().layerMenu;
+    const {open} = getState().layerMenu;
     if (open) dispatch(closeLayerMenu());
     else dispatch(openLayerMenu());
   };

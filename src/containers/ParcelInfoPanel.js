@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 
 import InfoPanel from "../components/InfoPanel";
 import DataSection from "../components/dashboardOld/DataSection";
 import DashboardHeaderImage from "../components/dashboardOld/DashboardHeaderImage";
-import { extractAddressFromData } from "../utils/dataUtils";
+import {extractAddressFromData} from "../utils/dataUtils";
 
 import {
   ParcelCharacteristics,
@@ -19,12 +19,11 @@ import {
   Foreclosure,
   PoliticalDistricts,
 } from "../components/propertyCards";
-import { closeDisplay } from "../actions/dataActions";
+import {closeDisplay} from "../actions/dataActions";
 
 const ParcelInfoPanel = props => {
   const {
-    children,
-    classes,
+    currentSelection,
     isFetching,
     data,
     isOpen,
@@ -40,10 +39,10 @@ const ParcelInfoPanel = props => {
       const addr = extractAddressFromData(data);
       title = (
         <div>
-          <p style={{ marginBottom: "3px" }}>
+          <p style={{marginBottom: "3px"}}>
             {addr.number} {addr.street}
           </p>
-          <p style={{ marginTop: "3px" }}>
+          <p style={{marginTop: "3px"}}>
             {addr.city}, {addr.state} {addr.zip}
           </p>
         </div>
@@ -55,28 +54,28 @@ const ParcelInfoPanel = props => {
         title={title}
         isOpen={isOpen}
         isFetching={isFetching}
-        handleClose={handleClose}
+        handleClose={handleClose(currentSelection)}
       >
-        <DashboardHeaderImage imageUrl={imageUrl} />
+        <DashboardHeaderImage imageUrl={imageUrl}/>
         <DataSection>
-          <ParcelCharacteristics data={data} />
-          <OwnerAddress data={data} />
+          <ParcelCharacteristics data={data}/>
+          <OwnerAddress data={data}/>
           <PoliticalDistricts data={data}/>
-          <DwellingCharacteristics data={data} />
+          <DwellingCharacteristics data={data}/>
 
-          <AssessmentTable data={data} />
+          <AssessmentTable data={data}/>
 
-          <PropertyTaxReductions data={data} />
+          <PropertyTaxReductions data={data}/>
 
-          <SalesTable data={data} />
+          <SalesTable data={data}/>
 
-          <BuildingCodeViolations data={data} />
+          <BuildingCodeViolations data={data}/>
 
-          <TaxLiens data={data} />
+          <TaxLiens data={data}/>
 
-          <TaxDelinquency data={data} />
+          <TaxDelinquency data={data}/>
 
-          <Foreclosure data={data} />
+          <Foreclosure data={data}/>
         </DataSection>
       </InfoPanel>
     );
@@ -86,22 +85,22 @@ const ParcelInfoPanel = props => {
 };
 
 const mapStateToProps = state => {
-  const { currentSelection, parcelDataById, parcelImagesById } = state;
-  const { objectType, id, name } = currentSelection;
+  const {currentSelection, parcelDataById, parcelImagesById} = state;
 
-  const { isFetching, data } = parcelDataById[id] || {
+  const {isFetching, data} = parcelDataById[currentSelection.id] || {
     isFetching: false,
     data: null
   };
-  const isOpen = objectType === "parcels";
-  const { imageUrl } = parcelImagesById[id] || { imageUrl: null };
-  return { id, isFetching, data, isOpen, imageUrl };
+  const isOpen = currentSelection.objectType === "parcels";
+  const {imageUrl} = parcelImagesById[currentSelection.id] || {imageUrl: null};
+  return {isFetching, data, isOpen, imageUrl, currentSelection};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClose: () => {
-      dispatch(closeDisplay());
+    handleClose: (currentSelection) => () => {
+      console.log(currentSelection);
+      dispatch(closeDisplay(currentSelection));
     }
   };
 };

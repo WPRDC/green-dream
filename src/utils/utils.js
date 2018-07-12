@@ -1,5 +1,7 @@
 export const objectsAreTheSame = (obj1, obj2) => {
   //Loop through properties in object 1
+  if(typeof(obj1) !== 'object' || typeof(obj2) !== 'object')
+    return false;
   for (let p in obj1) {
     //Check property exists on both objects
     if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;

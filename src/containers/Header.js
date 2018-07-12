@@ -1,14 +1,16 @@
 import React from "react";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolTip from "@material-ui/core/Tooltip"
+
+import Search from "./Search";
+
 import {toggleLayerMenu} from "../actions/mapActions";
 
 const styles = theme => ({
@@ -55,7 +57,7 @@ const Header = props => {
         <Typography variant="title" color="inherit" className={classes.flex}>
           {title}
         </Typography>
-
+        <Search/>
         <img
           src={require("../assets/img/alt-logo-wide.svg")}
           className={classes.icon}

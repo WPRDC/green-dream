@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 
 import InfoPanel from "../components/InfoPanel";
 import DataSection from "../components/dashboardOld/DataSection";
 import CensusIncome from "../components/neighborhoodCards/CensusIncome";
 import CensusRace from "../components/neighborhoodCards/CensusRace";
 import CensusAge from "../components/neighborhoodCards/CensusAge";
-import { closeDisplay } from "../actions/dataActions";
+import {closeDisplay} from "../actions/dataActions";
 import SaleValue from "../components/neighborhoodCards/SaleValue";
 import AssessmentValue from "../components/neighborhoodCards/AssessmentValue";
 
 const NeighborhoodInfoPanel = props => {
   const {
+    name, currentSelection,
     isFetching,
     data,
     isOpen,
-    name,
     handleClose
   } = props;
 
@@ -25,13 +25,13 @@ const NeighborhoodInfoPanel = props => {
         title={name || "Neighborhood Information"}
         isOpen={isOpen}
         isFetching={isFetching}
-        handleClose={handleClose}
+        handleClose={handleClose(currentSelection)}
       >
         <DataSection>
           <AssessmentValue data={data}/>
           <SaleValue data={data}/>
-          <CensusRace data={data} />
-          <CensusIncome data={data} />
+          <CensusRace data={data}/>
+          <CensusIncome data={data}/>
           <CensusAge data={data}/>
         </DataSection>
       </InfoPanel>
@@ -42,26 +42,26 @@ const NeighborhoodInfoPanel = props => {
 };
 
 const mapStateToProps = state => {
-  const { currentSelection, neighborhoodDataById } = state;
-  const { objectType, id, name } = currentSelection;
-
-  const { isFetching, data } = id
-    ? neighborhoodDataById[id.toLowerCase().replace(/(\-|\s)/g, "_")] || {
-        isFetching: false,
-        data: null
-      }
+  const {currentSelection, neighborhoodDataById} = state;
+  const {isFetching, data} = currentSelection.id
+    ? neighborhoodDataById[currentSelection.id.toLowerCase().replace(/(\-|\s)/g, "_")] || {
+    isFetching: false,
+    data: null
+  }
     : {
-        isFetching: false,
-        data: null
-      };
-  const isOpen = objectType === "neighborhoods";
-  return { isOpen, id, name, isFetching, data };
+      isFetching: false,
+      data: null
+    };
+
+  const name = currentSelection.id ? currentSelection.id.replace('_', ' ') : null;
+  const isOpen = currentSelection.objectType === "neighborhoods";
+  return {isOpen, isFetching, data, name, currentSelection};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClose: () => {
-      dispatch(closeDisplay());
+    handleClose: (currentSelection) => () => {
+      dispatch(closeDisplay(currentSelection));
     }
   };
 };

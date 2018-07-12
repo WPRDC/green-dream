@@ -6,7 +6,8 @@ import {
   OPEN_LAYER_MENU,
   TOGGLE_LAYER_MENU,
   UPDATE_LAYER,
-  UPDATE_LAYERS
+  UPDATE_LAYERS,
+  SELECT_PRIMARY_FEATURE
 } from "../actions/mapActions";
 
 export const mapLayers = (state = defaultLayers.reverse(), action) => {

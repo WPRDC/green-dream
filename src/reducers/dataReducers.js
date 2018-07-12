@@ -21,10 +21,22 @@ const DEFAULT_PARCEL = "0028F00194000000";
 export const currentSelection = (state = {}, action) => {
   switch (action.type) {
     case SELECT:
-      const { objectType, id, name } = action;
-      return { objectType, id, name };
+      const { objectType, id, properties } = action;
+      return { objectType, id, properties };
     case CLOSE_DISPLAY:
       return { objectType: null };
+    default:
+      return state;
+  }
+};
+
+export const previousSelection = (state = {}, action) => {
+  switch (action.type) {
+    case SELECT:
+      const { objectType, id} = action.previousSelection | {objectType: null, id: null, name: null};
+      return { objectType, id };
+    case CLOSE_DISPLAY:
+      return action.currentSelection;
     default:
       return state;
   }

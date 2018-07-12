@@ -10,7 +10,7 @@ import Dimensions from "react-dimensions";
 import {updateLayer, initLayers} from "../actions/mapActions";
 
 import {BASE_STYLE, generateMapboxStyle} from "../utils/maps/mapbox";
-import {getBounds} from "../utils/utils";
+import {getBounds, objectsAreTheSame} from "../utils/utils";
 import ReactTooltip from "react-tooltip";
 
 import {layerListChanged} from "../utils/utils";
@@ -26,10 +26,10 @@ import {
 import Legend from "../components/Legend";
 
 const makePopupFields = (layer, feature) => {
-  return layer.popupProperties.reduce( (acc, curr) => {
-      acc[curr.name] = feature.properties[curr.id]
-      return acc;
-    },{});
+  return layer.popupProperties.reduce((acc, curr) => {
+    acc[curr.name] = feature.properties[curr.id]
+    return acc;
+  }, {});
 };
 
 const extractLayerTypeFromId = layerId => {
@@ -92,8 +92,13 @@ class Map extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    const {mapLayers: oldLayers} = prevProps;
-    const {mapLayers: newLayers} = this.props;
+    const {mapLayers: oldLayers, currentSelection: oldSelection} = prevProps;
+    const {mapLayers: newLayers, currentSelection} = this.props;
+
+    if ((currentSelection.objectType || oldSelection.objectType) && !objectsAreTheSame(oldSelection, currentSelection)) {
+      this.handleSelectionChange(currentSelection);
+    }
+
 
     if (layerListChanged(oldLayers, newLayers)) {
       this.setState({mapStyle: generateMapboxStyle(newLayers)});
@@ -102,66 +107,25 @@ class Map extends Component {
 
   handleClick = event => {
     const {mapStyle, width, height} = this.state;
-    const {displayInfo, mapLayers, currentSelection} = this.props;
+    const {selectFeature, mapLayers, currentSelection} = this.props;
     if (event && event.features.length) {
       const workingStyle = mapStyle.toJS();
 
-      // 1. Determine the feature of interest
+      // 1. Determine the feature of interest and get data about it
       const feature = event.features[0];
       const bounds = getBounds(feature.geometry);
       const layerType = extractLayerTypeFromId(feature.layer.id);
       const {map_identifier: id, map_name: name} = feature.properties;
 
+      const properties = {bounds};
 
-      const oldFillIndex = workingStyle.layers.findIndex(
-        layer => layer.id === currentSelection.objectType + "-select-fill"
-      );
-      const oldLineIndex = workingStyle.layers.findIndex(
-        layer => layer.id === currentSelection.objectType + "-select-border"
-      );
-      const fillIndex = workingStyle.layers.findIndex(
-        layer => layer.id === layerType + "-select-fill"
-      );
-      const lineIndex = workingStyle.layers.findIndex(
-        layer => layer.id === layerType + "-select-border"
-      );
-
-      //TODO: get new viwe port using this
-      //https://github.com/uber/react-map-gl/blob/3e52aa397a57081fa2c44bb79f8fa48c41ff510f/docs/upgrade-guide.md
-      if (oldFillIndex >= 0 && oldLineIndex >= 0) {
-        this.setState({
-          mapStyle: mapStyle
-            .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
-            .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
-            .setIn(["layers", fillIndex, "filter", 2], id)
-            .setIn(["layers", lineIndex, "filter", 2], id)
-        });
-      }
-      // if layer supports style change, do it
-      else if (lineIndex >= 0 && fillIndex >= 0) {
-        this.setState({
-          mapStyle: mapStyle
-            .setIn(["layers", fillIndex, "filter", 2], id)
-            .setIn(["layers", lineIndex, "filter", 2], id)
-        });
-      }
-
-      // 1st class info displays - the righthand panel1
+      // 1st class info displays - info panel
       if (["parcels", "neighborhoods"].includes(layerType)) {
-        displayInfo(layerType, id.replace('.', ''), name);
-        const vp = new WebMercatorViewport({width, height});
-        const padding = height / 3.5;
-        const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding});
-        this._onViewportChange(
-          Object.assign(this.state.viewport, {
-            zoom: Math.min(zoom, 17),
-            latitude, longitude,
-            transitionDuration: 300
-          })
-        );
+        selectFeature(layerType, id, name, properties, currentSelection);
       }
 
       // 2nd class info displays - popups
+      // TODO: move this to it's own method
       if (["grow-pgh-gardens", "brownfields", "landslides", "3rww-gi-inventory", "lots-to-love"].includes(layerType))
         this.setState({
           popup: {
@@ -201,6 +165,80 @@ class Map extends Component {
       this.setState({tooltip: null});
     }
   };
+
+  highlightOnMap = (layerType, id, properties) => {
+    const {mapStyle, width, height} = this.state;
+    const {previousSelection} = this.props;
+    const workingStyle = mapStyle.toJS();
+
+    let fillIndex, lineIndex, oldFillIndex, oldLineIndex;
+
+    if (layerType) {
+      fillIndex = workingStyle.layers.findIndex(
+        layer => layer.id === layerType + "-select-fill"
+      );
+      lineIndex = workingStyle.layers.findIndex(
+        layer => layer.id === layerType + "-select-border"
+      );
+    }
+    if (previousSelection.objectType) {
+      oldFillIndex = workingStyle.layers.findIndex(
+        layer => layer.id === previousSelection.objectType + "-select-fill"
+      );
+      oldLineIndex = workingStyle.layers.findIndex(
+        layer => layer.id === previousSelection.objectType + "-select-border"
+      );
+    }
+
+    // Something selected and previous selection on map
+    if (oldFillIndex && oldLineIndex && fillIndex && lineIndex && oldFillIndex >= 0 && oldLineIndex >= 0) {
+      this.setState({
+        mapStyle: mapStyle
+          .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
+          .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
+          .setIn(["layers", fillIndex, "filter", 2], id)
+          .setIn(["layers", lineIndex, "filter", 2], id)
+      });
+    }
+    // Cleared selection (info panel closed) so previous selection, but no new selection
+    else if(oldFillIndex && oldLineIndex && oldFillIndex >= 0 && oldLineIndex >= 0 ){
+      this.setState({
+        mapStyle: mapStyle
+          .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
+          .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
+      });
+    }
+    // Selection on an empty (no current selections) map
+    else if (lineIndex >= 0 && fillIndex >= 0) {
+      this.setState({
+        mapStyle: mapStyle
+          .setIn(["layers", fillIndex, "filter", 2], id)
+          .setIn(["layers", lineIndex, "filter", 2], id)
+      });
+    }
+
+    if (["parcels", "neighborhoods"].includes(layerType)) {
+      const {bounds} = properties;
+      const vp = new WebMercatorViewport({width, height});
+      const padding = height / 3.5;
+      const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding});
+      this._onViewportChange(
+        Object.assign(this.state.viewport, {
+          zoom: Math.min(zoom, 17),
+          latitude, longitude,
+          transitionDuration: 300
+        })
+      );
+    }
+  }
+
+  handleSelectionChange = (selection) => {
+    const {displayInfo} = this.props;
+    const {objectType, name, id, properties} = selection;
+    displayInfo(objectType, id, name);
+
+    this.highlightOnMap(objectType, id, properties)
+  }
 
   _onViewportChange = viewport => {
     this.setState({viewport});
@@ -278,23 +316,24 @@ class Map extends Component {
 }
 
 const mapStateToProps = state => {
-  const {mapLayers, layerMenu, currentSelection} = state;
-  return {mapLayers, layerMenu, currentSelection};
+  const {mapLayers, layerMenu, currentSelection, previousSelection} = state;
+  return {mapLayers, layerMenu, currentSelection, previousSelection};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     updateLayer: layerConfig => dispatch(updateLayer(layerConfig)),
     initLayers: layerConfigs => dispatch(initLayers(layerConfigs)),
+    selectFeature: (type, id, name, properties, prevSelection) => {
+      dispatch(select(type, id, name, properties, prevSelection));
+    },
     displayInfo: (type, id, name) => {
       if (type === "parcels") {
-        dispatch(select(type, id, name));
         dispatch(fetchParcelDataIfNeeded(id));
         dispatch(fetchParcelImageIfNeeded(id, name));
       }
       if (type === "neighborhoods") {
         const hoodId = id.toLowerCase().replace(/(\-|\s)/g, "_")
-        dispatch(select(type, id, name));
         dispatch(fetchNeighborhoodDataIfNeeded(hoodId))
       }
     }
