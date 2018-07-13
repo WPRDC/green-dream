@@ -76,6 +76,7 @@ class Map extends Component {
       tooltip: null,
       popup: {latitude: null}
     };
+    this.map = React.createRef();
   }
 
   componentDidMount = () => {
@@ -230,12 +231,18 @@ class Map extends Component {
         })
       );
     }
-  }
+  };
+
+  getMap = () => {
+    return this.map.current.getMap();
+  };
 
   handleSelectionChange = (selection) => {
     const {displayInfo} = this.props;
+    const {mapStyle} = this.state;``
     const {objectType, name, id, properties} = selection;
     displayInfo(objectType, id, name);
+    console.log(this.getMap())
 
     this.highlightOnMap(objectType, id, properties)
   }
@@ -274,6 +281,7 @@ class Map extends Component {
             style={{position: "absolute", zIndex: 1, width: "100%"}}
           >
             <ReactMapGL
+              ref={this.map}
               mapStyle={this.state.mapStyle}
               onViewportChange={this._onViewportChange}
               onHover={this.handleHover}
