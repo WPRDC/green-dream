@@ -77,7 +77,7 @@ const Header = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleMenu: () => dispatch(toggleLayerMenu())
+    toggleMenu: () => dispatch(toggleLayerMenu()),
   };
 };
 

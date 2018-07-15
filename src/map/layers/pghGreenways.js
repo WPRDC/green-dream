@@ -1,7 +1,9 @@
+import {pgh} from "../publishers";
+
 export default {
   id: "pittsburgh-greenways",
   type: "vector",
-  name: "PGH Greenways",
+  name: "Greenways",
   geoType: "polygon",
   legend: {
     display: true,
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.pghodgreenways"
+  },
+  information: {
+    description: "Greenways in City of Pittsburgh",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - Greenways",
+      link: "https://data.wprdc.org/dataset/greenways"
+    },
   },
   layers: {
     labels: [],

@@ -1,3 +1,5 @@
+import {alt} from "../publishers";
+
 export default {
   id: "greenprint",
   type: "vector",
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.greenprint"
+  },
+  information: {
+    description: "Original ALT Greenprint Plan",
+    extent: "Allegheny County",
+    publisher: alt,
+    // source: {
+    //   title: "WPRDC - Pittsburgh City Steps",
+    //   link: "https://data.wprdc.org/dataset/city-steps"
+    // },
   },
   layers: {
     labels: [],

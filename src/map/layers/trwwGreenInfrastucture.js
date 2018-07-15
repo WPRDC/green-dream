@@ -1,8 +1,10 @@
+import {pat} from "../publishers";
+
 export default {
   id: "3rww-gi-inventory",
   type: "vector",
   geoType: "point",
-  name: "3 Rivers Wet Weather Green Infrastructure Inventory",
+  name: "3RWW Green Infrastructure Inventory",
   legend: {
     display: true,
     type: "single",
@@ -37,6 +39,15 @@ export default {
     minzoom: 10,
     sql:
       "SELECT *, project_name as map_name, objectid as map_identifier  FROM table_3rww_gi_inventory"
+  },
+  information: {
+    description: "Inventory of green infrastructure projects compiled by 3RWW.",
+    extent: "Allegheny County",
+    publisher: pat,
+    source: {
+      title: "WPRDC - 3RWW Green Infrastructure Inventory",
+      link: "https://data.wprdc.org/dataset/3rww-green-infrastructure-inventory"
+    },
   },
   layers: {
     labels: [],

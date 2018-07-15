@@ -1,12 +1,14 @@
+import {ac} from "../publishers";
+
 export default {
   id: "allegheny-county-environmental-justice-areas",
   type: "vector",
-  name: "Environmental Justice Area",
+  name: "Environmental Justice Areas",
   geoType: "polygon",
   legend: {
     display: true,
     type: "single",
-    items: [{ category: "Environmental Justice Area", color: "#e38633" }]
+    items: [{category: "Environmental Justice Area", color: "#e38633"}]
   },
   legendColor: "#e38633",
   legendDisplay: true,
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.environmental_justice_areas WHERE ej_area = 1"
+  },
+  information: {
+    description: "THe Health Department defines an environmental justice area as any census tract where at least 20 percent of the population lives in poverty, and/or 30 percent or more of the population is minority.",
+    extent: "Allegheny County",
+    publisher: ac,
+    source: {
+      title: "WPRDC - Allegheny County Environmental Justice Areas",
+      link: "https://data.wprdc.org/dataset/environmental-justice-census-tracts"
+    },
   },
   layers: {
     labels: [],

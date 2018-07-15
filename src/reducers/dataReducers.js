@@ -21,8 +21,8 @@ const DEFAULT_PARCEL = "0028F00194000000";
 export const currentSelection = (state = {}, action) => {
   switch (action.type) {
     case SELECT:
-      const { objectType, id, properties } = action;
-      return { objectType, id, properties };
+      const { objectType, id, name, properties } = action;
+      return { objectType, id, name, properties };
     case CLOSE_DISPLAY:
       return { objectType: null };
     default:
@@ -162,3 +162,14 @@ export const parcelImagesById = (state = {}, action) => {
       return state;
   }
 };
+
+export const isFetching = (state = false, action) => {
+  switch(action.type){
+    case REQUEST_PARCEL_DATA:
+      return true;
+    case RECEIVE_PARCEL_DATA:
+      return false;
+    default:
+      return state;
+  }
+}

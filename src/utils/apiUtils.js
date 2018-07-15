@@ -49,6 +49,7 @@ export const getParcelIdFromAddress = address => {
 };
 
 export function getStreetViewImage(addressParts) {
+  console.log(addressParts)
   const urlWithParameters = makeStreetViewUrl(addressParts);
 
   window.URL = window.URL || window.webkitURL;

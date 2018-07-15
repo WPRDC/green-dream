@@ -202,7 +202,7 @@ class Map extends Component {
       });
     }
     // Cleared selection (info panel closed) so previous selection, but no new selection
-    else if(oldFillIndex && oldLineIndex && oldFillIndex >= 0 && oldLineIndex >= 0 ){
+    else if (oldFillIndex && oldLineIndex && oldFillIndex >= 0 && oldLineIndex >= 0) {
       this.setState({
         mapStyle: mapStyle
           .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
@@ -219,10 +219,14 @@ class Map extends Component {
     }
 
     if (["parcels", "neighborhoods"].includes(layerType)) {
-      const {bounds} = properties;
+      const {bounds, centroid} = properties;
       const vp = new WebMercatorViewport({width, height});
       const padding = height / 3.5;
-      const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding});
+      const {latitude, longitude, zoom} = centroid ? {
+        latitude: parseFloat(centroid[1]),
+        longitude: parseFloat(centroid[0]),
+        zoom: 16
+      } : vp.fitBounds(bounds, {padding});
       this._onViewportChange(
         Object.assign(this.state.viewport, {
           zoom: Math.min(zoom, 17),
@@ -239,10 +243,8 @@ class Map extends Component {
 
   handleSelectionChange = (selection) => {
     const {displayInfo} = this.props;
-    const {mapStyle} = this.state;``
     const {objectType, name, id, properties} = selection;
     displayInfo(objectType, id, name);
-    console.log(this.getMap())
 
     this.highlightOnMap(objectType, id, properties)
   }

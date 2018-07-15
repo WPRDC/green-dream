@@ -1,3 +1,6 @@
+import {ac, bikepgh} from "../publishers";
+
+
 export default {
   id: "bike-trails",
   type: "vector",
@@ -16,6 +19,15 @@ export default {
     type: "carto-vector",
     minzoom: 8,
     sql: "SELECT * FROM bike_trails_may17"
+  },
+  information: {
+    description: "BikePGH developed this map in 2007 and has been publishing it both on paper and online ever since.",
+      extent: "Allegheny County",
+      publisher: ac,
+      source: {
+      title: "WPRDC - Pittsburgh Bike Map Geographic Data",
+        link: "https://data.wprdc.org/dataset/shape-files-for-bikepgh-s-pittsburgh-bike-map\n"
+    },
   },
   layers: {
     labels: [],

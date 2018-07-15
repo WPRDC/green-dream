@@ -1,7 +1,7 @@
 export default {
   id: "neighborhoods",
   type: "vector",
-  name: "PGH Neighborhoods",
+  name: "City Neighborhoods",
   geoType: "polygon",
   legend: {
     display: true,

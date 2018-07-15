@@ -1,6 +1,8 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search'
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import {fade} from '@material-ui/core/styles/colorManipulator';
 
 const styles = theme => ({
@@ -31,9 +33,13 @@ const styles = theme => ({
     verticalAlign: 'middle',
     whiteSpace: 'normal',
     background: 'none',
-    margin: 0, // Reset for Safari
+    margin: 0,
     color: 'inherit',
     width: '100%',
+    '&::placeholder': {
+      color: '#aaa',
+    },
+    WebkitBoxShadow: '0 0 0 1px white inset'
   },
   search: {
     width: theme.spacing.unit * 9,
@@ -54,8 +60,10 @@ class SearchBar extends React.Component {
       query: ''
     }
   }
+
   handleSubmit = event => {
     const {handleSubmit} = this.props;
+    console.log(this.state.query)
     event.preventDefault();
     handleSubmit(this.state.query);
   };
@@ -65,24 +73,20 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, waiting} = this.props;
+    console.log('W', waiting)
 
     return (
       <div className={classes.root}>
         <div className={classes.search}>
-          <SearchIcon/>
+          {waiting ? <CircularProgress size={25} color='white'/> : <SearchIcon/>}
         </div>
         <form onSubmit={this.handleSubmit}>
 
           <input
-            id="docsearch-input"
-            ref={node => {
-              this.input = node;
-            }}
             className={classes.input}
             placeholder="Address or PIN"
             onChange={this.updateQuery}
-
           />
         </form>
       </div>

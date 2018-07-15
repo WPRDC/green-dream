@@ -1,8 +1,10 @@
+import {epa} from "../publishers";
+
 export default {
   id: "brownfields",
   type: "vector",
   geoType: "point",
-  name: "EPA Brownfields",
+  name: "Brownfields",
   legend: {
     display: true,
     type: "single",
@@ -24,6 +26,15 @@ export default {
     minzoom: 10,
     sql:
       "SELECT *, property_name as map_name, cartodb_id as map_identifier FROM brownfields"
+  },
+  information: {
+    description: "EPA’s Brownfields Program provides grants and technical assistance to communities, states, tribes and others to assess, safely clean up and sustainably reuse contaminated properties.",
+    extent: "Allegheny County",
+    publisher: epa,
+    // source: {
+    //   title: "WPRDC - Pittsburgh Bike Map Geographic Data",
+    //   link: "https://data.wprdc.org/dataset/shape-files-for-bikepgh-s-pittsburgh-bike-map\n"
+    // },
   },
   layers: {
     labels: [],

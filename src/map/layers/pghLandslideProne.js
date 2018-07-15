@@ -1,7 +1,7 @@
 export default {
   id: "pittsburgh-landslide-prone",
   type: "vector",
-  name: "PGH Landslide Prone Areas",
+  name: "Landslide Prone Areas",
   geoType: "polygon",
   legend: {
     display: true,
@@ -17,6 +17,7 @@ export default {
     minzoom: 0,
     sql: "SELECT * FROM wprdc.landslide_prone_areas"
   },
+
   layers: {
     labels: [],
     style: [

@@ -1,3 +1,5 @@
+import {pgh} from "../publishers";
+
 export default {
   id: 'pittsburgh-parks',
   type: 'vector',
@@ -9,13 +11,22 @@ export default {
   },
   legendColor: '#7bc24e',
   legendDisplay: true,
-  name: 'PGH Parks',
+  name: 'City Parks',
   category: 'urban-green-features',
   visible: false,
   source: {
     type: 'carto-vector',
     minzoom: 0,
     sql: 'SELECT *, objectid as map_identifier, updatepknm as map_name FROM wprdc.pittsburgh_parks',
+  },
+  information: {
+    description: "Parks managed by the City of Pittsburgh",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - Pittsburgh Parks",
+      link: "https://data.wprdc.org/dataset/pittsburgh-parks"
+    },
   },
   layers: {
     labels: [],

@@ -1,3 +1,5 @@
+import {pgh} from "../publishers";
+
 export default {
   id: "city-steps",
   type: "vector",
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 10,
     sql: "SELECT * FROM stepsimg"
+  },
+  information: {
+    description: "Public Staircases in the City of Pittsburgh ",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - Pittsburgh City Steps",
+      link: "https://data.wprdc.org/dataset/city-steps"
+    },
   },
   layers: {
     labels: [],

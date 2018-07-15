@@ -1,7 +1,9 @@
+import {ac} from "../publishers";
+
 export default {
   id: "allegheny-land-use-areas",
   type: "vector",
-  name: "Land Cover",
+  name: "Land Use",
   geoType: "polygon",
   legend: {
     display: true,
@@ -31,6 +33,16 @@ export default {
       ELSE ''
   END as feature
 FROM wprdc.allegheny_county_land_use_areas`
+  },
+  information: {
+    description: "Allegheny County land use as ascribed to areas of land.",
+    extent: "Allegheny County",
+    publisher: ac,
+    source: {
+      title: "WPRDC - Allegheny County Land Use Areas",
+      link: "https://data.wprdc.org/dataset/allegheny-county-land-use-areas"
+    },
+    notes: 'The Land Use Feature Dataset contains photogrammetrically compiled information concerning vegetation and limited open areas of ground.'
   },
   layers: {
     labels: [],

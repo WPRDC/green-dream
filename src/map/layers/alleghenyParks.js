@@ -1,7 +1,9 @@
+import {ac} from "../publishers";
+
 export default {
   id: "allegheny-parks",
   type: "vector",
-  name: "Allegheny County Parks",
+  name: "County Parks",
   geoType: "polygon",
   legend: {
     display: true,
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM allegheny_county_parks_outlines_2"
+  },
+  information: {
+    description: "Parks managed by Allegheny County",
+    extent: "Allegheny County",
+    publisher: ac,
+    source: {
+      title: "WPRDC - Allegheny County Parks",
+      link: "https://data.wprdc.org/dataset/allegheny-county-parks-outlines"
+    },
   },
   layers: {
     labels: [],

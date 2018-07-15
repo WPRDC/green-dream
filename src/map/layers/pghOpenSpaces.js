@@ -1,3 +1,5 @@
+import {pgh} from "../publishers";
+
 export default {
   id: "pgh-parks-openspace",
   type: "vector",
@@ -13,6 +15,15 @@ export default {
       {category: "Expand", color: '#e78ac3'},
       {category: "Naturalize", color: '#a6d854'},
     ]
+  },
+  information: {
+    description: "City of Pittsburgh Open Space Plan",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    // source: {
+    //   title: "WPRDC - Greenways",
+    //   link: "https://data.wprdc.org/dataset/greenways"
+    // },
   },
   legendColor: "green",
   legendDisplay: true,

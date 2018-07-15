@@ -1,7 +1,9 @@
+import  {pgh} from "../publishers";
+
 export default {
   id: "pittsburgh-flood-zones",
   type: "vector",
-  name: "PGH Flood Zones",
+  name: "Flood Zones",
   geoType: "polygon",
   legend: {
     display: true,
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.pittsburgh_fema_flood_zones"
+  },
+  information: {
+    description: "Flood-prone areas in City of Pittsburgh",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - Pittsburgh FEMA Flood Zones",
+      link: "https://data.wprdc.org/dataset/pittsburgh-fema-flood-zones"
+    },
   },
   layers: {
     labels: [],

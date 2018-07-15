@@ -1,3 +1,5 @@
+import {pgh} from "../publishers";
+
 export default {
   id: "pittsburgh-slope-25",
   type: "vector",
@@ -16,6 +18,15 @@ export default {
     type: "carto-vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.slope25polygon_pgh_1 WHERE objectid = 2"
+  },
+  information: {
+    description: "Land in Pittsburgh with a sloper greater than 25%",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - 25% or Greater Slope",
+      link: "https://data.wprdc.org/dataset/25-or-greater-slope"
+    },
   },
   layers: {
     labels: [],

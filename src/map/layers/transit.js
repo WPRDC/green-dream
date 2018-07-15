@@ -1,3 +1,5 @@
+import {pat} from "../publishers";
+
 export default {
   id: 'transit-routes',
   type: 'vector',
@@ -7,12 +9,21 @@ export default {
     type: "single",
     color: "black"
   },
-  name: 'Port Authority Routes',
+  name: 'Public Transit Routes',
   category: 'transportation',
   source: {
     type: 'carto-vector',
     minzoom: 15,
     sql: 'SELECT * FROM paac_routes_1611',
+  },
+  information: {
+    description: "Public Transit routes",
+    extent: "Allegheny County",
+    publisher: pat,
+    source: {
+      title: "WPRDC - Port Authority of Allegheny County Transit Routes",
+      link: "https://data.wprdc.org/dataset/port"
+    },
   },
   layers: {
     labels: [],

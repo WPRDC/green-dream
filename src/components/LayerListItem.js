@@ -54,22 +54,25 @@ class LayerListItem extends Component {
         "Extent": extent,
         "Publisher": publisher.homepage ?
           <a href={publisher.homepage} target="_blank">{publisher.name}</a> : publisher.name,
-        "Source": <a href={source.link} target="_blank">{source.title}</a>,
+        "Source": source ? <a href={source.link} target="_blank">{source.title}</a> : '',
         "Notes": notes
       };
 
       if (!notes) {
         delete displayData.Notes;
       }
+      if (!source) {
+        delete displayData.Source;
+      }
     }
 
     return (
       <ListItem style={{width: "100%", paddingLeft: "12px"}}>
         <ListItemIcon>{icon(layer.geoType, layer.legendColor)}</ListItemIcon>
-        <ListItemText style={{paddingLeft: 0}} primary={layer.name}/>
+        <ListItemText style={{paddingLeft: 0, paddingRight: layer.information ? '60px' : 0}} primary={layer.name}/>
         <ListItemSecondaryAction style={{marginLeft: "12px"}}>
           {layer.information
-            ? <IconButton onClick={this.handleInfoClick}><Info/></IconButton>
+            ? <IconButton disableRipple onClick={this.handleInfoClick} style={{width: 12, height: 24}}><Info/></IconButton>
             : null
           }
           <Popover
@@ -88,7 +91,7 @@ class LayerListItem extends Component {
           >
             {layer.information
 
-              ? <LayerInfoPopup name={layer.name} description={layer.description} displayData={displayData}/>
+              ? <LayerInfoPopup name={layer.name} description={layer.information.description} displayData={displayData}/>
               : null
             }
           </Popover>

@@ -1,5 +1,5 @@
 import {getStreetViewImage} from "../utils/apiUtils";
-import {extractAddressFromData, checkSearchQuery} from "../utils/dataUtils";
+import {extractAddressFromData, checkSearchQuery, makeAddressLine} from "../utils/dataUtils";
 
 export const SELECT_PARCEL = "SELECT_PARCEL";
 export const SELECT_NEIGHBORHOOD = "SELECT_NEIGHBORHOOD";
@@ -14,13 +14,10 @@ export const requestPropertyData = parcelId => {
   return {type: REQUEST_PARCEL_DATA, parcelId};
 };
 
-export const selectParcel = parcelId => {
-  return {type: SELECT_PARCEL, parcelId};
-};
 
 export const SELECT = "SELECT";
-export const select = (objectType, id, properties, previousSelection) => {
-  return {type: SELECT, objectType, id, properties, previousSelection};
+export const select = (objectType, id, name, properties, previousSelection) => {
+  return {type: SELECT, objectType, id, name, properties, previousSelection};
 };
 
 export const closeDisplay = (currentSelection) => {
@@ -78,15 +75,17 @@ export const searchForParcel = query => {
   // Search query
   return function (dispatch, getState) {
     console.log('searching');
+    const {previousSelection} = getState();
     return (checkSearchQuery(query))
       .then(
         parcelId => {
 
           dispatch(fetchParcelDataIfNeeded(parcelId))
-            .then(data => {
-              dispatch(select(parcelId));
-              const coords = getState().parcelDataById[parcelId].geo.centroid.coordinates;
-              const center = coords.reverse().map(coord => parseFloat(coord))
+            .then(() => {
+              const {geo, data} = getState().parcelDataById[parcelId];
+              const centroid = geo.centroid.coordinates;
+              const address = makeAddressLine(extractAddressFromData(data));
+              dispatch(select('parcels', parcelId, address, {centroid}, previousSelection));
             })
         },
         // on a unsuccessful search, pop up an error
@@ -159,7 +158,7 @@ export const receiveNeighborhoodData = (hoodId, data) => {
 export const fetchNeighborhoodData = hoodId => {
   return function (dispatch) {
     dispatch(requestNeighborhoodData(hoodId));
-
+    console.log(hoodId)
     return fetch(`https://tools.wprdc.org/neighborhood-api/v0/hood/${hoodId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {
@@ -168,7 +167,7 @@ export const fetchNeighborhoodData = hoodId => {
   };
 };
 
-const shouldFetchNeighborhoodlData = (state, hoodId) => {
+const shouldFetchNeighborhoodData = (state, hoodId) => {
   const data = state.neighborhoodDataById[hoodId];
   if (!data) {
     return true;
@@ -181,7 +180,7 @@ const shouldFetchNeighborhoodlData = (state, hoodId) => {
 
 export const fetchNeighborhoodDataIfNeeded = hoodId => {
   return (dispatch, getState) => {
-    if (shouldFetchNeighborhoodlData(getState(), hoodId)) {
+    if (shouldFetchNeighborhoodData(getState(), hoodId)) {
       return dispatch(fetchNeighborhoodData(hoodId));
     } else {
       return Promise.resolve();
