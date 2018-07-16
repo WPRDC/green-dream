@@ -40,7 +40,7 @@ export const fetchParcelData = parcelId => {
   return function (dispatch) {
     dispatch(requestPropertyData(parcelId));
 
-    return fetch(`http://tools.wprdc.org/property-api/v1/parcels/${parcelId}`)
+    return fetch(`https://tools.wprdc.org/property-api/v1/parcels/${parcelId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {
         dispatch(receivePropertyData(parcelId, data));

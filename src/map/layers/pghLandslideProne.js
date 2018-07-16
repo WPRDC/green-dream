@@ -1,3 +1,5 @@
+import {pgh} from "../publishers";
+
 export default {
   id: "pittsburgh-landslide-prone",
   type: "vector",
@@ -17,7 +19,15 @@ export default {
     minzoom: 0,
     sql: "SELECT * FROM wprdc.landslide_prone_areas"
   },
-
+  information: {
+    description: "Landslide Prone areas in the City of Pittsburgh",
+    extent: "Pittsburgh",
+    publisher: pgh,
+    source: {
+      title: "WPRDC - Pittsburgh Landslide Prone",
+      link: "https://data.wprdc.org/dataset/pittsburgh-landslide-prone"
+    },
+  },
   layers: {
     labels: [],
     style: [

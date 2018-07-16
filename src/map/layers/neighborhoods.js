@@ -6,9 +6,9 @@ export default {
   legend: {
     display: true,
     type: "single",
-    color: "#708090"
+    color: "black"
   },
-  legendColor: "#708090",
+  legendColor: "black",
   legendDisplay: false,
   category: "base-layers",
   visible: true,

@@ -232,7 +232,7 @@ export function shortenNumber(number) {
   }
 }
 
-const geocodeUrl = "http://tools.wprdc.org/geo/api/v0/geocode/";
+const geocodeUrl = "https://tools.wprdc.org/geo/api/v0/geocode/";
 
 export const getParcelIdFromAddress = address => {
   return new Promise((resolve, reject) => {

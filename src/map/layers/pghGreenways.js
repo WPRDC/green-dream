@@ -20,7 +20,7 @@ export default {
     sql: "SELECT * FROM wprdc.pghodgreenways"
   },
   information: {
-    description: "Greenways in City of Pittsburgh",
+    description: "Greenways in the City of Pittsburgh",
     extent: "Pittsburgh",
     publisher: pgh,
     source: {

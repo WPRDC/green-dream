@@ -35,7 +35,7 @@ export const defaultLayers = [
   citySteps,
   bikeTrails,
   municipalities,
-  //greenprint,
+  greenprint,
   pghOpenSpaces,
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,

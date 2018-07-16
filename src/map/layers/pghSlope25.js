@@ -3,7 +3,7 @@ import {pgh} from "../publishers";
 export default {
   id: "pittsburgh-slope-25",
   type: "vector",
-  name: "PGH Slope > 25%",
+  name: "Slope > 25%",
   geoType: "polygon",
   legend: {
     display: true,

@@ -4,7 +4,7 @@ export default {
   name: "Allegheny County Border",
   visible: false,
   geoType: "polygon",
-  legendColor: "navy",
+  legendColor: "black",
   legendDisplay: false,
   category: "base-layers",
   source: {
@@ -28,7 +28,7 @@ export default {
             stops: [[0, 1], [9, 4], [18, 10]]
           },
           "line-opacity": 0.8,
-          "line-color": "navy"
+          "line-color": "black"
         }
       }
     ]

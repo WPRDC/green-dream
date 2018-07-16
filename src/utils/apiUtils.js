@@ -1,7 +1,7 @@
 import { makeAddressLine } from "./dataUtils";
 
 const STREET_VIEW_BASE_URL = "https://maps.googleapis.com/maps/api/streetview";
-const geocodeUrl = "http://tools.wprdc.org/geo/api/v0/geocode/";
+const geocodeUrl = "https://tools.wprdc.org/geo/api/v0/geocode/";
 
 const streetViewParams = {
   key: "AIzaSyCcLG-dRLxiRB22U9cSv1jaP6XxoOn5aSY",
