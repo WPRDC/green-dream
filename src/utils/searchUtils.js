@@ -1,5 +1,5 @@
 const PARCEL_ID_PATTERN = /^(\d{4}\D\d{4}[a-zA-Z0-9]{7})$/;
-const geocodeUrl = "http://tools.wprdc.org/geo/api/v0/geocode/";
+const geocodeUrl = "https://tools.wprdc.org/geo/api/v0/geocode/";
 
 /**
  * Checks search query, first to see if it's a Parcel ID, then if it's not, it assumes it's an address.

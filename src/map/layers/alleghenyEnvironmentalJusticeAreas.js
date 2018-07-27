@@ -20,7 +20,7 @@ export default {
     sql: "SELECT * FROM wprdc.environmental_justice_areas WHERE ej_area = 1"
   },
   information: {
-    description: "THe Health Department defines an environmental justice area as any census tract where at least 20 percent of the population lives in poverty, and/or 30 percent or more of the population is minority.",
+    description: "The Health Department defines an environmental justice area as any census tract where at least 20 percent of the population lives in poverty, and/or 30 percent or more of the population is minority.",
     extent: "Allegheny County",
     publisher: ac,
     source: {

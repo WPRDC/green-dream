@@ -22,6 +22,9 @@ import greenprint from './greenprint'
 import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
 import landslides from "./landslides";
 import pghOpenSpaces from './pghOpenSpaces'
+import vacantLots from'./vacantLots'
+import alleghenyHyrdologyAreas from './alleghenyHydrologyAreas'
+import alleghenyHyrdologyLines from './alleghenyHydrologyLines'
 
 export const defaultLayers = [
   growPghGardens,
@@ -31,11 +34,12 @@ export const defaultLayers = [
   lotsToLove,
   //aerial,
   parcels,
+  vacantLots,
   neighborhoods,
   citySteps,
   bikeTrails,
   municipalities,
-  greenprint,
+  //greenprint,
   pghOpenSpaces,
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
@@ -43,6 +47,8 @@ export const defaultLayers = [
   pittsburghParks,
   alleghenyParks,
   pghFloodZones,
+  alleghenyHyrdologyLines,
+  alleghenyHyrdologyAreas,
   pghLandslideProne,
   pghSlope25,
   pittsburgh,
