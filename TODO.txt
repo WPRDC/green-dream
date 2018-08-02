@@ -1,0 +1,4 @@
+1. Add date information to layer menu popup
+2. Add bus stops and routes
+3. BikePGH map data
+4. Healthy ride stations
