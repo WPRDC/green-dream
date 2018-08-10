@@ -1,5 +1,5 @@
 import parcels from "./parcels";
-import transit from "./transit";
+import patRoutes from "./patRoutes";
 import municipalities from "./municipalities";
 import neighborhoods from "./neighborhoods";
 import county from "./county";
@@ -25,21 +25,34 @@ import pghOpenSpaces from './pghOpenSpaces'
 import vacantLots from'./vacantLots'
 import alleghenyHyrdologyAreas from './alleghenyHydrologyAreas'
 import alleghenyHyrdologyLines from './alleghenyHydrologyLines'
+import patStops from "./patStops";
+import bikePghBikeLanes from "./bikePghBikeLanes";
+import healthyRideStations from "./healthyRideStations";
+import pwsaSewershed from "./pwsaSewershed";
+import pwsaGiConcepts from "./pwsaGiConcepts";
 
 export const defaultLayers = [
+
+  // Points
   growPghGardens,
   brownfields,
   landslides,
   trwwGreenInfrastructure,
   lotsToLove,
-  //aerial,
+  healthyRideStations,
+  patStops,
+
+  // Lines
+  patRoutes,
+  citySteps,
+  bikeTrails,
+  bikePghBikeLanes,
+
+  // Polygons
   parcels,
   vacantLots,
   neighborhoods,
-  citySteps,
-  bikeTrails,
   municipalities,
-  //greenprint,
   pghOpenSpaces,
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
@@ -47,6 +60,10 @@ export const defaultLayers = [
   pittsburghParks,
   alleghenyParks,
   pghFloodZones,
+  pwsaGiConcepts,
+
+  // Base Layers
+  pwsaSewershed,
   alleghenyHyrdologyLines,
   alleghenyHyrdologyAreas,
   pghLandslideProne,

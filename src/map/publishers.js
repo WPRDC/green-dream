@@ -64,8 +64,23 @@ export const growpgh = {
 
 export const pat = {
   name: 'Port Authority of Allegheny County',
-  homepage: 'http://www.portauthroity.org',
+  homepage: 'http://www.portauthority.org',
   wprdcOrg: 'port-authority-of-allegheny-county',
   // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
 };
+
+export const hr = {
+  name: 'Healthy Ride',
+  homepage: 'https://healthyridepgh.com/',
+  wprdcOrg: 'healthy-ride',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+export const pwsa = {
+  name: 'Pittsburgh Water & Sewer Authority',
+  homepage: 'https://pgh2o.com/',
+  wprdcOrg: 'pwsa',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
 

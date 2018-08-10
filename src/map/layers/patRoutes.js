@@ -7,13 +7,16 @@ export default {
   legend: {
     display: true,
     type: "single",
-    color: "black"
+    items: [{category: 'Transit Route', color: "#9999FF"}]
   },
+  legendDisplay: true,
+  legendColor: "#9999FF",
+
   name: 'Public Transit Routes',
   category: 'transportation',
   source: {
     type: 'carto-vector',
-    minzoom: 15,
+    minzoom: 10,
     sql: 'SELECT * FROM paac_routes_1611',
   },
   information: {
@@ -34,11 +37,16 @@ export default {
         "source": "transit-routes",
         "source-layer": "transit-routes",
         "paint": {
-          "line-width": 4,
-          "line-color": "rgba(120, 2, 222, 1)",
+          "line-width": {
+            "stops": [
+              [10, 1],
+              [18, 4]
+            ]
+          },
+          "line-color": "#9999FF",
           "line-opacity": {
             "stops": [
-              [15, 0],
+              [15, .5],
               [18, 1]
             ]
           }
