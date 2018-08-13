@@ -9,6 +9,8 @@ export const RECEIVE_PARCEL_DATA = "RECEIVE_PARCEL_DATA";
 export const REQUEST_PARCEL_IMAGE = "REQUEST_PARCEL_IMAGE";
 export const RECEIVE_PARCEL_IMAGE = "RECEIVE_PARCEL_IMAGE";
 export const CLOSE_DISPLAY = "CLOSE_DISPLAY";
+export const OPEN_ABOUT_DIALOG = "OPEN_ABOUT_DIALOG";
+export const CLOSE_ABOUT_DIALOG = "CLOSE_ABOUT_DIALOG";
 
 export const requestPropertyData = parcelId => {
   return {type: REQUEST_PARCEL_DATA, parcelId};
@@ -187,3 +189,19 @@ export const fetchNeighborhoodDataIfNeeded = hoodId => {
     }
   };
 };
+
+
+
+
+
+export const openAboutDialog = () => {
+  return {
+    type: OPEN_ABOUT_DIALOG
+  }
+};
+
+export const closeAboutDialog = () => {
+  return {
+    type: CLOSE_ABOUT_DIALOG
+  }
+}

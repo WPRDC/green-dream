@@ -8,10 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolTip from "@material-ui/core/Tooltip"
-
+import Button from "@material-ui/core/Button";
 import Search from "./Search";
 
 import {toggleLayerMenu} from "../actions/mapActions";
+import {openAboutDialog} from "../actions/dataActions";
 
 const styles = theme => ({
   root: {
@@ -39,7 +40,7 @@ const styles = theme => ({
 });
 
 const Header = props => {
-  const {classes, toggleMenu, title} = props;
+  const {classes, toggleMenu, openAbout, title} = props;
 
   return (
     <AppBar className={classes.root}>
@@ -57,6 +58,7 @@ const Header = props => {
         <Typography variant="title" color="inherit" className={classes.flex}>
           {title}
         </Typography>
+        <Button onClick={openAbout}>About</Button>
         <Search/>
         <img
           src={require("../assets/img/alt-logo-wide.svg")}
@@ -78,6 +80,7 @@ const Header = props => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: () => dispatch(toggleLayerMenu()),
+    openAbout: () => dispatch(openAboutDialog())
   };
 };
 

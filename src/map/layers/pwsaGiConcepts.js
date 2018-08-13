@@ -8,23 +8,33 @@ export default {
     display: true,
     type: "category",
     items: [
-      {'category': 'A42-M29-M16', color: "blue"},
-      {'category': 'A42-O27-M19', color: "green"}
-      ]
+      {'category': 'Dsetention', color: "blue"},
+      {'category': 'Bioswale', color: "green"},
+      {'category': 'Pervious', color: "Red"},
+      {'category': 'Retention', color: "navy"}
+    ]
   },
   legendDisplay: true,
   legendColor: "black",
 
   name: 'Green First Plan',
-  category: 'other',
+  category: 'urban-green-features',
   source: {
     type: 'carto-vector',
     minzoom: 10,
-    sql: 'SELECT \'cwa42m29m16\' as type, cartodb_id, the_geom, the_geom_webmercator \n' +
-      ' FROM wprdc.cwa42m29m16giconcept\n' +
-      'UNION\n' +
-      'SELECT \'cwa41o27m19\' as type, (cartodb_id + 2000) as cartodb_id, the_geom, the_geom_webmercator \n' +
-      ' FROM wprdc.cwa41o27m19giconcept',
+    sql: `SELECT 'cwa42m29m16' as grp, layer as type,  cartodb_id, the_geom, the_geom_webmercator
+FROM wprdc.cwa42m29m16giconcept
+UNION
+
+SELECT 'cwa41o27m19' as grp, 
+CASE 
+ WHEN bmp = 'Major Storage' THEN 'p-retention'
+ WHEN bmp = 'Distributed Storage' THEN 'p-detention'
+ ELSE 'other'
+END AS type, 
+
+(cartodb_id + 2000) as cartodb_id, the_geom, the_geom_webmercator
+FROM wprdc.cwa41o27m19giconcept`
   },
   information: {
     description: "Identifies opportunity sites throughout various sewersheds for stormwater infrastructure that could fulfill both stormwater management needs and support healthy communities and neighborhoods.",
@@ -65,8 +75,10 @@ export default {
             property: "type",
             type: "categorical",
             stops: [
-              ["cwa42m29m16", 'blue'],
-              ["cwa41o27m19", 'green'],
+              ["p-detention", 'blue'],
+              ["p-bioswale", 'green'],
+              ["p-pervious", 'red'],
+              ["p-retention", 'navy'],
             ]
           },
           "fill-opacity": {

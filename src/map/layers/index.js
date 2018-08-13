@@ -54,13 +54,13 @@ export const defaultLayers = [
   neighborhoods,
   municipalities,
   pghOpenSpaces,
+  pwsaGiConcepts,
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
   pghGreenways,
   pittsburghParks,
   alleghenyParks,
   pghFloodZones,
-  pwsaGiConcepts,
 
   // Base Layers
   pwsaSewershed,

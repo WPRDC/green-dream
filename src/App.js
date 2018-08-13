@@ -8,7 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Header from "./containers/Header";
 import ParcelInfoPanel from "./containers/ParcelInfoPanel";
 import NeighborhoodInfoPanel from "./containers/NeighborhoodInfoPanel";
-
+import AboutDialog from "./containers/AboutDialog"
 const styles = theme => ({
   root: {
     height: "100vh",
@@ -45,6 +45,7 @@ class App extends Component {
           <Map />
           <ParcelInfoPanel />
           <NeighborhoodInfoPanel />
+          <AboutDialog/>
         </main>
       </div>
     );
