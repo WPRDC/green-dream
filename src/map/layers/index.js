@@ -8,17 +8,15 @@ import pittsburghParks from "./pittsburghParks";
 import alleghenyParks from "./alleghenyParks";
 import citySteps from "./citySteps";
 import pghGreenways from "./pghGreenways";
-import pghFloodZones from "./pghFloodZones";
-import pghSlope25 from "./pghSlope25";
+import alleghenyFloodZones from "./alleghenyFloodZones";
+import slope25 from "./slope25";
 import bikeTrails from "./bikeTrails";
 import pittsburgh from "./pittsburgh";
 import pghLandslideProne from "./pghLandslideProne"
 import alleghenyLandUseAreas from "./alleghenyLandUseAreas"
 import brownfields from "./brownfields"
-import aerial from "./aerial"
 import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
 import lotsToLove from './lotsToLove'
-import greenprint from './greenprint'
 import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
 import landslides from "./landslides";
 import pghOpenSpaces from './pghOpenSpaces'
@@ -30,6 +28,14 @@ import bikePghBikeLanes from "./bikePghBikeLanes";
 import healthyRideStations from "./healthyRideStations";
 import pwsaSewershed from "./pwsaSewershed";
 import pwsaGiConcepts from "./pwsaGiConcepts";
+import municipalParks from "./municipalParks";
+import golfCourses from "./golfCourses";
+import landTrustProperty from "./landTrustProperty";
+import parkNodes from "./parkNodes";
+import aggEasement from "./agrEasement";
+import sensitiveSlopeAreas from "./sensitiveSlopeAreas";
+import shareTheRoad from "./shareTheRoad";
+import trails from "./trails";
 
 export const defaultLayers = [
 
@@ -50,6 +56,20 @@ export const defaultLayers = [
 
   // Polygons
   parcels,
+
+
+
+  municipalParks,
+  golfCourses,
+  landTrustProperty,
+  parkNodes,
+  aggEasement,
+  sensitiveSlopeAreas,
+  shareTheRoad,
+  trails,
+
+
+
   vacantLots,
   neighborhoods,
   municipalities,
@@ -60,14 +80,18 @@ export const defaultLayers = [
   pghGreenways,
   pittsburghParks,
   alleghenyParks,
-  pghFloodZones,
+  //pghFloodZones, // only need allegheny as of now
+  alleghenyFloodZones,
+
+
+
 
   // Base Layers
   pwsaSewershed,
   alleghenyHyrdologyLines,
   alleghenyHyrdologyAreas,
   pghLandslideProne,
-  pghSlope25,
+  slope25,
   pittsburgh,
   county
 ];

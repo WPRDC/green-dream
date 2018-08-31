@@ -1,41 +1,41 @@
-import {pgh} from "../publishers";
+import {ac} from "../publishers";
 
 export default {
-  id: "pittsburgh-greenways",
+  id: "municipal-parks",
   type: "vector",
-  name: "City Greenways",
+  name: "Municipal Parks",
   geoType: "polygon",
   legend: {
     display: true,
     type: "single",
-    items: [{ category: "Pittsburgh Greenway", color: "#01796F" }]
+    items: [{category: "Park", color: "#4c7737"}],
   },
-  legendColor: "#01796F",
+  legendColor: "#4c7737",
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pghodgreenways"
+    sql: "SELECT * FROM greenways_final WHERE type = 'Municipal Parks'"
   },
   information: {
-    description: "Greenways in the City of Pittsburgh",
-    extent: "Pittsburgh",
-    publisher: pgh,
+    description: "Municipal Parks in Allegheny County",
+    extent: "Allegheny County",
+    publisher: ac,
     source: {
-      title: "WPRDC - Greenways",
-      link: "https://data.wprdc.org/dataset/greenways"
+      title: "WPRDC - Allegheny County Greenways",
+      link: "https://data.wprdc.org/dataset/allegheny-county-greenways"
     },
   },
   layers: {
     labels: [],
     style: [
       {
-        id: "pittsburgh-greenways-borders",
+        id: "municipal-parks-borders",
         type: "line",
-        source: "pittsburgh-greenways",
-        "source-layer": "pittsburgh-greenways",
+        source: "municipal-parks",
+        "source-layer": "municipal-parks",
         layout: {
           "line-join": "round"
         },
@@ -44,17 +44,17 @@ export default {
           "line-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           },
-          "line-color": "#01796F"
+          "line-color": "#4c7737"
         }
       },
       {
-        id: "pittsburgh-greenways-fill",
+        id: "municipal-parks-fill",
         type: "fill",
-        source: "pittsburgh-greenways",
-        "source-layer": "pittsburgh-greenways",
+        source: "municipal-parks",
+        "source-layer": "municipal-parks",
         layout: {},
         paint: {
-          "fill-color": "#01796F",
+          "fill-color": "#4c7737",
           "fill-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           }

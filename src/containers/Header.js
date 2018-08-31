@@ -31,7 +31,8 @@ const styles = theme => ({
     marginRight: 20
   },
   icon: {
-    height: "40px"
+    height: "40px",
+    marginLeft: '6px'
   },
   plus: {
     margin: '0 6px',
@@ -55,21 +56,27 @@ const Header = props => {
             <MenuIcon/>
           </ToolTip>
         </IconButton>
-        <Typography variant="title" color="inherit" className={classes.flex}>
-          {title}
-        </Typography>
-        <Button onClick={openAbout}>About</Button>
-        <Search/>
-        <img
-          src={require("../assets/img/alt-logo-wide.svg")}
-          className={classes.icon}
-        />
+          <Typography variant="title" color="inherit" className={classes.flex}>
+            {title}
+          </Typography>
+
+        <a target="_blank" href="https://alleghenylandtrust.org">
+          <img
+            src={require("../assets/img/alt-logo-wide.svg")}
+            className={classes.icon}
+          />
+        </a>
         <span className={classes.plus}>  </span>
 
-        <img
-          src={require("../assets/img/white_logo.svg")}
-          className={classes.icon}
-        />
+        <a target="_blank" href="https://wprdc.org">
+          <img
+            src={require("../assets/img/white_logo.svg")}
+            className={classes.icon}
+          />
+        </a>
+        <Search/>
+
+        <Button variant="contained" color="secondary" onClick={openAbout}>About</Button>
 
 
       </Toolbar>

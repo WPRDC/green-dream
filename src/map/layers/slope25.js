@@ -1,7 +1,7 @@
-import {pgh} from "../publishers";
+import {ac} from "../publishers";
 
 export default {
-  id: "pittsburgh-slope-25",
+  id: "slope-25",
   type: "vector",
   name: "Slope > 25%",
   geoType: "polygon",
@@ -17,25 +17,25 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.slope25polygon_pgh_1 WHERE objectid = 2"
+    sql: "SELECT * FROM wprdc.slope_25"
   },
   information: {
-    description: "Land in Pittsburgh with a sloper greater than 25%",
-    extent: "Pittsburgh",
-    publisher: pgh,
+    description: "Land with a slope greater than 25%",
+    extent: "Allegheny County",
+    publisher: ac,
     source: {
-      title: "WPRDC - 25% or Greater Slope",
-      link: "https://data.wprdc.org/dataset/25-or-greater-slope"
+      title: "WPRDC - Slope > 25%",
+      link: "https://data.wprdc.org/dataset/slope-25"
     },
   },
   layers: {
     labels: [],
     style: [
       {
-        id: "pittsburgh-slope-25-border",
+        id: "slope-25-border",
         type: "line",
-        source: "pittsburgh-slope-25",
-        "source-layer": "pittsburgh-slope-25",
+        source: "slope-25",
+        "source-layer": "slope-25",
         layout: {
           "line-join": "round"
         },
@@ -48,10 +48,10 @@ export default {
         }
       },
       {
-        id: "pittsburgh-slope-25-fill",
+        id: "slope-25-fill",
         type: "fill",
-        source: "pittsburgh-slope-25",
-        "source-layer": "pittsburgh-slope-25",
+        source: "slope-25",
+        "source-layer": "slope-25",
         layout: {},
         paint: {
           "fill-color": "#708090",

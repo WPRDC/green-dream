@@ -1,9 +1,9 @@
-import  {pgh} from "../publishers";
+import  {ac} from "../publishers";
 
 export default {
-  id: "pittsburgh-flood-zones",
+  id: "allegheny-flood-zones",
   type: "vector",
-  name: "City Flood Zones",
+  name: "Flood Zones",
   geoType: "polygon",
   legend: {
     display: true,
@@ -17,25 +17,25 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pittsburgh_fema_flood_zones"
+    sql: "SELECT * FROM wprdc.s_fld_haz_ar WHERE fld_zone LIKE 'A%'"
   },
   information: {
-    description: "Flood-prone areas in City of Pittsburgh",
-    extent: "Pittsburgh",
-    publisher: pgh,
+    description: "Flood-prone areas in Allegheny County",
+    extent: "Allegheny County",
+    publisher: ac,
     source: {
-      title: "WPRDC - Pittsburgh FEMA Flood Zones",
-      link: "https://data.wprdc.org/dataset/pittsburgh-fema-flood-zones"
-    },
+      title: 'WPRDC - Allegheny County FEMA Flood Zones',
+      link: 'https://data.wprdc.org/dataset/allegheny-county-fema-flood-zones'
+    }
   },
   layers: {
     labels: [],
     style: [
       {
-        id: "pittsburgh-flood-zones-border",
+        id: "allegheny-flood-zones-border",
         type: "line",
-        source: "pittsburgh-flood-zones",
-        "source-layer": "pittsburgh-flood-zones",
+        source: "allegheny-flood-zones",
+        "source-layer": "allegheny-flood-zones",
         layout: {
           "line-join": "round"
         },
@@ -48,10 +48,10 @@ export default {
         }
       },
       {
-        id: "pittsburgh-flood-zones-fill",
+        id: "allegheny-flood-zones-fill",
         type: "fill",
-        source: "pittsburgh-flood-zones",
-        "source-layer": "pittsburgh-flood-zones",
+        source: "allegheny-flood-zones",
+        "source-layer": "allegheny-flood-zones",
         layout: {},
         paint: {
           "fill-color": "#007791",

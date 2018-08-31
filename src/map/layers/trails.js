@@ -1,41 +1,43 @@
-import {pgh} from "../publishers";
+import {ac} from "../publishers";
+
+const color = '#000';
 
 export default {
-  id: "pittsburgh-greenways",
+  id: "trails",
   type: "vector",
-  name: "City Greenways",
+  name: "Trails",
   geoType: "polygon",
   legend: {
     display: true,
     type: "single",
-    items: [{ category: "Pittsburgh Greenway", color: "#01796F" }]
+    items: [{category: "Park", color: color}],
   },
-  legendColor: "#01796F",
+  legendColor: color,
   legendDisplay: true,
   category: "urban-green-features",
   visible: false,
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pghodgreenways"
+    sql: "SELECT * FROM greenways_final WHERE type = 'Trails'"
   },
   information: {
-    description: "Greenways in the City of Pittsburgh",
-    extent: "Pittsburgh",
-    publisher: pgh,
+    description: "Trails throughout Allegheny County🏌️🏌️",
+    extent: "Allegheny County",
+    publisher: ac,
     source: {
-      title: "WPRDC - Greenways",
-      link: "https://data.wprdc.org/dataset/greenways"
+      title: "WPRDC - Allegheny County Greenways",
+      link: "https://data.wprdc.org/dataset/allegheny-county-greenways"
     },
   },
   layers: {
     labels: [],
     style: [
       {
-        id: "pittsburgh-greenways-borders",
+        id: "trails-borders",
         type: "line",
-        source: "pittsburgh-greenways",
-        "source-layer": "pittsburgh-greenways",
+        source: "trails",
+        "source-layer": "trails",
         layout: {
           "line-join": "round"
         },
@@ -44,17 +46,17 @@ export default {
           "line-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           },
-          "line-color": "#01796F"
+          "line-color": color
         }
       },
       {
-        id: "pittsburgh-greenways-fill",
+        id: "trails-fill",
         type: "fill",
-        source: "pittsburgh-greenways",
-        "source-layer": "pittsburgh-greenways",
+        source: "trails",
+        "source-layer": "trails",
         layout: {},
         paint: {
-          "fill-color": "#01796F",
+          "fill-color": color,
           "fill-opacity": {
             stops: [[8, 0], [13, 0.5], [18, 0.8]]
           }
