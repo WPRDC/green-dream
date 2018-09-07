@@ -11,20 +11,11 @@ import LayerGroup from "../components/LayerGroup";
 const drawerWidth = 280;
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: 430,
-    zIndex: 1,
-    overflow: "hidden",
-    position: "relative",
-    display: "flex"
-  },
   drawerPaper: {
     position: "relative",
     width: drawerWidth
   },
   content: {
-    flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     minWidth: 0 // So the Typography noWrap works
@@ -39,13 +30,9 @@ const LayerControl = props => {
       variant="persistent"
       anchor="left"
       open={layerMenu.open}
+      style={{position: 'absolute'}}
       classes={{ paper: classes.drawerPaper }}
     >
-      {/*<LayerList>*/}
-      {/*{mapLayers.map(layer =>*/}
-      {/*<LayerListItem key={layer.id} layer={layer} onChange={handleChange(layer)}/>*/}
-      {/*)}*/}
-      {/*</LayerList>*/}
       <LayerGroup title="Base Layers">
         <LayerList>
           {mapLayers

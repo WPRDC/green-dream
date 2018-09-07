@@ -72,7 +72,7 @@ class LayerListItem extends Component {
         <ListItemText style={{paddingLeft: 0, paddingRight: layer.information ? '60px' : 0}} primary={layer.name}/>
         <ListItemSecondaryAction style={{marginLeft: "12px"}}>
           {layer.information
-            ? <IconButton disableRipple onClick={this.handleInfoClick} style={{width: 12, height: 24}}><Info/></IconButton>
+            ? <IconButton disableRipple onClick={this.handleInfoClick} style={{width: 24, height: 24}}><Info/></IconButton>
             : null
           }
           <Popover

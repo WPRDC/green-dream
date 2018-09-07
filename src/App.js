@@ -36,12 +36,12 @@ class App extends Component {
     const { classes, layerMenu } = this.props;
 
     return (
-      <div className={classes.root}>
-        <div className={classes.header}>
+      <div className="flex-container">
+        <div className="flex-item">
           <Header title="Urban Greenprint" />
         </div>
 
-        <main className={classes.content}>
+        <main className="flex-item">
           <Map />
           <ParcelInfoPanel />
           <NeighborhoodInfoPanel />

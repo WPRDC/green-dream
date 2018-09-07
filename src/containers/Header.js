@@ -32,11 +32,16 @@ const styles = theme => ({
   },
   icon: {
     height: "40px",
-    marginLeft: '6px'
+    marginLeft: '6px',
+    display: 'table-row',
   },
   plus: {
     margin: '0 6px',
     fontSize: '24px',
+  },
+  link: {
+    display: 'table',
+    width: '122px'
   }
 });
 
@@ -56,11 +61,13 @@ const Header = props => {
             <MenuIcon/>
           </ToolTip>
         </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-            {title}
-          </Typography>
+        <Typography variant="title" color="inherit" className={classes.flex}>
+          {title}
+        </Typography>
 
-        <a target="_blank" href="https://alleghenylandtrust.org">
+
+
+        <a target="_blank" href="https://alleghenylandtrust.org" className={classes.link}>
           <img
             src={require("../assets/img/alt-logo-wide.svg")}
             className={classes.icon}
@@ -68,7 +75,7 @@ const Header = props => {
         </a>
         <span className={classes.plus}>  </span>
 
-        <a target="_blank" href="https://wprdc.org">
+        <a target="_blank" href="https://wprdc.org" className={classes.link}>
           <img
             src={require("../assets/img/white_logo.svg")}
             className={classes.icon}

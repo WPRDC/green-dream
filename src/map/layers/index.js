@@ -1,41 +1,42 @@
-import parcels from "./parcels";
-import patRoutes from "./patRoutes";
-import municipalities from "./municipalities";
-import neighborhoods from "./neighborhoods";
-import county from "./county";
-import growPghGardens from "./growPghGardens";
-import pittsburghParks from "./pittsburghParks";
-import alleghenyParks from "./alleghenyParks";
-import citySteps from "./citySteps";
-import pghGreenways from "./pghGreenways";
-import alleghenyFloodZones from "./alleghenyFloodZones";
-import slope25 from "./slope25";
-import bikeTrails from "./bikeTrails";
-import pittsburgh from "./pittsburgh";
-import pghLandslideProne from "./pghLandslideProne"
-import alleghenyLandUseAreas from "./alleghenyLandUseAreas"
-import brownfields from "./brownfields"
-import trwwGreenInfrastructure from "./trwwGreenInfrastucture"
-import lotsToLove from './lotsToLove'
-import alleghenyEnvironmentalJusticeAreas from './alleghenyEnvironmentalJusticeAreas'
-import landslides from "./landslides";
-import pghOpenSpaces from './pghOpenSpaces'
-import vacantLots from'./vacantLots'
-import alleghenyHyrdologyAreas from './alleghenyHydrologyAreas'
-import alleghenyHyrdologyLines from './alleghenyHydrologyLines'
-import patStops from "./patStops";
-import bikePghBikeLanes from "./bikePghBikeLanes";
-import healthyRideStations from "./healthyRideStations";
-import pwsaSewershed from "./pwsaSewershed";
-import pwsaGiConcepts from "./pwsaGiConcepts";
-import municipalParks from "./municipalParks";
-import golfCourses from "./golfCourses";
-import landTrustProperty from "./landTrustProperty";
-import parkNodes from "./parkNodes";
-import aggEasement from "./agrEasement";
-import sensitiveSlopeAreas from "./sensitiveSlopeAreas";
-import shareTheRoad from "./shareTheRoad";
-import trails from "./trails";
+import parcels from "./base/parcels";
+import patRoutes from "./transportation/patRoutes";
+import municipalities from "./base/municipalities";
+import neighborhoods from "./base/neighborhoods";
+import county from "./base/county";
+import growPghGardens from "./green-features/growPghGardens";
+import pittsburghParks from "./green-features/pittsburghParks";
+import alleghenyParks from "./green-features/alleghenyParks";
+import citySteps from "./transportation/citySteps";
+import pghGreenways from "./green-features/pghGreenways";
+import alleghenyFloodZones from "./natural-features/alleghenyFloodZones";
+import slope25 from "./natural-features/slope25";
+import bikeTrails from "./transportation/bikeTrails";
+import pittsburgh from "./base/pittsburgh";
+import pghLandslideProne from "./natural-features/pghLandslideProne"
+import alleghenyLandUseAreas from "./green-features/alleghenyLandUseAreas"
+import brownfields from "./other/brownfields"
+import trwwGreenInfrastructure from "./green-features/trwwGreenInfrastucture"
+import lotsToLove from './green-features/lotsToLove'
+import alleghenyEnvironmentalJusticeAreas from './other/alleghenyEnvironmentalJusticeAreas'
+import landslides from "./natural-features/landslides";
+import pghOpenSpaces from './green-features/pghOpenSpaces'
+import vacantLots from './other/vacantLots'
+import alleghenyHyrdologyAreas from './natural-features/alleghenyHydrologyAreas'
+import alleghenyHyrdologyLines from './natural-features/alleghenyHydrologyLines'
+import patStops from "./transportation/patStops";
+import bikePghBikeLanes from "./transportation/bikePghBikeLanes";
+import healthyRideStations from "./transportation/healthyRideStations";
+import pwsaSewershed from "./base/pwsaSewershed";
+import pwsaGiConcepts from "./green-features/pwsaGiConcepts";
+import municipalParks from "./green-features/municipalParks";
+import golfCourses from "./green-features/golfCourses";
+import landTrustProperty from "./green-features/landTrustProperty";
+import parkNodes from "./green-features/parkNodes";
+import agrEasement from "./green-features/agrEasement";
+import sensitiveSlopeAreas from "./natural-features/sensitiveSlopeAreas";
+import shareTheRoad from "./transportation/shareTheRoad";
+import trails from "./green-features/trails";
+import greenprint from "./green-features/greenprint";
 
 export const defaultLayers = [
 
@@ -57,15 +58,17 @@ export const defaultLayers = [
   // Polygons
   parcels,
 
-
-
-  municipalParks,
   golfCourses,
-  landTrustProperty,
   parkNodes,
-  aggEasement,
+  municipalParks,
+  pittsburghParks,
+  alleghenyParks,
+
+  greenprint,
+  landTrustProperty,
+  agrEasement,
   sensitiveSlopeAreas,
-  shareTheRoad,
+  // shareTheRoad,  only one feature, pretty much impossible to see unless you know where it is
   trails,
 
 
@@ -78,8 +81,7 @@ export const defaultLayers = [
   alleghenyEnvironmentalJusticeAreas,
   alleghenyLandUseAreas,
   pghGreenways,
-  pittsburghParks,
-  alleghenyParks,
+
   //pghFloodZones, // only need allegheny as of now
   alleghenyFloodZones,
 
