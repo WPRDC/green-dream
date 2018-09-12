@@ -157,13 +157,14 @@ export const receiveNeighborhoodData = (hoodId, data) => {
   };
 };
 
-export const fetchNeighborhoodData = hoodId => {
+export const fetchNeighborhoodData = (regionType, hoodId) => {
   return function (dispatch) {
     dispatch(requestNeighborhoodData(hoodId));
     console.log(hoodId)
-    return fetch(`https://tools.wprdc.org/neighborhood-api/v0/hood/${hoodId}`)
+    return fetch(`https://tools.wprdc.org/neighborhood-api/v0/region/${regionType}/${hoodId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {
+        console.log(data)
         dispatch(receiveNeighborhoodData(hoodId, data));
       });
   };
@@ -180,10 +181,10 @@ const shouldFetchNeighborhoodData = (state, hoodId) => {
   }
 };
 
-export const fetchNeighborhoodDataIfNeeded = hoodId => {
+export const fetchNeighborhoodDataIfNeeded = (regionType, hoodId) => {
   return (dispatch, getState) => {
     if (shouldFetchNeighborhoodData(getState(), hoodId)) {
-      return dispatch(fetchNeighborhoodData(hoodId));
+      return dispatch(fetchNeighborhoodData(regionType, hoodId));
     } else {
       return Promise.resolve();
     }

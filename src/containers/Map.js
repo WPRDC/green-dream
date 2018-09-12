@@ -119,9 +119,10 @@ class Map extends Component {
       const {map_identifier: id, map_name: name} = feature.properties;
 
       const properties = {bounds};
-
+      console.log(feature)
       // 1st class info displays - info panel
-      if (["parcels", "neighborhoods"].includes(layerType)) {
+      if (["parcels", "neighborhoods", "municipalities"].includes(layerType)) {
+        console.log('woot')
         selectFeature(layerType, id, name, properties, currentSelection);
       }
 
@@ -190,7 +191,6 @@ class Map extends Component {
         layer => layer.id === previousSelection.objectType + "-select-border"
       );
     }
-
     // Something selected and previous selection on map
     if (oldFillIndex && oldLineIndex && fillIndex && lineIndex && oldFillIndex >= 0 && oldLineIndex >= 0) {
       this.setState({
@@ -218,7 +218,7 @@ class Map extends Component {
       });
     }
 
-    if (["parcels", "neighborhoods"].includes(layerType)) {
+    if (["parcels", "neighborhoods", 'municipalities'].includes(layerType)) {
       const {bounds, centroid} = properties;
       const vp = new WebMercatorViewport({width, height});
       const padding = height / 3.5;
@@ -244,6 +244,7 @@ class Map extends Component {
   handleSelectionChange = (selection) => {
     const {displayInfo} = this.props;
     const {objectType, name, id, properties} = selection;
+    console.log("++++", objectType, name, id, properties)
     displayInfo(objectType, id, name);
 
     this.highlightOnMap(objectType, id, properties)
@@ -344,7 +345,11 @@ const mapDispatchToProps = dispatch => {
       }
       if (type === "neighborhoods") {
         const hoodId = id.toLowerCase().replace(/(\-|\s)/g, "_")
-        dispatch(fetchNeighborhoodDataIfNeeded(hoodId))
+        dispatch(fetchNeighborhoodDataIfNeeded('pittsburgh_neighborhood', hoodId))
+      }
+      if (type === 'municipalities') {
+        const muniId = id.toLowerCase().replace(/(\-|\s)/g, "_")
+        dispatch(fetchNeighborhoodDataIfNeeded('allegheny_county_municipality', muniId))
       }
     }
   };

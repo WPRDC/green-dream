@@ -74,8 +74,8 @@ export const defaultLayers = [
 
 
   vacantLots,
-  neighborhoods,
   municipalities,
+  neighborhoods,
   pghOpenSpaces,
   pwsaGiConcepts,
   alleghenyEnvironmentalJusticeAreas,

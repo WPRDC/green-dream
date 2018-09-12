@@ -54,7 +54,7 @@ const mapStateToProps = state => {
     };
 
   const name = currentSelection.id ? currentSelection.id.replace('_', ' ') : null;
-  const isOpen = currentSelection.objectType === "neighborhoods";
+  const isOpen = ['neighborhoods', 'municipalities'].includes(currentSelection.objectType);
   return {isOpen, isFetching, data, name, currentSelection};
 };
 

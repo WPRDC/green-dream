@@ -15,7 +15,7 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.allegheny_county_municipal_boundaries"
+    sql: "SELECT *, f0_label as map_identifier, f0_label as map_name FROM wprdc.allegheny_county_municipal_boundaries where f0_name !='PITTSBURGH'"
   },
   layers: {
     labels: [],
@@ -44,15 +44,73 @@ export default {
         source: "municipalities",
         "source-layer": "municipalities",
         layout: {
-          "text-field": "{f0_name}",
+          "text-field": "{hood}",
           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
           "text-size": 11
         },
         paint: {
           "text-opacity": 1,
           "icon-color": "rgba(193, 193, 193, 1)",
-          "text-color": "rgba(154, 154, 154, 1)",
+          "text-color": "#222",
           "text-halo-color": "rgba(152, 152, 152, 0)"
+        }
+      },
+      {
+        id: "municipalities-fill",
+        type: "fill",
+        interactive: true,
+        source: "municipalities",
+        "source-layer": "municipalities",
+        layout: {},
+        paint: {
+          "fill-color": "#708090",
+          "fill-opacity": 0
+        }
+      },
+      {
+        id: "municipalities-highlight-fill",
+        type: "fill",
+        interactive: true,
+        source: "municipalities",
+        "source-layer": "municipalities",
+        layout: {},
+        filter: ["in", "map_identifier", ""],
+        paint: {
+          "fill-color": "#708090",
+          "fill-opacity": {
+            stops: [[11, 0], [12, 0.6], [15, 0.2], [16, 0.0]]
+          }
+        }
+      },
+      {
+        id: "municipalities-select-fill",
+        type: "fill",
+        interactive: true,
+        source: "municipalities",
+        "source-layer": "municipalities",
+        layout: {},
+        filter: ["in", "map_identifier", ""],
+        paint: {
+          "fill-color": "#5F5",
+          "fill-opacity": {
+            stops: [[11, 0], [12, 0.6], [15, 0.2], [16, 0.0]]
+          }
+        }
+      },
+      {
+        id: "municipalities-select-border",
+        type: "line",
+        interactive: true,
+        source: "municipalities",
+        "source-layer": "municipalities",
+        layout: {
+          "line-cap": "round"
+        },
+        filter: ["in", "map_identifier", ""],
+        paint: {
+          "line-width": {
+            stops: [[14, 4], [18, 8]]
+          }
         }
       }
     ]
