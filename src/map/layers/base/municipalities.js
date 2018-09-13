@@ -15,7 +15,7 @@ export default {
   source: {
     type: "carto-vector",
     minzoom: 0,
-    sql: "SELECT *, f0_label as map_identifier, f0_label as map_name FROM wprdc.allegheny_county_municipal_boundaries where f0_name !='PITTSBURGH'"
+    sql: "SELECT *, f0_label as map_identifier, f0_label as map_name FROM wprdc.allegheny_county_municipal_boundaries"
   },
   layers: {
     labels: [],
@@ -78,7 +78,7 @@ export default {
         paint: {
           "fill-color": "#708090",
           "fill-opacity": {
-            stops: [[11, 0], [12, 0.6], [15, 0.2], [16, 0.0]]
+            stops: [[1, 0], [9, 0.6],[15, 0.2], [16, 0.0]]
           }
         }
       },
@@ -93,7 +93,7 @@ export default {
         paint: {
           "fill-color": "#5F5",
           "fill-opacity": {
-            stops: [[11, 0], [12, 0.6], [15, 0.2], [16, 0.0]]
+            stops: [[1, 0.1], [9, 0.6], [15, 0.2], [16, 0.0]]
           }
         }
       },

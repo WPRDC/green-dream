@@ -35,7 +35,7 @@ export function exists(...things) {
 
 export function monify(number, decimal) {
   let dec = 0;
-  if (number !== 0 && (!number || isNaN(number))) return "";
+  if (number !== 0 && (!number || isNaN(number))) return "N/A";
   if (decimal) dec = 2;
 
   // Set decimals and commas

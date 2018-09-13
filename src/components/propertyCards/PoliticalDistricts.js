@@ -23,7 +23,7 @@ const fieldMapping = [
   {
     resource: "centroids_and_geo_info",
     field: "geo_name_countycouncil",
-    title: "Couty Council",
+    title: "County Council",
     formatter: input => {
       return input.split(" ").pop();
     }

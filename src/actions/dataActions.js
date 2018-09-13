@@ -160,7 +160,6 @@ export const receiveNeighborhoodData = (hoodId, data) => {
 export const fetchNeighborhoodData = (regionType, hoodId) => {
   return function (dispatch) {
     dispatch(requestNeighborhoodData(hoodId));
-    console.log(hoodId)
     return fetch(`https://tools.wprdc.org/neighborhood-api/v0/region/${regionType}/${hoodId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {

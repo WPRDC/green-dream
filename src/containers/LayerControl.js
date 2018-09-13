@@ -59,7 +59,7 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Natural Features">
+      <LayerGroup title="Natural Features & Hazards">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "natural-features")

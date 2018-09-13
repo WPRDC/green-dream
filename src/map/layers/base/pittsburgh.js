@@ -30,11 +30,7 @@ export default {
         },
         "paint": {
           "line-width": {
-            "stops": [
-              [0,1],
-              [9,1],
-              [18, 10]
-            ]
+            stops: [[0, 1], [9, 4], [18, 10]]
           },
           "line-opacity": {
             "stops": [
