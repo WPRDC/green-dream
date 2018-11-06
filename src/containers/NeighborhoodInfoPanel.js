@@ -44,7 +44,7 @@ const NeighborhoodInfoPanel = props => {
 const mapStateToProps = state => {
   const {currentSelection, neighborhoodDataById} = state;
   const {isFetching, data} = currentSelection.id
-    ? neighborhoodDataById[currentSelection.id.toLowerCase().replace(/(\-|\s)/g, "_")] || {
+    ? neighborhoodDataById[currentSelection.id.toLowerCase().replace(/(\-|\s)/g, "_").replace(/\./g, '')] || {
     isFetching: false,
     data: null
   }
