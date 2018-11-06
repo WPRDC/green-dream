@@ -8,10 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolTip from "@material-ui/core/Tooltip"
-
+import Button from "@material-ui/core/Button";
 import Search from "./Search";
 
 import {toggleLayerMenu} from "../actions/mapActions";
+import {openAboutDialog} from "../actions/dataActions";
 
 const styles = theme => ({
   root: {
@@ -30,16 +31,22 @@ const styles = theme => ({
     marginRight: 20
   },
   icon: {
-    height: "40px"
+    height: "40px",
+    marginLeft: '6px',
+    display: 'table-row',
   },
   plus: {
     margin: '0 6px',
     fontSize: '24px',
+  },
+  link: {
+    display: 'table',
+    width: '122px'
   }
 });
 
 const Header = props => {
-  const {classes, toggleMenu, title} = props;
+  const {classes, toggleMenu, openAbout, title} = props;
 
   return (
     <AppBar className={classes.root}>
@@ -57,17 +64,26 @@ const Header = props => {
         <Typography variant="title" color="inherit" className={classes.flex}>
           {title}
         </Typography>
-        <Search/>
-        <img
-          src={require("../assets/img/alt-logo-wide.svg")}
-          className={classes.icon}
-        />
+
+
+
+        <a target="_blank" href="https://alleghenylandtrust.org" className={classes.link}>
+          <img
+            src={require("../assets/img/alt-logo-wide.svg")}
+            className={classes.icon}
+          />
+        </a>
         <span className={classes.plus}>  </span>
 
-        <img
-          src={require("../assets/img/white_logo.svg")}
-          className={classes.icon}
-        />
+        <a target="_blank" href="https://wprdc.org" className={classes.link}>
+          <img
+            src={require("../assets/img/white_logo.svg")}
+            className={classes.icon}
+          />
+        </a>
+        <Search/>
+
+        <Button variant="contained" color="secondary" onClick={openAbout}>About</Button>
 
 
       </Toolbar>
@@ -77,7 +93,8 @@ const Header = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleMenu: () => dispatch(toggleLayerMenu())
+    toggleMenu: () => dispatch(toggleLayerMenu()),
+    openAbout: () => dispatch(openAboutDialog())
   };
 };
 

@@ -9,22 +9,19 @@ import {
   REQUEST_NEIGHBORHOOD_DATA,
   RECEIVE_NEIGHBORHOOD_DATA,
   CLOSE_DISPLAY,
-  SELECT_NEIGHBORHOOD
+  SELECT_NEIGHBORHOOD, OPEN_ABOUT_DIALOG, CLOSE_ABOUT_DIALOG
 } from "../actions/dataActions";
-import {
-  CLOSE_ALERT_MESSAGE,
-  OPEN_ALERT_MESSAGE
-} from "../actions/dataActions";
+
 
 const DEFAULT_PARCEL = "0028F00194000000";
 
 export const currentSelection = (state = {}, action) => {
   switch (action.type) {
     case SELECT:
-      const { objectType, id, properties } = action;
-      return { objectType, id, properties };
+      const {objectType, id, name, properties} = action;
+      return {objectType, id, name, properties};
     case CLOSE_DISPLAY:
-      return { objectType: null };
+      return {objectType: null};
     default:
       return state;
   }
@@ -33,8 +30,8 @@ export const currentSelection = (state = {}, action) => {
 export const previousSelection = (state = {}, action) => {
   switch (action.type) {
     case SELECT:
-      const { objectType, id} = action.previousSelection | {objectType: null, id: null, name: null};
-      return { objectType, id };
+      const {objectType, id} = action.previousSelection | {objectType: null, id: null, name: null};
+      return {objectType, id};
     case CLOSE_DISPLAY:
       return action.currentSelection;
     default:
@@ -43,7 +40,7 @@ export const previousSelection = (state = {}, action) => {
 };
 
 const parcelData = (
-  state = { isFetching: false, didInvalidate: false, data: {} },
+  state = {isFetching: false, didInvalidate: false, data: {}},
   action
 ) => {
   switch (action.type) {
@@ -83,7 +80,7 @@ export const parcelDataById = (state = {}, action) => {
 };
 
 const neighborhoodData = (
-  state = { isFetching: false, didInvalidate: false, data: {} },
+  state = {isFetching: false, didInvalidate: false, data: {}},
   action
 ) => {
   switch (action.type) {
@@ -117,8 +114,6 @@ export const neighborhoodDataById = (state = {}, action) => {
 };
 
 
-
-
 export const dataDisplay = (state = null, action) => {
   switch (action.type) {
     case SELECT_PARCEL:
@@ -133,7 +128,7 @@ export const dataDisplay = (state = null, action) => {
 };
 
 export const parcelImage = (
-  state = { isFetching: false, imageUrl: null },
+  state = {isFetching: false, imageUrl: null},
   action
 ) => {
   switch (action.type) {
@@ -158,6 +153,28 @@ export const parcelImagesById = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.parcelId]: parcelImage(state[action.parcelId], action)
       });
+    default:
+      return state;
+  }
+};
+
+export const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case REQUEST_PARCEL_DATA:
+      return true;
+    case RECEIVE_PARCEL_DATA:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const aboutDialogOpen = (state = false, action) => {
+  switch (action.type) {
+    case OPEN_ABOUT_DIALOG:
+      return true;
+    case CLOSE_ABOUT_DIALOG:
+      return false;
     default:
       return state;
   }

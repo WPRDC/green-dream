@@ -42,3 +42,45 @@ export const grounded = {
 };
 
 
+export const bikepgh = {
+  name: 'BikePGH',
+  homepage: 'http://www.bikepgh.org/',
+  wprdcOrg: 'bikepgh',
+  wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+export const epa = {
+  name: 'Environmental Protection Agency',
+  homepage: 'http://www.epg.gov',
+  // wprdcOrg: 'bikepgh',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+export const growpgh = {
+  name: 'Grow Pittsburgh',
+  homepage: 'http://www.growpittsburgh.gov',
+  wprdcOrg: 'grow-pittsburgh',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+export const pat = {
+  name: 'Port Authority of Allegheny County',
+  homepage: 'http://www.portauthority.org',
+  wprdcOrg: 'port-authority-of-allegheny-county',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+export const hr = {
+  name: 'Healthy Ride',
+  homepage: 'https://healthyridepgh.com/',
+  wprdcOrg: 'healthy-ride',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+export const pwsa = {
+  name: 'Pittsburgh Water & Sewer Authority',
+  homepage: 'https://pgh2o.com/',
+  wprdcOrg: 'pwsa',
+  // wprdcImg: '20150212-183412.702478k1fmeh7gvmv2viv3h0wjnn89f.gif'
+};
+
+

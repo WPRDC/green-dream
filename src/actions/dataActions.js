@@ -1,5 +1,5 @@
 import {getStreetViewImage} from "../utils/apiUtils";
-import {extractAddressFromData, checkSearchQuery} from "../utils/dataUtils";
+import {extractAddressFromData, checkSearchQuery, makeAddressLine} from "../utils/dataUtils";
 
 export const SELECT_PARCEL = "SELECT_PARCEL";
 export const SELECT_NEIGHBORHOOD = "SELECT_NEIGHBORHOOD";
@@ -9,18 +9,17 @@ export const RECEIVE_PARCEL_DATA = "RECEIVE_PARCEL_DATA";
 export const REQUEST_PARCEL_IMAGE = "REQUEST_PARCEL_IMAGE";
 export const RECEIVE_PARCEL_IMAGE = "RECEIVE_PARCEL_IMAGE";
 export const CLOSE_DISPLAY = "CLOSE_DISPLAY";
+export const OPEN_ABOUT_DIALOG = "OPEN_ABOUT_DIALOG";
+export const CLOSE_ABOUT_DIALOG = "CLOSE_ABOUT_DIALOG";
 
 export const requestPropertyData = parcelId => {
   return {type: REQUEST_PARCEL_DATA, parcelId};
 };
 
-export const selectParcel = parcelId => {
-  return {type: SELECT_PARCEL, parcelId};
-};
 
 export const SELECT = "SELECT";
-export const select = (objectType, id, properties, previousSelection) => {
-  return {type: SELECT, objectType, id, properties, previousSelection};
+export const select = (objectType, id, name, properties, previousSelection) => {
+  return {type: SELECT, objectType, id, name, properties, previousSelection};
 };
 
 export const closeDisplay = (currentSelection) => {
@@ -43,7 +42,7 @@ export const fetchParcelData = parcelId => {
   return function (dispatch) {
     dispatch(requestPropertyData(parcelId));
 
-    return fetch(`http://tools.wprdc.org/property-api/v1/parcels/${parcelId}`)
+    return fetch(`https://tools.wprdc.org/property-api/v1/parcels/${parcelId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {
         dispatch(receivePropertyData(parcelId, data));
@@ -78,15 +77,17 @@ export const searchForParcel = query => {
   // Search query
   return function (dispatch, getState) {
     console.log('searching');
+    const {previousSelection} = getState();
     return (checkSearchQuery(query))
       .then(
         parcelId => {
 
           dispatch(fetchParcelDataIfNeeded(parcelId))
-            .then(data => {
-              dispatch(select(parcelId));
-              const coords = getState().parcelDataById[parcelId].geo.centroid.coordinates;
-              const center = coords.reverse().map(coord => parseFloat(coord))
+            .then(() => {
+              const {geo, data} = getState().parcelDataById[parcelId];
+              const centroid = geo.centroid.coordinates;
+              const address = makeAddressLine(extractAddressFromData(data));
+              dispatch(select('parcels', parcelId, address, {centroid}, previousSelection));
             })
         },
         // on a unsuccessful search, pop up an error
@@ -156,19 +157,19 @@ export const receiveNeighborhoodData = (hoodId, data) => {
   };
 };
 
-export const fetchNeighborhoodData = hoodId => {
+export const fetchNeighborhoodData = (regionType, hoodId) => {
   return function (dispatch) {
     dispatch(requestNeighborhoodData(hoodId));
-
-    return fetch(`https://tools.wprdc.org/neighborhood-api/v0/hood/${hoodId}`)
+    return fetch(`https://tools.wprdc.org/neighborhood-api/v0/region/${regionType}/${hoodId}`)
       .then(response => response.json(), error => console.log("ERROR", error))
       .then(data => {
+        console.log(data)
         dispatch(receiveNeighborhoodData(hoodId, data));
       });
   };
 };
 
-const shouldFetchNeighborhoodlData = (state, hoodId) => {
+const shouldFetchNeighborhoodData = (state, hoodId) => {
   const data = state.neighborhoodDataById[hoodId];
   if (!data) {
     return true;
@@ -179,12 +180,28 @@ const shouldFetchNeighborhoodlData = (state, hoodId) => {
   }
 };
 
-export const fetchNeighborhoodDataIfNeeded = hoodId => {
+export const fetchNeighborhoodDataIfNeeded = (regionType, hoodId) => {
   return (dispatch, getState) => {
-    if (shouldFetchNeighborhoodlData(getState(), hoodId)) {
-      return dispatch(fetchNeighborhoodData(hoodId));
+    if (shouldFetchNeighborhoodData(getState(), hoodId)) {
+      return dispatch(fetchNeighborhoodData(regionType, hoodId));
     } else {
       return Promise.resolve();
     }
   };
 };
+
+
+
+
+
+export const openAboutDialog = () => {
+  return {
+    type: OPEN_ABOUT_DIALOG
+  }
+};
+
+export const closeAboutDialog = () => {
+  return {
+    type: CLOSE_ABOUT_DIALOG
+  }
+}

@@ -8,7 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Header from "./containers/Header";
 import ParcelInfoPanel from "./containers/ParcelInfoPanel";
 import NeighborhoodInfoPanel from "./containers/NeighborhoodInfoPanel";
-
+import AboutDialog from "./containers/AboutDialog"
 const styles = theme => ({
   root: {
     height: "100vh",
@@ -36,15 +36,16 @@ class App extends Component {
     const { classes, layerMenu } = this.props;
 
     return (
-      <div className={classes.root}>
-        <div className={classes.header}>
+      <div className="flex-container">
+        <div className="flex-item">
           <Header title="Urban Greenprint" />
         </div>
 
-        <main className={classes.content}>
+        <main className="flex-item">
           <Map />
           <ParcelInfoPanel />
           <NeighborhoodInfoPanel />
+          <AboutDialog/>
         </main>
       </div>
     );

@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 import thunkMiddleware from "redux-thunk";
-import { createLogger } from "redux-logger";
+import {createLogger} from "redux-logger";
 import rootReducer from "./reducers";
 
 const loggerMiddleware = createLogger({
@@ -21,5 +21,8 @@ const configureStore = preloadedState => {
     )
   );
 };
+
+//TODO: show a internet connection warning when they lose a connection!!!
+
 
 export default configureStore;

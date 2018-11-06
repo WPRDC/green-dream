@@ -41,6 +41,22 @@ const extractLayerTypeFromId = layerId => {
   else return layerId.substr(0, layerId.lastIndexOf("-"));
 };
 
+const clearLayers = (mapStyle, layerType) => {
+  const mapLayers = mapStyle.get('layers')
+  let oldLayersIndices = []
+  for (let i = 0; i < mapLayers.size; i++) {
+    if (mapLayers.get(i).get('id').includes(`-${layerType}-`)) {
+      oldLayersIndices.push(i)
+    }
+  }
+
+  let clearedMapStyle = mapStyle;
+  for (let i of oldLayersIndices) {
+    clearedMapStyle = clearedMapStyle.setIn(['layers', i, 'filter', 2], 'nnn')
+  }
+  return clearedMapStyle
+}
+
 const styles = theme => ({
   root: {
     zIndex: 1,
@@ -76,6 +92,7 @@ class Map extends Component {
       tooltip: null,
       popup: {latitude: null}
     };
+    this.map = React.createRef();
   }
 
   componentDidMount = () => {
@@ -109,7 +126,7 @@ class Map extends Component {
     const {mapStyle, width, height} = this.state;
     const {selectFeature, mapLayers, currentSelection} = this.props;
     if (event && event.features.length) {
-      const workingStyle = mapStyle.toJS();
+      // 0. Clear out old highlighted layers
 
       // 1. Determine the feature of interest and get data about it
       const feature = event.features[0];
@@ -118,9 +135,10 @@ class Map extends Component {
       const {map_identifier: id, map_name: name} = feature.properties;
 
       const properties = {bounds};
+      console.log(feature)
 
       // 1st class info displays - info panel
-      if (["parcels", "neighborhoods"].includes(layerType)) {
+      if (["parcels", "neighborhoods", "municipalities"].includes(layerType)) {
         selectFeature(layerType, id, name, properties, currentSelection);
       }
 
@@ -153,9 +171,11 @@ class Map extends Component {
         layer => layer.id === layerType + "-highlight-fill"
       );
       // 2. Change the style of that layer  and display name in tooltip
+
+      const clearedMapStyle = clearLayers(mapStyle, 'highlight')
       const newState = {tooltip: feature.properties["map_name"]};
       if (layerIndex >= 0) {
-        newState["mapStyle"] = mapStyle.setIn(
+        newState["mapStyle"] = clearedMapStyle.setIn(
           ["layers", layerIndex, "filter", 2],
           feature.properties["map_identifier"]
         );
@@ -190,38 +210,36 @@ class Map extends Component {
       );
     }
 
+    const clearedMapStyle = clearLayers(mapStyle, 'select')
+
+
     // Something selected and previous selection on map
     if (oldFillIndex && oldLineIndex && fillIndex && lineIndex && oldFillIndex >= 0 && oldLineIndex >= 0) {
       this.setState({
-        mapStyle: mapStyle
-          .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
-          .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
-          .setIn(["layers", fillIndex, "filter", 2], id)
-          .setIn(["layers", lineIndex, "filter", 2], id)
-      });
-    }
-    // Cleared selection (info panel closed) so previous selection, but no new selection
-    else if(oldFillIndex && oldLineIndex && oldFillIndex >= 0 && oldLineIndex >= 0 ){
-      this.setState({
-        mapStyle: mapStyle
-          .setIn(["layers", oldFillIndex, "filter", 2], 'hhh')
-          .setIn(["layers", oldLineIndex, "filter", 2], 'hhh')
-      });
-    }
-    // Selection on an empty (no current selections) map
-    else if (lineIndex >= 0 && fillIndex >= 0) {
-      this.setState({
-        mapStyle: mapStyle
+        mapStyle: clearedMapStyle
           .setIn(["layers", fillIndex, "filter", 2], id)
           .setIn(["layers", lineIndex, "filter", 2], id)
       });
     }
 
-    if (["parcels", "neighborhoods"].includes(layerType)) {
-      const {bounds} = properties;
+    // Selection on an empty (no current selections) map
+    else if (lineIndex >= 0 && fillIndex >= 0) {
+      this.setState({
+        mapStyle: clearedMapStyle
+          .setIn(["layers", fillIndex, "filter", 2], id)
+          .setIn(["layers", lineIndex, "filter", 2], id)
+      });
+    }
+
+    if (["parcels", "neighborhoods", 'municipalities'].includes(layerType)) {
+      const {bounds, centroid} = properties;
       const vp = new WebMercatorViewport({width, height});
       const padding = height / 3.5;
-      const {latitude, longitude, zoom} = vp.fitBounds(bounds, {padding});
+      const {latitude, longitude, zoom} = centroid ? {
+        latitude: parseFloat(centroid[1]),
+        longitude: parseFloat(centroid[0]),
+        zoom: 16
+      } : vp.fitBounds(bounds, {padding});
       this._onViewportChange(
         Object.assign(this.state.viewport, {
           zoom: Math.min(zoom, 17),
@@ -230,7 +248,11 @@ class Map extends Component {
         })
       );
     }
-  }
+  };
+
+  getMap = () => {
+    return this.map.current.getMap();
+  };
 
   handleSelectionChange = (selection) => {
     const {displayInfo} = this.props;
@@ -274,6 +296,7 @@ class Map extends Component {
             style={{position: "absolute", zIndex: 1, width: "100%"}}
           >
             <ReactMapGL
+              ref={this.map}
               mapStyle={this.state.mapStyle}
               onViewportChange={this._onViewportChange}
               onHover={this.handleHover}
@@ -333,8 +356,12 @@ const mapDispatchToProps = dispatch => {
         dispatch(fetchParcelImageIfNeeded(id, name));
       }
       if (type === "neighborhoods") {
-        const hoodId = id.toLowerCase().replace(/(\-|\s)/g, "_")
-        dispatch(fetchNeighborhoodDataIfNeeded(hoodId))
+        const hoodId = id.toLowerCase().replace(/(\-|\s)/g, "_").replace(/\./g, '')
+        dispatch(fetchNeighborhoodDataIfNeeded('pittsburgh_neighborhood', hoodId))
+      }
+      if (type === 'municipalities') {
+        const muniId = id.toLowerCase().replace(/(\-|\s)/g, "_").replace(/\./g, '')
+        dispatch(fetchNeighborhoodDataIfNeeded('allegheny_county_municipality', muniId))
       }
     }
   };
