@@ -13,7 +13,8 @@ const drawerWidth = 280;
 const styles = theme => ({
   drawerPaper: {
     position: "relative",
-    width: drawerWidth
+    width: drawerWidth,
+    height: "calc(100vh - 60px)",
   },
   content: {
     backgroundColor: theme.palette.background.default,
@@ -30,10 +31,10 @@ const LayerControl = props => {
       variant="persistent"
       anchor="left"
       open={layerMenu.open}
-      style={{position: 'absolute'}}
+      style={{position: 'absolute', flex: 1}}
       classes={{ paper: classes.drawerPaper }}
     >
-      <LayerGroup title="Base Layers">
+      <LayerGroup title="Borders and Infrastructure">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "base-layers")
@@ -46,10 +47,23 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Urban Green Features">
+      <LayerGroup title="Green Space Features (Current)">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "urban-green-features")
+            .map(layer => (
+              <LayerListItem
+                key={layer.id}
+                layer={layer}
+                onChange={handleChange(layer)}
+              />
+            ))}
+        </LayerList>
+      </LayerGroup>
+      <LayerGroup title="Green Space Features (Proposed)">
+        <LayerList>
+          {mapLayers
+            .filter(layer => layer.category === "urban-green-features-planned")
             .map(layer => (
               <LayerListItem
                 key={layer.id}
@@ -72,7 +86,7 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Transportation">
+      <LayerGroup title="Mobility">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "transportation")

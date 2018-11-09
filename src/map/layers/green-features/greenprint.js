@@ -12,7 +12,7 @@ export default {
   },
   legendColor: "#a5ffb9",
   legendDisplay: true,
-  category: "urban-green-features",
+  category: "urban-green-features-planned",
   visible: false,
   source: {
     type: "carto-vector",

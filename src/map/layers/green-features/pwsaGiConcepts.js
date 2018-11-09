@@ -18,7 +18,7 @@ export default {
   legendColor: "black",
 
   name: 'Green First Plan',
-  category: 'urban-green-features',
+  category: 'urban-green-features-planned',
   source: {
     type: 'carto-vector',
     minzoom: 10,
