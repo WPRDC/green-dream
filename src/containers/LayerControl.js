@@ -47,7 +47,7 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Green Space Features (Current)">
+      <LayerGroup title="Current Green Space Features">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "urban-green-features")
@@ -60,7 +60,7 @@ const LayerControl = props => {
             ))}
         </LayerList>
       </LayerGroup>
-      <LayerGroup title="Green Space Features (Proposed)">
+      <LayerGroup title="Proposed Green Space Features">
         <LayerList>
           {mapLayers
             .filter(layer => layer.category === "urban-green-features-planned")
