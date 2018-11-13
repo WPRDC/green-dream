@@ -33,7 +33,7 @@ export default {
             stops: [[0, 1], [9, 1], [18, 10]]
           },
           "line-opacity": {
-            stops: [[1, 0], [9, 0.9], [12, 0.4]]
+            stops: [[1, 0], [9, 0.9], [14, 0]]
           },
           "line-color": "black"
         }
