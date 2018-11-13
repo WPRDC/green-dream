@@ -10,7 +10,7 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Park", color: color}],
+    items: [{category: "Trail", color: color}],
   },
   legendColor: color,
   legendDisplay: true,

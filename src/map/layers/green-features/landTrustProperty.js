@@ -10,7 +10,7 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Park", color: color}],
+    items: [{category: "Land Trust Property", color: color}],
   },
   legendColor: color,
   legendDisplay: true,
