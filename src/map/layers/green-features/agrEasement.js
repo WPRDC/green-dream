@@ -10,7 +10,7 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Park", color: color}],
+    items: [{category: "Agricultural Easements", color: color}],
   },
   legendColor: color,
   legendDisplay: true,

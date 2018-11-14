@@ -1,5 +1,6 @@
-import {ac, bikepgh} from "../../publishers";
+import {ac} from "../../publishers";
 
+const color = "#007076";
 
 export default {
   id: "bike-trails",
@@ -11,9 +12,9 @@ export default {
   legend: {
     display: true,
     type: "single",
-    items: [{category: "Bike Trail", color: "#5C5248"}],
+    items: [{category: "Bike Trail", color: color}],
   },
-  legendColor: "#5C5248",
+  legendColor: color,
   legendDisplay: true,
   source: {
     type: "carto-vector",
@@ -41,7 +42,7 @@ export default {
           "line-width": {
             stops: [[10, 1], [15, 4]]
           },
-          "line-color": "#5C5248",
+          "line-color": color,
           "line-opacity": {
             stops: [[10, 1], [15, 1]]
           }
