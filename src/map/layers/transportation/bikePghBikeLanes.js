@@ -25,7 +25,7 @@ export default {
     ]
   },
   legendDisplay: true,
-  legendColor: "#9999FF",
+  legendColor: "#000",
 
   name: 'Bike Lanes',
   category: 'transportation',
