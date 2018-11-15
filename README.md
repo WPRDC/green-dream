@@ -5,6 +5,7 @@ A joint project between the [Western Pennsylvania Regional Data Center](https://
 [![GitHub license](https://img.shields.io/github/license/WPRDC/green-dream.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/WPRDC/green-dream.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 
+![Urban Greenprint](example.png)
 
 ## Description
 To better inform land use decisions and ownership considerations ALT is developing an intersectional analysis of parcel status of the Greater Pittsburgh Region, with a focus on key regional initiatives. Urban greening is a multi-benefit solution to many of the issues facing the region, such as landslides, water management and combined sewer overflows; which have arisen from inappropriate development and poor and aging infrastructure. This “Urban Greenprint” will emphasize greenspaces as solutions, recognizing that all forms of urban greening can positively contribute to the overall health and benefit of the area. The Greenprint will guide ALT, policy makers, and the community on the best uses of parcels to improve comprehensive regional planning and decision-making.
