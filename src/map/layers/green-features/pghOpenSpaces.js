@@ -9,21 +9,17 @@ export default {
     display: true,
     type: "category",
     items: [
-      {category: "Divest", color: '#66c2a5'},
-      {category: "Invest", color: '#fc8d62'},
-      {category: "Redevelop", color: '#8da0cb'},
-      {category: "Expand", color: '#e78ac3'},
-      {category: "Naturalize", color: '#a6d854'},
+      {category: "Divest", color: '#8dd3c7'},
+      {category: "Invest", color: '#ffffb3'},
+      {category: "Redevelop", color: '#bebada'},
+      {category: "Expand", color: '#fb8072'},
+      {category: "Naturalize", color: '#80b1d3'},
     ]
   },
   information: {
     description: "City of Pittsburgh Open Space Plan",
     extent: "Pittsburgh",
     publisher: pgh,
-    // source: {
-    //   title: "WPRDC - Greenways",
-    //   link: "https://data.wprdc.org/dataset/greenways"
-    // },
   },
   legendColor: "green",
   legendDisplay: true,
@@ -73,11 +69,11 @@ export default {
             property: "plan",
             type: "categorical",
             stops: [
-              ['divest', "#66c2a5"],
-              ['invest', "#fc8d62"],
-              ['redevelop', "#8da0cb"],
-              ['expand', "#e78ac3"],
-              ['naturalize', "#a6d854"]
+              ['divest', "#8dd3c7"],
+              ['invest', "#ffffb3"],
+              ['redevelop', "#bebada"],
+              ['expand', "#fb8072"],
+              ['naturalize', "#80b1d3"]
             ]
           },
           "fill-opacity": {
