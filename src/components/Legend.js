@@ -5,7 +5,9 @@ import LegendItem from "./LegendItem";
 
 const styles = {
   root: {
-    padding: "12px"
+    padding: "12px",
+    maxHeight: "25rem",
+    overflowY: 'auto',
   }
 };
 
