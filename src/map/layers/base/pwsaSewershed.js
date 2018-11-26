@@ -9,12 +9,12 @@ export default {
     display: true,
     type: "category",
     items: [
-      {category: "Upper Mon", color: 'blue'},
-      {category: "Chartiers", color: 'green'},
-      {category: "Saw Mill Run", color: 'red'},
-      {category: "LOGR", color: 'purple'},
-      {category: "Upper Allegheny", color: 'yellow'},
-      {category: "Main Rivers", color: 'orange'},
+      {category: "Upper Mon", color: '#e41a1c'},
+      {category: "Chartiers", color: '#377eb8'},
+      {category: "Saw Mill Run", color: '#4daf4a'},
+      {category: "LOGR", color: '#984ea3'},
+      {category: "Upper Allegheny", color: '#ff7f00'},
+      {category: "Main Rivers", color: '#ffff33'},
     ]
   },
   legendColor: "black",
@@ -65,16 +65,16 @@ export default {
             property: "mod_basin",
             type: "categorical",
             stops: [
-              ["Upper Mon", 'blue'],
-              ["Chartiers", 'green'],
-              ["Saw Mill Run", 'red'],
-              ["LOGR", 'purple'],
-              ["Upper Allegheny", 'yellow'],
-              ["Main Rivers", 'orange'],
+              ["Upper Mon", '#e41a1c'],
+              ["Chartiers", '#377eb8'],
+              ["Saw Mill Run", '#4daf4a'],
+              ["LOGR", '#984ea3'],
+              ["Upper Allegheny", '#ff7f00'],
+              ["Main Rivers", '#ffff33'],
             ]
           },
           "fill-opacity": {
-            stops: [[8, 0], [13, 0.1], [18, 0.1]]
+            stops: [[8, 0], [13, 0.2], [18, 0.2]]
           }
         }
       }
