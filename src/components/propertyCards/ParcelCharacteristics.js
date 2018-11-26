@@ -4,6 +4,7 @@ import KeyValueListDisplay from "../dashboardOld/dataDisplays/KeyValueListDispla
 import DataCard from "../dashboardOld/DataCard";
 
 const fieldMapping = [
+  {resource: "centroids_and_geo_info", field: "MAPBLOCKLO", title: "Map Block Lot #"},
   {resource: "assessments", field: "CLASSDESC", title: "Use Class"},
   {resource: "assessments", field: "OWNERDESC", title: "Owner Type"},
   {resource: "assessments", field: "USEDESC", title: "Land Use"},
