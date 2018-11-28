@@ -42,9 +42,10 @@ const ParcelInfoPanel = props => {
           <p style={{marginBottom: "3px"}}>
             {addr.number} {addr.street}
           </p>
-          <p style={{marginTop: "3px"}}>
+          <p style={{marginTop: "3px", marginBottom: "6px"}}>
             {addr.city}, {addr.state} {addr.zip}
           </p>
+          <p style={{marginBottom: "3px", fontSize: '1rem'}}>{currentSelection.id}</p>
         </div>
       );
     }
