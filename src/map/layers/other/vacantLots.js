@@ -15,7 +15,7 @@ export default {
   category: 'other',
   visible: false,
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 10,
     sql: `SELECT pb.the_geom, pb.the_geom_webmercator, pb.cartodb_id, asmt.usedesc
 FROM allegheny_county_parcel_boundaries pb

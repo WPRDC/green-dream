@@ -15,7 +15,7 @@ export default {
   category: "natural-features",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.pittsburgh_fema_flood_zones"
   },

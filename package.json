@@ -8,6 +8,7 @@
     "@material-ui/icons": "^1.1.1",
     "core-js": "^2.5.7",
     "dotenv": "^5.0.1",
+    "fsevents": "^2.0.1",
     "immutable": "^3.8.2",
     "mapbox-gl": "^0.44.2",
     "react": "^16.6.1",

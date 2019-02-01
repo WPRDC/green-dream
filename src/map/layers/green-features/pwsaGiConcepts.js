@@ -20,7 +20,7 @@ export default {
   name: 'Green First Plan',
   category: 'urban-green-features-planned',
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 10,
     sql: `SELECT 'cwa42m29m16' as grp, layer as type,  cartodb_id, the_geom, the_geom_webmercator
 FROM wprdc.cwa42m29m16giconcept

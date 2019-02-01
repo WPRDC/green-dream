@@ -13,7 +13,7 @@ export default {
   category: "base-layers",
   visible: true,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 11,
     sql:
       "SELECT *, hood as map_identifier, hood as map_name FROM pittsburgh_neighborhoods WHERE hood NOT LIKE 'Mount Oliver Borough'"

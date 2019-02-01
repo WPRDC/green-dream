@@ -15,7 +15,7 @@ export default {
   name: 'Public Transit Routes',
   category: 'transportation',
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 10,
     sql: 'SELECT * FROM paac_routes_1611',
   },

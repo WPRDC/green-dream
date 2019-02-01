@@ -15,7 +15,7 @@ export default {
   name: 'Healthy Ride Stations',
   category: 'transportation',
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 10,
     sql: 'SELECT * FROM healthyridestations2017',
   },

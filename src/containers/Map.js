@@ -111,7 +111,7 @@ class Map extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     const {mapLayers: oldLayers, currentSelection: oldSelection} = prevProps;
     const {mapLayers: newLayers, currentSelection} = this.props;
-
+    console.log(this.state.mapStyle.toJS());
     if ((currentSelection.objectType || oldSelection.objectType) && !objectsAreTheSame(oldSelection, currentSelection)) {
       this.handleSelectionChange(currentSelection);
     }

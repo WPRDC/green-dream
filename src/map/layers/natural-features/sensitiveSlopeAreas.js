@@ -17,7 +17,7 @@ export default {
   category: "natural-features",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM greenways_final WHERE type = 'Sensitive Slope Areas'"
   },
