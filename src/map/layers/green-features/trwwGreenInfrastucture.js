@@ -35,7 +35,7 @@ export default {
     { id: "project_description", name: "Description" }
   ],
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 10,
     sql:
       "SELECT *, project_name as map_name, objectid as map_identifier  FROM table_3rww_gi_inventory"

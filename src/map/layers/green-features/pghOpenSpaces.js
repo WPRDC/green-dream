@@ -26,7 +26,7 @@ export default {
   category: "urban-green-features",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: `SELECT *, objectid as map_id, park_name as map_name,
       CASE

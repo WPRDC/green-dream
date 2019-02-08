@@ -30,7 +30,7 @@ export default {
   name: 'Bike Lanes',
   category: 'transportation',
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 10,
     sql: `SELECT *, ROW_NUMBER() OVER (ORDER BY type) as map_identifier, type as map_name
       FROM

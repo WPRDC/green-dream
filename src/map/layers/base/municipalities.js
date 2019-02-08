@@ -13,7 +13,7 @@ export default {
   category: "base-layers",
   visible: true,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT *, f0_label as map_identifier, f0_label as map_name FROM wprdc.allegheny_county_municipal_boundaries"
   },

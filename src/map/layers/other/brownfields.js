@@ -22,7 +22,7 @@ export default {
     { id: "current_owner", name: "Current Owner" }
   ],
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 10,
     sql:
       "SELECT *, property_name as map_name, cartodb_id as map_identifier FROM brownfields"

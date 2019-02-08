@@ -15,7 +15,7 @@ export default {
   category: "urban-green-features-planned",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.greenprint"
   },

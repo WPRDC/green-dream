@@ -32,7 +32,7 @@ export default {
     { id: "src_name", name: "Reporting Source" }
   ],
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 10,
     sql:
       "SELECT a.*, a.ev_title as map_name, a.cartodb_id as map_identifier FROM wprdc.globallandslides as a, wprdc.allegheny_county_boundary as b WHERE ST_Intersects(a.the_geom, b.the_geom) "

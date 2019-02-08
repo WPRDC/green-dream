@@ -15,7 +15,7 @@ export default {
   category: "other",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.environmental_justice_areas WHERE ej_area = 1"
   },

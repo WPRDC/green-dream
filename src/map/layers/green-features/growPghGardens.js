@@ -19,7 +19,7 @@ export default {
     { id: "category", name: "Category" }
   ],
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 10,
     sql: "SELECT *, urban_grower as map_name, cartodb_id as map_identifier  FROM growpghgardens201712"
   },

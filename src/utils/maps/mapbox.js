@@ -32,6 +32,7 @@ export const generateMapSource = layerConfig => {
 
   switch (layerConfig.source.type) {
     case "carto-vector":
+    case "vector":
       return generateCartoVectorSource(layerConfig);
     case "raster":
       const { tiles, tileSize } = layerConfig.source;
@@ -45,7 +46,7 @@ export const generateLabelLayers = layerConfig => {
 
 export const generateStyleLayers = layerConfig => {
   const { layers, visible } = layerConfig;
-  if (Object.keys(layers).length === 0) return {}
+  if (Object.keys(layers).length === 0) return {};
   return layers.style.map(layer => {
     layer.layout.visibility = visible ? "visible" : "none";
     return layer;

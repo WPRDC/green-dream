@@ -22,7 +22,7 @@ export default {
   category: "base-layers",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM wprdc.pghcombinedsewersheds"
   },

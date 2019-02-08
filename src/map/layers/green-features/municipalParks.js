@@ -15,7 +15,7 @@ export default {
   category: "urban-green-features",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM greenways_final WHERE type = 'Municipal Parks'"
   },

@@ -15,7 +15,7 @@ export default {
   legendColor: "rgba(120, 2, 222, 1)",
   legendDisplay: true,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 10,
     sql: "SELECT * FROM stepsimg"
   },

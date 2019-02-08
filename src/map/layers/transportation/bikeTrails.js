@@ -17,7 +17,7 @@ export default {
   legendColor: color,
   legendDisplay: true,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 8,
     sql: "SELECT * FROM bike_trails_may17"
   },

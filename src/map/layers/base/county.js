@@ -8,7 +8,7 @@ export default {
   legendDisplay: false,
   category: "base-layers",
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM allegheny_county_boundary"
   },

@@ -13,7 +13,7 @@ export default {
   legendDisplay: false,
   visible: false,
   source: {
-    type: 'carto-vector',
+    type: 'vector',
     minzoom: 0,
     sql: `SELECT * FROM wprdc.allegheny_county_municipal_boundaries WHERE f0_name = 'PITTSBURGH'`,
   },

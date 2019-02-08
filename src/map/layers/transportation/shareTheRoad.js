@@ -17,12 +17,12 @@ export default {
   category: "urban-green-features",
   visible: false,
   source: {
-    type: "carto-vector",
+    type: "vector",
     minzoom: 0,
     sql: "SELECT * FROM greenways_final WHERE type LIKE 'BIKE%'"
   },
   information: {
-    description: "Sensitive slope areas🏌️🏌️",
+    description: "Areas designated as Bike Lanes",
     extent: "Allegheny County",
     publisher: ac,
     source: {
