@@ -22,7 +22,7 @@ export default {
     sql: "SELECT * FROM greenways_final WHERE type = 'Trails'"
   },
   information: {
-    description: "Trails throughout Allegheny County🏌️🏌️",
+    description: "Trails throughout Allegheny County",
     extent: "Allegheny County",
     publisher: ac,
     source: {

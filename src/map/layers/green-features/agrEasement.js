@@ -22,7 +22,7 @@ export default {
     sql: "SELECT * FROM greenways_final WHERE type = 'Agricultural Easements'"
   },
   information: {
-    description: "Sensitive slope areas🏌️🏌️",
+    description: "Areas designated for agricultural easement.",
     extent: "Allegheny County",
     publisher: ac,
     source: {

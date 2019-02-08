@@ -22,7 +22,7 @@ export default {
     sql: "SELECT * FROM greenways_final WHERE type LIKE 'BIKE%'"
   },
   information: {
-    description: "Sensitive slope areas🏌️🏌️",
+    description: "Areas designated as Bike Lanes",
     extent: "Allegheny County",
     publisher: ac,
     source: {
