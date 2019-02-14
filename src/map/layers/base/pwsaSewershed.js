@@ -24,7 +24,7 @@ export default {
   source: {
     type: "vector",
     minzoom: 0,
-    sql: "SELECT * FROM wprdc.pghcombinedsewersheds"
+    sql: "SELECT *, objectid as map_identifier, cso_shed as map_name FROM wprdc.pghcombinedsewersheds"
   },
   information: {
     description: "Combined sewersheds in the City of Pittsburgh.",
@@ -55,6 +55,25 @@ export default {
         }
       },
       {
+        id: "pwsa-combined-sewersheds-labels",
+        type: "symbol",
+        source: "pwsa-combined-sewersheds",
+        "source-layer": "pwsa-combined-sewersheds",
+        layout: {
+          "text-field": "{map_name}",
+          "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+          "text-size": 11
+        },
+        paint: {
+          "icon-color": 'black',
+          "text-color": 'black',
+          "text-opacity": {
+            stops: [[8, 0], [13, 0.8], [18, 0.8]]
+          },
+          "text-halo-color": "rgba(152, 152, 152, 0)"
+        }
+      },
+      {
         id: "pwsa-combined-sewersheds-fill",
         type: "fill",
         source: "pwsa-combined-sewersheds",
@@ -77,7 +96,8 @@ export default {
             stops: [[8, 0], [13, 0.2], [18, 0.2]]
           }
         }
-      }
+      },
+
     ]
   }
 };
