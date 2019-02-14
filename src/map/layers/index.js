@@ -37,6 +37,9 @@ import sensitiveSlopeAreas from "./natural-features/sensitiveSlopeAreas";
 import shareTheRoad from "./transportation/shareTheRoad";
 import trails from "./green-features/trails";
 import greenprint from "./green-features/greenprint";
+import taxDelinquent from "./other/taxDelinquent";
+import cityOwned from "./other/cityOwned";
+import acWatersheds from "./base/acWatersheds";
 
 export const defaultLayers = [
 
@@ -74,6 +77,8 @@ export const defaultLayers = [
 
 
   vacantLots,
+  cityOwned,
+  taxDelinquent,
   neighborhoods,
   municipalities,
   pghOpenSpaces,
@@ -90,6 +95,7 @@ export const defaultLayers = [
 
   // Base Layers
   pwsaSewershed,
+  acWatersheds,
   alleghenyHyrdologyLines,
   alleghenyHyrdologyAreas,
   pghLandslideProne,
