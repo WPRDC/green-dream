@@ -1,6 +1,6 @@
 import {pgh} from "../../publishers";
 
-const color = "#F00"
+const color = "#00115F"
 
 export default {
   id: 'tax-delinquent',
@@ -47,7 +47,12 @@ WHERE td.prior_years > 1`
         "layout": {},
         "paint": {
           "fill-color": color,
-          "fill-opacity": 1,
+          "fill-opacity": {
+            "stops": [
+              [12, 0.1],
+              [18, 0.8]
+            ]
+          }
         },
       },
       {
@@ -60,20 +65,20 @@ WHERE td.prior_years > 1`
         "paint": {
           "line-width": {
             "stops": [
-              [10, 0],
+              [10, 0.5],
               [13, 1],
               [15, 1],
               [18, 2]
             ]
           },
-          "line-color": "rgba(2, 2, 2, 1)",
+          "line-color": color,
           "line-opacity": {
             "stops": [
-              [10, 0],
-              [13, 0],
-              [15, .4],
+              [12, .3],
+              [18, .6]
             ]
-          }
+          },
+
         }
       },
     ]

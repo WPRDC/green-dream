@@ -1,6 +1,6 @@
 import {pgh} from "../../publishers";
 
-const color = "#F0F";
+const color = "#BF00FF";
 
 export default {
   id: 'city-owned',
@@ -56,8 +56,8 @@ ON copp.pin = pb.pin`
           "line-color": color,
           "line-opacity": {
             "stops": [
-              [15, 1],
-              [18, 1]
+              [12, 0],
+              [18, .8]
             ]
           }
         }

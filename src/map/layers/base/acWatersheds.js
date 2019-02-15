@@ -46,10 +46,10 @@ export default {
         },
         paint: {
           "line-width": {
-            stops: [[0, 1], [9, 1], [18, 10]]
+            stops: [[0, 1], [9, 1], [18, 5]]
           },
           "line-opacity": {
-            stops: [[1, 0], [9, 0.9], [14, 0.4]]
+            stops: [[1, 0], [9, 0.4], [14, 0.8]]
           },
           "line-color": color
         }
@@ -61,8 +61,8 @@ export default {
         "source-layer": "ac-watersheds",
         layout: {
           "text-field": "{map_name}",
-          "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
-          "text-size": 11
+          "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+          "text-size": 11,
         },
         paint: {
           "icon-color": color,
@@ -70,7 +70,7 @@ export default {
           "text-opacity": {
             stops: [[1, 0], [9, 0.9], [14, 0.4]]
           },
-          "text-halo-color": "rgba(152, 152, 152, 0)"
+          "text-halo-color": "rgba(152, 152, 152, .3)"
         }
       },
     ]

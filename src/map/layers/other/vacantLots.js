@@ -69,7 +69,7 @@ WHERE asmt.usedesc like '%VACANT%'`
           "fill-opacity": {
             "stops": [
               [12, 0.1],
-              [18, 0.8]
+              [18, 0.6]
             ]
           }
         }
