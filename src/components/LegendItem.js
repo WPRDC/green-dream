@@ -28,7 +28,7 @@ const LegendItem = props => {
     <div className={classes.root}>
       <Typography variant="body2">{label}</Typography>
       {legend.items.map((item, i) => <div>
-        <div className={classes.color} style={{ background: item.color }} />
+        <div className={classes.color} style={(item.hollow ? {border: `1px solid ${item.color}`} : { background: item.color })} />
         <div className={classes.label}>
           <Typography variant="caption">{item.category}</Typography>
         </div>
