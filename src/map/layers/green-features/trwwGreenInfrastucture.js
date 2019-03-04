@@ -1,4 +1,4 @@
-import {pat} from "../../publishers";
+import {trww} from "../../publishers";
 
 export default {
   id: "3rww-gi-inventory",
@@ -43,7 +43,7 @@ export default {
   information: {
     description: "Inventory of green infrastructure projects compiled by 3RWW.",
     extent: "Allegheny County",
-    publisher: pat,
+    publisher: trww,
     source: {
       title: "WPRDC - 3RWW Green Infrastructure Inventory",
       link: "https://data.wprdc.org/dataset/3rww-green-infrastructure-inventory"
